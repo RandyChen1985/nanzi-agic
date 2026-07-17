@@ -1,17 +1,17 @@
-# 云枢产品矩阵官网
+# NanZi产品矩阵官网
 
-云枢（Yunshu Suite）产品矩阵的静态展示站点，介绍从数据治理、智能体执行到 Agent 运营的三层产品体系。
+NanZi（NanZi Suite）产品矩阵的静态展示站点，介绍从数据治理、智能体执行到 Agent 运营的三层产品体系。
 
-**在线访问：** [randychen1985.github.io/yunshu](https://randychen1985.github.io/yunshu/)
+**在线访问：** [randychen1985.github.io/nanzi](https://randychen1985.github.io/nanzi/)
 
-**代码仓库：** [github.com/RandyChen1985/yunshu](https://github.com/RandyChen1985/yunshu)
+**代码仓库：** [github.com/RandyChen1985/nanzi](https://github.com/RandyChen1985/nanzi)
 
 ## 产品矩阵
 
 | 产品 | 说明 | 仓库 |
 |------|------|------|
-| 云枢 · 数据服务平台 | 企业级 Data API 与元数据治理，将物理表、SQL 与语义元数据封装为可审计、可授权的 RESTful API | [yunshu-api-data-platform](https://github.com/RandyChen1985/yunshu-api-data-platform) |
-| 云枢 · 智能体平台 | AI 智能中枢，涵盖多专家路由、ChatBI、知识库、MCP 工具与嵌入式 Chat SDK | [yunshu-ai-agent-platform](https://github.com/RandyChen1985/yunshu-ai-agent-platform) |
+| NanZi · 数据服务平台 | 企业级 Data API 与元数据治理，将物理表、SQL 与语义元数据封装为可审计、可授权的 RESTful API | [nanzi-api-data-platform](https://github.com/RandyChen1985/nanzi-api-data-platform) |
+| NanZi · 智能体平台 | AI 智能中枢，涵盖多专家路由、ChatBI、知识库、MCP 工具与嵌入式 Chat SDK | [nanzi-ai-agent-platform](https://github.com/RandyChen1985/nanzi-ai-agent-platform) |
 | OpenClaw Buddy | OpenClaw 的 Web 管理台与对话伴侣，可视化配置 Bot、模型、渠道与 Workspace | [openclaw-buddy](https://github.com/RandyChen1985/openclaw-buddy) |
 
 ## 技术栈
