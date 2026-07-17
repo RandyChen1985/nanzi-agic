@@ -2,9 +2,9 @@
 
 NanZi（NanZi Suite）产品矩阵的静态展示站点，介绍从数据治理、智能体执行到 Agent 运营的三层产品体系。
 
-**在线访问：** [randychen1985.github.io/nanzi](https://randychen1985.github.io/nanzi/)
+**在线访问：** [randychen1985.github.io/nanzi-aigc](https://randychen1985.github.io/nanzi-aigc/)
 
-**代码仓库：** [github.com/RandyChen1985/nanzi](https://github.com/RandyChen1985/nanzi)
+**代码仓库：** [github.com/RandyChen1985/nanzi-aigc](https://github.com/RandyChen1985/nanzi-aigc)
 
 ## 产品矩阵
 

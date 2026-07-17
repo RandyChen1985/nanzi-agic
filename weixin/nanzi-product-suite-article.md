@@ -12,7 +12,7 @@
 
 这也是我做 **NanZi产品矩阵** 的出发点：把企业数据、AI 智能体执行和 Agent 运营入口放在同一条产品线上，让数据可以被治理，让智能体可以执行，让 Agent 可以被运营。
 
-官网地址：https://randychen1985.github.io/nanzi/
+官网地址：https://randychen1985.github.io/nanzi-aigc/
 
 ## 一、NanZi不是三个孤立项目，而是一条产品链路
 
@@ -156,7 +156,7 @@ NanZi产品矩阵不是要求一次性全部落地。
 
 如果你对NanZi数据服务平台、智能体平台或 OpenClaw Buddy 感兴趣，欢迎访问官网了解更多，也可以直接交流部署、产品设计或企业智能体落地场景。
 
-官网：https://randychen1985.github.io/nanzi/
+官网：https://randychen1985.github.io/nanzi-aigc/
 
 邮箱：cexlong@gmail.com
 
