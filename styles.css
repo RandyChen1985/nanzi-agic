@@ -1048,6 +1048,8 @@ h2 {
 }
 
 .screenshot-grid figure {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   overflow: hidden;
   background: #ffffff;
@@ -1061,10 +1063,9 @@ h2 {
 }
 
 .screenshot-grid img {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: left top;
+  height: auto;
   background: #f8fafc;
 }
 
