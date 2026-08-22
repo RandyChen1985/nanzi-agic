@@ -11,11 +11,6 @@
     <link rel="canonical" href="https://randychen1985.github.io/nanzi-aigc/products/faq.html" />
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../styles.css" />
-    <!-- Marked.js for 100% full markdown rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.1/marked.min.js"></script>
-    <!-- Highlight.js for syntax highlighting -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark-dimmed.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
     <!-- Mermaid.js for diagrams -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <style>
@@ -34,12 +29,15 @@
         --faq-code-bg: #0f172a;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body.faq-page-body {
         background-color: var(--faq-bg-page);
         color: var(--faq-text);
         margin: 0;
         font-family: inherit;
-        scroll-behavior: smooth;
       }
 
       /* Reading progress bar */
@@ -54,13 +52,55 @@
         transition: width 0.1s ease-out;
       }
 
+      /* Fix top header on light page */
       .faq-header {
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(255, 255, 255, 0.94);
+        background: rgba(255, 255, 255, 0.96) !important;
         backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--faq-border);
+        border-bottom: 1px solid var(--faq-border) !important;
+        color: #0f172a !important;
+      }
+
+      .faq-header .brand-mark {
+        background: var(--faq-primary) !important;
+        color: #ffffff !important;
+      }
+
+      .faq-header .brand strong {
+        color: #0f172a !important;
+      }
+
+      .faq-header .brand small {
+        color: #64748b !important;
+      }
+
+      .faq-header .desktop-nav a {
+        color: #334155 !important;
+        opacity: 0.85;
+        cursor: pointer;
+        transition: color 0.15s ease;
+      }
+
+      .faq-header .desktop-nav a:hover {
+        color: var(--faq-primary) !important;
+        opacity: 1;
+      }
+
+      .faq-header .header-action {
+        color: #0f172a !important;
+        border-color: #cbd5e1 !important;
+      }
+
+      .faq-header .header-action:hover {
+        border-color: var(--faq-primary) !important;
+        color: var(--faq-primary) !important;
+      }
+
+      .faq-header .menu-button {
+        color: #0f172a !important;
+        border-color: #cbd5e1 !important;
       }
 
       .faq-layout {
@@ -204,38 +244,16 @@
         max-width: 1080px;
       }
 
-      /* Top FAQ Illustrated Banner */
-      .faq-banner-card {
-        margin-bottom: 28px;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
-        border: 1px solid var(--faq-border);
-        background: #fff8f0;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .faq-banner-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 44px rgba(15, 23, 42, 0.12);
-      }
-
-      .faq-banner-img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
       /* Hero Box */
       .faq-hero-box {
         background: linear-gradient(135deg, #091a3c 0%, #0d2757 60%, #10418d 100%);
-        border-radius: 16px;
-        padding: 36px 40px;
+        border-radius: 14px;
+        padding: 24px 28px;
         color: #ffffff;
-        margin-bottom: 36px;
+        margin-bottom: 24px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 16px 36px rgba(13, 39, 87, 0.15);
+        box-shadow: 0 12px 28px rgba(13, 39, 87, 0.12);
       }
 
       .faq-hero-box::after {
@@ -243,58 +261,63 @@
         position: absolute;
         right: -30px;
         bottom: -40px;
-        width: 280px;
-        height: 280px;
-        background: radial-gradient(circle, rgba(0, 210, 255, 0.25) 0%, rgba(0, 210, 255, 0) 70%);
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(circle, rgba(0, 210, 255, 0.2) 0%, rgba(0, 210, 255, 0) 70%);
         pointer-events: none;
       }
 
-      .faq-badge {
+      .faq-github-badge {
+        position: absolute;
+        top: 22px;
+        right: 24px;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        background: rgba(255, 255, 255, 0.15);
+        gap: 5px;
+        background: rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: #e0f2fe;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 4px 10px;
-        border-radius: 20px;
-        margin-bottom: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        color: #e2e8f0;
+        font-size: 11.5px;
+        font-weight: 500;
+        padding: 3px 9px;
+        border-radius: 16px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        z-index: 2;
+      }
+
+      .faq-github-badge:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: #ffffff;
+        color: #ffffff;
       }
 
       .faq-hero-box h1 {
-        font-size: 28px;
-        margin: 0 0 12px;
+        font-size: 21px;
+        margin: 0 0 8px;
         font-weight: 800;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
         line-height: 1.3;
+        padding-right: 130px;
       }
 
       .faq-hero-box p {
         color: #cbd5e1;
-        font-size: 15px;
-        margin: 0 0 20px;
-        line-height: 1.6;
-        max-width: 800px;
+        font-size: 13.5px;
+        margin: 0 0 14px;
+        line-height: 1.5;
+        max-width: 820px;
       }
 
       .faq-quick-stats {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
       }
 
       .faq-stat-pill {
         background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 6px 14px;
-        border-radius: 8px;
-        font-size: 13px;
-        color: #f8fafc;
-        display: flex;
-        align-items: center;
         gap: 6px;
       }
 
@@ -305,10 +328,6 @@
         border-radius: 14px;
         padding: 40px 48px;
         box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
-      }
-
-      .markdown-body h1:first-child {
-        display: none; /* Already in hero box */
       }
 
       .markdown-body h2 {
@@ -334,14 +353,6 @@
         font-weight: 700;
         color: #334155;
         margin: 24px 0 12px;
-        scroll-margin-top: 90px;
-      }
-
-      .markdown-body h5 {
-        font-size: 14.5px;
-        font-weight: 700;
-        color: #475569;
-        margin: 20px 0 10px;
         scroll-margin-top: 90px;
       }
 
@@ -474,15 +485,15 @@
         color: #ffffff;
       }
 
-      .markdown-body pre {
+      .code-container pre {
         margin: 0;
         padding: 16px;
         overflow-x: auto;
         background: var(--faq-code-bg);
-        border-radius: 8px;
+        border-radius: 0;
       }
 
-      .markdown-body pre code {
+      .code-container pre code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-size: 13px;
         line-height: 1.6;
@@ -515,38 +526,55 @@
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
       }
 
-      /* Q&A Cards */
-      .qa-box {
+      /* Q&A Showcase Cards */
+      .qa-card {
         background: #f8fafc;
         border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        margin: 16px 0;
-        padding: 18px 20px;
         border-left: 4px solid var(--faq-primary);
+        border-radius: 10px;
+        margin: 18px 0;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+        scroll-margin-top: 90px;
       }
 
-      .qa-title {
-        font-weight: 800;
+      .qa-question {
+        padding: 14px 18px;
+        font-weight: 700;
         font-size: 15px;
         color: #0f172a;
-        margin: 0 0 10px 0;
+        background: #ffffff;
+        border-bottom: 1px solid #f1f5f9;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
       }
 
-      .qa-tag {
+      .qa-question .q-tag {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: var(--faq-primary);
-        color: #ffffff;
-        font-size: 11px;
+        background: var(--faq-primary-soft);
+        color: var(--faq-primary);
+        font-size: 12px;
         font-weight: 800;
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
         flex-shrink: 0;
+      }
+
+      .qa-answer {
+        padding: 16px 20px;
+        font-size: 14.5px;
+        line-height: 1.75;
+        color: #334155;
+        background: #f8fafc;
+      }
+
+      .qa-answer ul, .qa-answer ol {
+        margin: 8px 0;
+        padding-left: 20px;
       }
 
       /* Back to top & Mobile FAB */
@@ -705,19 +733,90 @@
 
         <p class="sidebar-nav-title">手册目录导航</p>
         <div id="dynamic-toc">
-          <!-- Will be dynamically populated from 100% full markdown headings -->
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-1">一、平台概览与基础环境</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-1-1">1.1 推荐运行依赖与系统要求</a></li>
+    <li><a href="#sec-1-2">1.2 本地与服务器快速启动指南 (`dev.sh`)</a></li>
+    <li><a href="#sec-1-3">1.3 核心逻辑：平台前后端是如何协作运行的？</a></li>
+    <li><a href="#sec-1-4">1.4 小白高频问题与排查 Q&A</a></li>
+  </ul></div>
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-2">二、智能助手与交互画布 (Smart Assistant & Canvas)</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-2-1">2.1 核心逻辑：智能助手与交互画布的协同机制</a></li>
+    <li><a href="#sec-2-2">2.2 聊天输入框全能工具箱：附件、@专家、/快捷指令、技能与MCP挂载</a></li>
+    <li><a href="#sec-2-3">2.3 输入框浮标：Token 水位线、压缩日志与沙箱运行状态卡片</a></li>
+    <li><a href="#sec-2-4">2.4 右上角控制台：排版主题、单/多轮记忆、模型调用全维统计与调试</a></li>
+    <li><a href="#sec-2-5">2.5 浏览器自动化会话与实时投屏接管</a></li>
+    <li><a href="#sec-2-6">2.6 小白高频问题与交互排查 Q&A</a></li>
+  </ul></div>
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-3">三、智能体开发平台</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-3-1">3.1 核心逻辑：智能体、技能 (Skill) 与 MCP 工具的区别与联系</a></li>
+    <li><a href="#sec-3-2">3.2 智能体中心与多 Agent 协作</a></li>
+    <li><a href="#sec-3-3">3.3 技能工作台与平台审核机制 (Skills Management)</a></li>
+    <li><a href="#sec-3-4">3.4 MCP 工具集规范与容器内网关 (MCP Management)</a></li>
+    <li><a href="#sec-3-5">3.5 平台全量工具矩阵与功能清单 (Platform Tool Registry & Built-in Matrix)</a></li>
+    <li><a href="#sec-3-6">3.6 记忆工作台与 30 天持久化缓存</a></li>
+    <li><a href="#sec-3-7">3.7 任务调度台 (Task Center) 与 Cron 定时任务</a></li>
+    <li><a href="#sec-3-8">3.8 智能体单步调试 (Agent Debug) 与接口调试台 (Playground)</a></li>
+    <li><a href="#sec-3-9">3.9 小白高频问题与智能体排查 Q&A</a></li>
+  </ul></div>
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-4">四、ChatBI 开发平台</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-4-1">4.1 核心逻辑：ChatBI 是如何安全查询企业数据的？</a></li>
+    <li><a href="#sec-4-2">4.2 元数据同步与业务语义字典标注 (Metadata Management)</a></li>
+    <li><a href="#sec-4-3">4.3 案例集管理与 Few-Shot 向量匹配 (Examples Management)</a></li>
+    <li><a href="#sec-4-4">4.4 常见 ChatBI 问答与 SQL 执行排查 Q&A</a></li>
+  </ul></div>
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-5">五、知识库开发平台</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-5-1">5.1 核心逻辑：RAG 知识库检索与文档切片原理</a></li>
+    <li><a href="#sec-5-2">5.2 知识库创建与 RAGFlow 引擎对接</a></li>
+    <li><a href="#sec-5-3">5.3 混合检索 (Hybrid Search) 与重排序 (Rerank) 调优</a></li>
+    <li><a href="#sec-5-4">5.4 运营分析与无答案问题聚类挖掘</a></li>
+    <li><a href="#sec-5-5">5.5 小白高频问题与知识库排查 Q&A</a></li>
+  </ul></div>
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-6">六、日志与 Token 分析</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-6-1">6.1 核心逻辑：什么是 Token？平台是如何计费与统计的？</a></li>
+    <li><a href="#sec-6-2">6.2 审计日志 (Audit Logs) 与操作追溯</a></li>
+    <li><a href="#sec-6-3">6.3 聊天日志 (Chat Logs) 与复盘诊断</a></li>
+    <li><a href="#sec-6-4">6.4 Token 统计与企业多维度成本分摊</a></li>
+    <li><a href="#sec-6-5">6.5 小白高频问题与日志分析 Q&A</a></li>
+  </ul></div>
+
+<div class="sidebar-group">
+  <a class="sidebar-group-title" href="#sec-7">七、系统管理与配置</a>
+  <ul class="sidebar-sublinks">
+    <li><a href="#sec-7-1">7.1 用户与角色权限</a></li>
+    <li><a href="#sec-7-2">7.2 模型注册与提供商管理</a></li>
+    <li><a href="#sec-7-3">7.3 参数配置专题</a></li>
+    <li><a href="#sec-7-4">7.4 通知通道与外部集成</a></li>
+    <li><a href="#sec-7-5">7.5 数据库与缓存维护</a></li>
+  </ul></div>
         </div>
       </aside>
 
       <!-- Right Main Content -->
       <main class="faq-content">
-        <!-- Top Illustrated Banner -->
-        <div class="faq-banner-card">
-          <img src="../assets/images/faq.png" alt="NanZi AI 开源智能体平台 · 疑难解答与常见问题手册 (FAQ)" class="faq-banner-img" />
-        </div>
-
         <div class="faq-hero-box">
-          <span class="faq-badge">📖 官方全量技术手册 · 100% 完整无删减</span>
+          <a class="faq-github-badge" href="https://github.com/RandyChen1985/nanzi-ai-agent-platform/blob/main/FAQ.md" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub 实时源</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
           <h1>NanZi AI 开源智能体平台 · 疑难解答与常见问题手册 (FAQ)</h1>
           <p>
             本手册按照平台功能架构 100% 全量编排，包含原理机制、交互规范、Master-Subagent 子代理、Embed Chat、Text-to-SQL ChatBI、Docker 安全沙箱与系统参数全流程。
@@ -731,9 +830,2064 @@
           </div>
         </div>
 
-        <!-- 100% Full Rendered Markdown Container -->
+        <!-- 100% Full Static Markdown Container -->
         <article class="markdown-body" id="faq-markdown-container">
-          <!-- Rendered by Marked.js -->
+<blockquote class="info" style="margin-top: 0; margin-bottom: 24px; border-left: 4px solid var(--faq-primary); background: #f0f7ff; color: #1e40af; border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 14px; line-height: 1.6;">
+  💡 <strong>最新实时版本提示</strong>：本手册随 NanZi AI 智能体平台代码持续迭代更新。如需查看最新实时的第一手技术文档与更新记录，请查阅 GitHub 官方源文件：<a href="https://github.com/RandyChen1985/nanzi-ai-agent-platform/blob/main/FAQ.md" target="_blank" rel="noopener noreferrer" style="color: var(--faq-primary); font-weight: 700; text-decoration: underline;">https://github.com/RandyChen1985/nanzi-ai-agent-platform/blob/main/FAQ.md</a>
+</blockquote>
+<p>欢迎查阅 <strong>NanZi AI 开源智能体平台</strong> 常见问题与疑难解答手册。本手册按照平台左侧功能菜单结构进行编排分类，包含通俗易懂的原理机制解析、小白用户常见概念混淆答疑，以及各类运行环境配置与异常排查方法。</p>
+<hr />
+<h2 id="sec-1">一、平台概览与基础环境</h2>
+<h3 id="sec-1-1">1.1 推荐运行依赖与系统要求</h3>
+<ul>
+<li><strong>操作系统</strong>：Linux (Ubuntu 20.04+/CentOS 7+/Debian 11+)、macOS (Intel/Apple Silicon)、Windows (WSL2)；</li>
+<li><strong>Python 运行时</strong>：<strong>Python 3.11</strong>（推荐使用 <code>uv</code> 极速虚拟环境管理器，严禁使用 Python 3.10 或 3.12+ 专有语法）；</li>
+<li><strong>Node.js 运行时</strong>：<strong>Node.js 18.18+ / 20.x</strong>（用于前端 Vite 7 + Vue 3 编译与构建）；</li>
+<li><strong>缓存与搜索引擎</strong>：<strong>Redis Stack Server 7.x+</strong>（必须包含 RediSearch 模块，不能使用裸 Redis 6.x）；</li>
+<li><strong>主数据库</strong>：<strong>MySQL 8.0+</strong> 或 <strong>PostgreSQL 14+</strong>；</li>
+<li><strong>安全沙箱环境 (Docker)</strong>：</li>
+<li>推荐主机安装 <strong>Docker 20.10+</strong>；</li>
+<li><strong>核心建议</strong>：<strong>当平台自身部署在 Docker 容器内运行时，强烈建议安全沙箱配置走 <code>docker</code> 策略</strong>（通过在平台容器启动时挂载 <code>-v /var/run/docker.sock:/var/run/docker.sock</code>）。若在平台主容器内使用 <code>local</code> 策略，所有 Agent 执行的 Shell 脚本和命令都会在平台后端主服务容器内裸奔执行，可能导致平台主环境被污染或崩溃；而配置为 <code>docker</code> 沙箱策略，可以为每个用户在宿主机 Docker 引擎上独立拉起纯净隔离的沙箱子容器，实现真正的操作系统级多租户安全隔离！</li>
+</ul>
+<hr />
+<h3 id="sec-1-2">1.2 本地与服务器快速启动指南 (<code>dev.sh</code>)</h3>
+<p>平台根目录下提供了自动化启动脚本 <a href="file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/dev.sh"><code>./dev.sh</code></a>：</p>
+<ol>
+<li><strong>前台调试启动 (实时查看编译与后端日志)</strong>：</li>
+</ol>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>   ./dev.sh</code></pre>
+</div>
+<ol>
+<li><strong>后台常驻启动 (Daemon 模式，适合服务器部署)</strong>：</li>
+</ol>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>   ./dev.sh -d
+   # 或
+   ./dev.sh --daemon</code></pre>
+</div>
+<ol>
+<li><strong><code>dev.sh</code> 核心特性</strong>：</li>
+</ol>
+<ul>
+<li>自动检测并停止占用旧端口的服务进程；</li>
+<li>自动校验 <code>frontend/package.json</code> 的校验和（Checksum），在依赖变更时自动执行 <code>npm install</code>；</li>
+<li>动态解析 <code>.env</code> 中的 <code>API_SERVICE_PORT</code>（默认 8001），避免端口硬编码；</li>
+<li>前端自动执行 <code>npx vite build</code> 产出静态资源并交由 FastAPI 统一托管。</li>
+</ul>
+<hr />
+<h3 id="sec-1-3">1.3 核心逻辑：平台前后端是如何协作运行的？</h3>
+<div class="mermaid-card"><pre class="mermaid">flowchart LR
+    Browser["用户浏览器 (Vue3 SPA)"] -- "① REST API / SSE 流式" --> FastAPI["FastAPI 后端 (Port 8001)"]
+    FastAPI -- "② 静态资源托管" --> Static["Vite 产物 (frontend/dist)"]
+    FastAPI -- "③ 会话与向量检索" --> Redis["Redis Stack (RediSearch)"]
+    FastAPI -- "④ 业务数据持久化" --> DB[("MySQL / PostgreSQL")]
+    FastAPI -- "⑤ 隔离执行 Shell/代码" --> Sandbox["Docker / E2B / Local 沙箱"]</pre></div>
+<ol>
+<li><strong>统一单端口托管</strong>：开发与生产环境下，FastAPI 会自动挂载并托管前端构建生成的 <code>frontend/dist</code> 静态资源目录。用户只需访问 <code>http://IP:8001</code> 即可体验完整的 Web 界面与后端 API 服务，无需额外配置复杂的 Nginx 反向代理。</li>
+<li><strong>流式打字与协议通信</strong>：对话采用标准的 <strong>Server-Sent Events (SSE)</strong> 流式长连接。后端在执行 Agent 思考、工具调用、文字输出时，实时向前端推送结构化事件流。</li>
+</ol>
+<hr />
+<h3 id="sec-1-4">1.4 小白高频问题与排查 Q&A</h3>
+
+<div class="qa-card" id="q1-为什么强烈要求使用-python-3-11-系统自带的-python-3-8-或-3-12-可以吗">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 为什么强烈要求使用 Python 3.11？系统自带的 Python 3.8 或 3.12 可以吗？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：<strong>不可以</strong>。</li>
+<li>Python 3.8/3.9 缺少平台所需的现代异步特性与类型系统（如 <code>asyncio.TaskGroup</code>、Pydantic 2 新语法）；</li>
+<li>Python 3.12+ 移除或改变了部分底层标准库 API，且部分 AI/数据分析第三方 C 扩展依赖（如旧版本轮子包）在 3.12+ 上可能缺少 pre-built wheels 导致本地编译报错。</li>
+<li><strong>推荐做法</strong>：使用 <code>uv</code> 极速安装隔离的 3.11 环境：</li>
+</ul>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>  uv python install 3.11
+  uv venv --python 3.11 .venv
+  source .venv/bin/activate</code></pre>
+</div>
+  </div>
+</div>
+
+<div class="qa-card" id="q2-dev-sh-和-dev-sh--d-有什么区别-关掉终端窗口后服务会停止吗">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q2: <code>./dev.sh</code> 和 <code>./dev.sh -d</code> 有什么区别？关掉终端窗口后服务会停止吗？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：</li>
+<li><code>./dev.sh</code>：<strong>前台运行模式</strong>。所有编译日志、FastAPI 访问日志都会实时打印在当前终端窗口中。<strong>一旦关闭终端窗口或按 Ctrl+C，服务会随之终止</strong>。适合本地开发与排查问题。</li>
+<li><code>./dev.sh -d</code>：<strong>后台常驻模式 (Daemon)</strong>。服务会通过 <code>nohup</code> 在后台静默运行。<strong>即使关闭 SSH 终端窗口或断开网络，服务依然会在后台持续运行</strong>。适合长期测试或部署在云服务器上。可以通过查看 <code>nohup.out</code> 或 <code>dev.sh</code> 停止。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q3-env-配置文件在哪里-我修改了配置为什么不生效">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q3: <code>.env</code> 配置文件在哪里？我修改了配置为什么不生效？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：</li>
+<li>项目根目录下有模板文件 <code>.env.example</code>，首次使用需复制一份命名为 <code>.env</code>：<code>cp .env.example .env</code>；</li>
+<li><strong>重要逻辑</strong>：<code>.env</code> 中的环境变量仅在<strong>服务启动初始化阶段</strong>由 Python 读取。<strong>修改 <code>.env</code> 后必须重启服务（重新执行 <code>./dev.sh</code>）才能生效</strong>。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q4-启动报-address-already-in-use-端口冲突">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q4: 启动报 <code>Address already in use</code> 端口冲突？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查</strong>：脚本会自动检查并在启动前释放旧端口。若仍有外部其他服务占用了 8001 端口，可以在 <code>.env</code> 中修改 <code>API_SERVICE_PORT=8002</code>，然后重新执行 <code>./dev.sh</code>。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h2 id="sec-2">二、智能助手与交互画布 (Smart Assistant & Canvas)</h2>
+<h3 id="sec-2-1">2.1 核心逻辑：智能助手与交互画布的协同机制</h3>
+<p>智能助手采用<strong>左右分栏、双向协同</strong>的工作流：</p>
+<ul>
+<li><strong>左侧（对话与控制区）</strong>：负责智能体的自然语言交流、思考过程（Thinking CoT）展开折叠、工具调用状态跟踪、AI 提问卡片确认及 TODO 任务清单分步跟踪；</li>
+<li><strong>右侧（交互画布 Canvas）</strong>：当智能体生成前端代码（HTML/JS/Vue）、数据图表、Markdown 技术方案、或通过工具产出交付物文件时，右侧画布会自动呼出并实时渲染工件（Artifact）。用户可以在画布中直接编辑代码、切换设备预览尺寸，并一键保存写回沙箱工作区。</li>
+</ul>
+<hr />
+<h3 id="sec-2-2">2.2 聊天输入框全能工具箱：附件、@专家、/快捷指令、技能与MCP挂载</h3>
+<p>平台输入框不仅是一个文本框，而是一个<strong>全功能 Agent 协同工作台</strong>：</p>
+<h4 id="1-多模态附件与剪贴板截图粘贴">1. 多模态附件与剪贴板截图粘贴</h4>
+<ul>
+<li><strong>点击附件图标</strong>：支持上传本地图片（PNG/JPG/GIF/WebP）、文档（PDF/Word/Excel/TXT/CSV 等）；</li>
+<li><strong>剪贴板极速粘贴</strong>：在任意界面截图后，直接在输入框按 <code>Ctrl+V</code>（Mac 为 <code>Cmd+V</code>）即可快速贴入图片缩略图，智能体将自动调用多模态 Vision 模型进行图像理解与 OCR 识别。</li>
+</ul>
+<h4 id="2-@-提及呼出专家直选与自动路由">2. <code>@</code> 提及呼出专家直选与自动路由</h4>
+<ul>
+<li><strong>输入 <code>@</code> 符号</strong>：输入框上方将弹出专家智能体下拉列表（如 <code>@ChatBI数据分析师</code>、<code>@代码审计员</code>）；</li>
+<li><strong>专家直选模式</strong>：选中专家后本轮对话将精准直达该专属智能体，享受其定制的 System Prompt 与限定工具；</li>
+<li><strong>自动路由模式 (Auto-route)</strong>：默认模式，系统根据用户意图语义由 Router 自动分发给最适合的智能体或由主助手全能接管。</li>
+</ul>
+<h4 id="3-斜杠呼出快捷指令-slash-commands">3. <code>/</code> 斜杠呼出快捷指令 (Slash Commands)</h4>
+<ul>
+<li><strong>输入 <code>/</code> 符号</strong>：即刻呼出预设快捷指令面板（例如常用 Prompt 模板、数据集快捷提问、代码评审模板等）；</li>
+<li>选中后自动将结构化提示词填充到输入框中，支持一键发送，大幅提升高频任务操作效率。</li>
+</ul>
+<h4 id="4-技能-skill-与-mcp-工具动态级联挂载">4. 技能 (Skill) 与 MCP 工具动态级联挂载</h4>
+<ul>
+<li><strong>技能挂载 (Skills)</strong>：点击输入框底部的技能图标，可级联浏览并动态勾选当前会话需要生效的技能包（如 <code>brand-guidelines</code>、<code>doc-coauthoring</code>），无需全局修改 Prompt；</li>
+<li><strong>MCP 工具集选择</strong>：点击 MCP 按钮，可直观查看并切换当前挂载的 In-Container / STDIO / SSE 外部工具服务。</li>
+</ul>
+<h4 id="5-权限审批模式-approval-mode">5. 权限审批模式 (Approval Mode)</h4>
+<p>在输入框下方可随时切换当前会话的工具执行安全级别：</p>
+<ul>
+<li><strong>请求批准 (<code>ask</code>，默认)</strong>：执行文件写入、Bash 命令等需确认操作前，AI 会先弹出交互确认卡，由用户点击确认后方才执行；</li>
+<li><strong>自动批准 (<code>allow</code>)</strong>：全自动极速模式，自动放行所有常规工具调用，仅在触发高危安全规则时拦截；</li>
+<li><strong>拒绝执行 (<code>deny</code>)</strong>：严格只读防护模式，禁止一切写入与远程执行工具。</li>
+</ul>
+<h4 id="6-模型选择与深度思考强度-reasoning-effort-调节">6. 模型选择与深度思考强度 (Reasoning Effort) 调节</h4>
+<ul>
+<li><strong>实时切换模型</strong>：支持在输入框底部的下拉菜单中随时切换不同的对话基座大模型（如 DeepSeek-R1、Claude 3.7 Sonnet、GPT-4o、Qwen 2.5 等）；</li>
+<li><strong>思考模型控制</strong>：针对推理模型（如 DeepSeek-R1 / QwQ），支持开关思考模式，并精细化调节思考预算强度（无 / 极简 / 低 / 中 / 高 / 极高）。</li>
+</ul>
+<hr />
+<h3 id="sec-2-3">2.3 输入框浮标：Token 水位线、压缩日志与沙箱运行状态卡片</h3>
+<p>在聊天输入框右上角集成了<strong>多功能自适应状态浮标</strong>：</p>
+<ol>
+<li><strong>Token 水位线与用量健康度</strong>：</li>
+</ol>
+<ul>
+<li>动态环形进度条展示当前会话已占用的 Token 数量及当前预算上限（默认 64k）的占比；</li>
+<li>状态徽标自适应提示（🟢使用正常 / 🟡接近上限 / 🔴已达输入上限）；</li>
+</ul>
+<ol>
+<li><strong>上下文压缩历史时间线 (Compaction Timeline)</strong>：</li>
+</ol>
+<ul>
+<li>当多轮会话触发平台两阶段压缩或 AgentScope 内部上下文压缩时，浮标展示压缩次数入口；</li>
+<li>点击可展开时间线弹窗，查看各轮次提炼的高浓度摘要与节省比例；</li>
+</ul>
+<ol>
+<li><strong>沙箱运行环境卡片</strong>：</li>
+</ol>
+<ul>
+<li>展开浮标可直观查看当前生效策略（Local/Docker/E2B/SSH）；</li>
+<li><code>docker</code> 策略下展示容器实时状态（🟢已运行 / 🟡启动中 / 🔴失败 / ⚪未启动）、分配的 Container ID、秒级递增运行时长及【启动容器 / 重新连接】按钮。</li>
+</ul>
+<hr />
+<h3 id="sec-2-4">2.4 右上角控制台：排版主题、单/多轮记忆、模型调用全维统计与调试</h3>
+<p>在智能助手页面右上角的工具栏中，提供了深度的个性化与可观测性配置：</p>
+<ol>
+<li><strong>排版主题与代码高亮风格 (Typography Themes)</strong>：</li>
+</ol>
+<ul>
+<li>内置 <strong>5+ 套精美排版主题</strong>（极简白、优雅蓝、护眼绿、暗黑极客等）；</li>
+<li>自动匹配高对比度代码高亮配色与等宽字体，支持一键切换适合阅读或截图的渲染风格；</li>
+</ul>
+<ol>
+<li><strong>单轮 / 多轮记忆模式 (Memory Mode)</strong>：</li>
+</ol>
+<ul>
+<li><strong>多轮记忆（默认）</strong>：智能体在多轮对话中保持连续上下文与用户意图；</li>
+<li><strong>单轮模式</strong>：每轮对话独立处理，不携带历史上下文，非常适合独立 Prompt 效果测试或快速单步提问；</li>
+</ul>
+<ol>
+<li><strong>模型调用四维 Token 拆解与性能分析 (Model Call Stats Modal)</strong>：</li>
+</ol>
+<ul>
+<li>点击调试图标可弹出当前轮次调用的全维度性能面板：</li>
+<li>包含：首字响应延迟 (TTFT)、总耗时 (Latency)、物理上下文窗口占用比；</li>
+<li><strong>四维 Token 结构化分项占比图</strong>：精准拆解 System Prompt、Tools Schema、Memory/History 与 Current Turn 的 Token 占比，方便开发者优化 Prompt 空间；</li>
+</ul>
+<ol>
+<li><strong>会话管理与工件导出</strong>：</li>
+</ol>
+<ul>
+<li>支持一键清空当前会话记忆、导出完整对话为 Markdown 文件或复制嵌入链接。</li>
+</ul>
+<hr />
+<h3 id="sec-2-5">2.5 浏览器自动化会话与实时投屏接管</h3>
+<ul>
+<li><strong>持久化会话</strong>：智能体调用 <code>browser_*</code> 工具系列（打开网页、滚动、点击、表单输入、截图）时，在后台保持无头浏览器会话；</li>
+<li><strong>实时投屏接管</strong>：右侧画布支持展开【浏览器面板】，实时查看 Agent 操作的页面截图，支持人工直接点击、输入网址实现人机协同接管。</li>
+</ul>
+<hr />
+<h3 id="sec-2-6">2.6 小白高频问题与交互排查 Q&A</h3>
+
+<div class="qa-card" id="q1-智能助手-左侧菜单第二项-与智能体中心里的智能体有什么区别">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 智能助手（左侧菜单第二项）与智能体中心里的智能体有什么区别？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：</li>
+<li><strong>智能助手</strong>：是面向最终用户的<strong>统一综合对话门户</strong>，默认预装了代码解释器、文件读写、网页浏览与知识库问答等全能工具，开箱即用；</li>
+<li><strong>智能体中心</strong>：是面向企业开发者的<strong>配置与编排工坊</strong>。在这里你可以基于特定业务场景，定制专属智能体（如“财务对账助手”、“SQL 审计员”），为其配置专属的 System Prompt、特定知识库和限定工具集。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q2-聊天记录中出现的“自动整理线”是什么意思-我的聊天记录被删除了吗">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q2: 聊天记录中出现的“自动整理线”是什么意思？我的聊天记录被删除了吗？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：<strong>没有被删除</strong>。</li>
+<li>大模型单次会话所能接收的上下文长度是有上限的（默认 64k Tokens）。如果多轮长对话的历史记录太长，会导致模型报错或费用暴增。</li>
+<li>当逼近预算上限时，系统会自动启动<strong>两阶段智能溢出压缩</strong>：将较早轮次的历史对话提炼为结构化关键摘录，并在界面插入一条「自动整理线」。新一轮对话将基于这个高浓度摘要继续进行，既保留了前文核心信息，又大幅降低了 Token 消耗。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q3-点击-ai-回答中的-打开文件-为什么有时候在画布里打不开">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q3: 点击 AI 回答中的 <code>[打开文件]</code> 为什么有时候在画布里打不开？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：</li>
+<li>平台已在 <code>v1.0.12+</code> 中全面支持逻辑路径映射。无论 Agent 输出的是容器内逻辑路径 <code>/workspace/...</code> 还是宿主机物理路径，系统都会自动转义定位到当前登录用户的真实工作区文件；</li>
+<li>若提示文件不存在，请检查智能体是否真正执行了写入工具（Write/Save），或者该文件在之前的临时会话中已被清空。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h2 id="sec-3">三、智能体开发平台</h2>
+<h3 id="sec-3-1">3.1 核心逻辑：智能体、技能 (Skill) 与 MCP 工具的区别与联系</h3>
+<p>很多刚接触 Agent 开发的用户容易混淆这三个概念，它们在平台中的分工如下：</p>
+<div class="mermaid-card"><pre class="mermaid">graph TD
+    Agent["🤖 智能体 (Agent)<br>大脑与核心角色，定义 Prompt 与人格"] --> Skill["📚 技能 (Skill)<br>专业知识与工作流指导手册 (Markdown)"]
+    Agent --> MCP["🛠️ MCP 工具 (Tool)<br>具体执行代码/查数据/调 API 的手脚程序"]
+    Agent --> Memory["🧠 记忆 (Memory)<br>长短期记忆与用户偏好库"]</pre></div>
+<ul>
+<li><strong>智能体 (Agent)</strong>：是拥有独立人设、目标和决策逻辑的 AI 角色实体；</li>
+<li><strong>技能 (Skill)</strong>：是传授给智能体的<strong>领域专业工作流知识</strong>（以标准 <code>SKILL.md</code> 形式存储），告诉智能体“遇到这类任务应该分几步做、遵循什么规范”；</li>
+<li><strong>MCP 工具 (Model Context Protocol)</strong>：是智能体用来与外界交互的<strong>可执行代码接口</strong>（如查询天气、执行 Python 脚本、操作浏览器等）。</li>
+</ul>
+<hr />
+<h3 id="sec-3-2">3.2 智能体中心与多 Agent 协作</h3>
+<p>【智能体中心】（Agent Management）是平台对 AI 角色、能力边界、模型绑定、知识记忆与多 Agent 协同体系进行全生命周期管理的控制台。</p>
+<h4 id="sec-3-2-1">3.2.1 智能体核心构建的“五大要素”</h4>
+<p>创建一个高水准的专业智能体，平台提供了五个维度的精细化配置：</p>
+<div class="mermaid-card"><pre class="mermaid">mindmap
+  root((🤖 智能体))
+    👤 角色人设 Persona
+      System Prompt
+      行为准则与约束
+      动态变量插值
+    🧠 双模型绑定
+      主对话模型
+      深度思考推理模型
+    🛠️ 技能与工具集
+      标准 MCP 工具
+      专业 SKILL 工作流
+      内置代码与沙箱
+    📚 知识挂载范围
+      企业知识库
+      向量检索阈值
+      Top-K 召回上限
+    🔒 运行策略与沙箱
+      安全沙箱策略
+      最大执行轮数
+      多代理协作模式</pre></div>
+<ol>
+<li><strong>角色人设与 Prompt 工程 (Persona & System Prompt)</strong>：</li>
+</ol>
+<ul>
+<li>定义智能体的专业身份、语气风格、输出格式规范及禁止行为；</li>
+<li>支持动态环境变量注入（如 <code>{{user_name}}</code>、<code>{{current_time}}</code>、<code>{{workspace_root}}</code>），使智能体精准感知用户身份与现实时间。</li>
+</ul>
+<ol>
+<li><strong>双模型协同绑定 (Main Model + Reasoning Model)</strong>：</li>
+</ol>
+<ul>
+<li><strong>主对话模型 (Main Model)</strong>：负责通用交互、对话规划与工具调度（如通义千问 Qwen-Max、GPT-4o、DeepSeek-V3 等）；</li>
+<li><strong>思考推理模型 (Reasoning Model)</strong>：负责复杂数学运算、深度逻辑推演与多分支决策（如 DeepSeek-R1、QwQ-32B 等），支持输出 <code><think></code> 深度思考链。</li>
+</ul>
+<ol>
+<li><strong>技能与工具集动态装载 (Skills & Tools)</strong>：</li>
+</ol>
+<ul>
+<li><strong>系统内置工具</strong>：代码解释器（Bash）、文件读写、网页浏览、工件发布等；</li>
+<li><strong>专业技能库 (Skills)</strong>：挂载领域专精的 <code>SKILL.md</code>（如金融对账、合同法务审查、爬虫解析）；</li>
+<li><strong>外部 MCP 扩展</strong>：无缝调用接入的外部数据库、内部 ERP/CRM API。</li>
+</ul>
+<ol>
+<li><strong>私有知识库范围限定 (Knowledge Scope)</strong>：</li>
+</ol>
+<ul>
+<li>指定该智能体仅允许检索哪些特定知识库，设置精准的相似度过滤阈值，避免不相关知识干扰。</li>
+</ul>
+<ol>
+<li><strong>执行策略与沙箱环境 (Execution Policy & Sandbox)</strong>：</li>
+</ol>
+<ul>
+<li>为该智能体单独指定运行沙箱（继承全局 / 强制 Docker / E2B / Local），设置最大执行步数（Max Steps）防范死循环。</li>
+</ul>
+<hr />
+<h4 id="sec-3-2-2">3.2.2 多智能体协同编排与子代理机制 (Subagents Architecture)</h4>
+<p>在处理极其复杂的跨领域任务（如“先全网调研行业竞品，再编写后端 API 代码，最后生成可视化 HTML 报告”）时，单个智能体容易因为上下文过长而遗忘关键细节。</p>
+<p>平台引入了<strong>主代理 + 专家子代理（Master-Subagent）编排模式</strong>：</p>
+<div class="mermaid-card"><pre class="mermaid">sequenceDiagram
+    autonumber
+    actor User as 用户 (User)
+    participant Master as 👑 主编排智能体 (Master Agent)
+    participant Sub1 as 🔍 检索专家子代理 (Research Subagent)
+    participant Sub2 as 💻 编程专家子代理 (Coding Subagent)
+    participant Sub3 as 📊 汇报呈现子代理 (Report Subagent)
+
+    User->>Master: 提出综合性复杂需求
+    Master->>Master: 任务拆解与执行规划 (Task Decomposition)
+  
+    rect rgb(240, 248, 255)
+    Note over Master,Sub1: 孵化独立会话上下文
+    Master->>Sub1: 派发检索任务 (invoke_subagent)
+    Sub1->>Sub1: 深度搜索与数据清洗 (私有上下文)
+    Sub1-->>Master: 仅返回结构化调研摘要结论
+    end
+
+    rect rgb(255, 245, 238)
+    Note over Master,Sub2: 孵化独立代码沙箱
+    Master->>Sub2: 派发代码编写与沙箱验证任务
+    Sub2->>Sub2: 编写并执行测试 (私有上下文)
+    Sub2-->>Master: 仅返回最终代码工件与验证状态
+    end
+
+    rect rgb(245, 255, 250)
+    Master->>Sub3: 派发可视化图表生成
+    Sub3-->>Master: 返回交互图表 HTML
+    end
+
+    Master-->>User: 汇总交付高水准最终方案</pre></div>
+<h5 id="🌟-子代理机制的杀手级优势：">🌟 子代理机制的杀手级优势：</h5>
+<ul>
+<li><strong>上下文纯净隔离</strong>：子代理在自己独立的专属会话与沙箱中尝试、纠错与调试，产生的巨量中间过程日志<strong>绝不会污染主会话</strong>，主会话上下文始终保持轻量与高聚焦；</li>
+<li><strong>各司其职，模型异构</strong>：主代理可以使用规划能力强的通用模型，编程子代理可以使用代码微调模型，各取所长；</li>
+<li><strong>防止单点崩溃</strong>：某个子代理报错重试不影响主流程其他环节。</li>
+</ul>
+<hr />
+<h4 id="sec-3-2-3">3.2.3 嵌入式发布与一键共享 (Embed Chat)</h4>
+<p>【嵌入式对话组件】（Embed Chat，路由地址 <code>/embed/chat</code>）是平台面向企业第三方系统（如内部 OA、CRM、ERP、运维监控看板、Wiki 文档库、客服门户或官网）提供的高性能、零侵入、自适应嵌入方案。</p>
+<hr />
+<h5 id="1-为什么选择-embed-chat-嵌入集成">1. 为什么选择 Embed Chat 嵌入集成？</h5>
+<ul>
+<li><strong>全功能开箱即用</strong>：内置多模态附件上传、交互画布抽屉（代码高亮/Markdown渲染/图表生成/工件下载）、多轮记忆控制、快捷指令库与独立站内消息弹窗；</li>
+<li><strong>自适应响应式布局</strong>：无论是 380px 的右下角悬浮气泡挂件，还是 100% 宽高的全屏嵌入，均可自动适配亮色/暗色主题；</li>
+<li><strong>全隔离多实例机制</strong>：支持通过 <code>instance_id</code> 在同一页面挂载多个独立的智能体挂件，会话与上下文互不串扰。</li>
+</ul>
+<hr />
+<h5 id="2-企业级生产架构：embed-ticket-临时票据体系">2. 企业级生产架构：Embed Ticket 临时票据体系</h5>
+<p>为彻底避免在前端浏览器中暴露长期 API Key，生产环境<strong>强烈推荐使用 Embed Ticket 三步安全时序</strong>：</p>
+<div class="mermaid-card"><pre class="mermaid">sequenceDiagram
+    autonumber
+    actor User as 业务系统员工 (User)
+    participant HostFront as 宿主系统前端 (CRM/OA)
+    participant HostBack as 宿主系统后端 (Server)
+    participant NanziAPI as 平台接口 (NanZi Backend)
+    participant EmbedFrame as EmbedChat IFrame
+
+    User->>HostFront: 登录并打开业务工单/分析页面
+    HostFront->>HostBack: 请求加载 AI 助手
+    HostBack->>NanziAPI: POST /api/v1/embed/tickets (携带系统 Master Key & username)
+    Note over HostBack,NanziAPI: 长期 API Key 留在宿主后端环境变量，绝不出内网
+    NanziAPI-->>HostBack: 返回 5 分钟一次性 Ticket (如 emt_a8f9c2d1...)
+    HostBack-->>HostFront: 下发 ticket
+    HostFront->>EmbedFrame: 挂载 IFrame: /embed/chat?ticket=emt_xxx
+    EmbedFrame->>NanziAPI: 自动核销 Ticket 并兑换 24 小时短期 Session Token (阅后即焚)
+    NanziAPI-->>EmbedFrame: 鉴权通过，建立 SSE 流式连接
+    EmbedFrame->>EmbedFrame: 渲染专属对话面板，就绪可用
+    Note over EmbedFrame,NanziAPI: 持续聊天时自动触发活跃滑动续期 (Sliding TTL)</pre></div>
+<hr />
+<h5 id="3-服务端签发-ticket-示例与标准-iframe-挂载">3. 服务端签发 Ticket 示例与标准 IFrame 挂载</h5>
+<h6 id="①-宿主后端签发-ticket-接口规范：">① 宿主后端签发 Ticket 接口规范：</h6>
+<ul>
+<li><strong>请求方式</strong>：<code>POST /api/v1/embed/tickets</code></li>
+<li><strong>请求头</strong>：<code>X-API-Key: YOUR_SYSTEM_MASTER_KEY</code></li>
+<li><strong>请求体 (JSON)</strong>：</li>
+</ul>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Json</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>  {
+    &quot;username&quot;: &quot;zhangsan&quot;,          // 必填：目标员工用户名（代表谁提问，自动关联该用户权限与记忆）
+    &quot;agent_id&quot;: &quot;sys-agent-chatbi&quot;,  // 可选：指定初始锁定的智能体 ID（留空则走全局智能路由）
+    &quot;expires_in&quot;: 300                // 可选：Ticket 有效期（秒，默认 300 秒，一次性核销）
+  }</code></pre>
+</div>
+<h6 id="②-宿主前端-html-嵌入代码：">② 宿主前端 HTML 嵌入代码：</h6>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Html</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>&lt;!-- 宿主前端：直接传入 ticket 渲染 IFrame --&gt;
+&lt;iframe
+  src=&quot;https://your-nanzi-platform.com/embed/chat?ticket=emt_a8f9c2d1e0b3456789abcdef&amp;theme=light&quot;
+  width=&quot;100%&quot;
+  height=&quot;680&quot;
+  frameborder=&quot;0&quot;
+  allow=&quot;clipboard-read; clipboard-write&quot;
+  style=&quot;border: 0; border-radius: 12px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);&quot;
+&gt;&lt;/iframe&gt;</code></pre>
+</div>
+<hr />
+<h5 id="4-高级进阶：postmessage-双向通信与业务上下文注入">4. 高级进阶：PostMessage 双向通信与业务上下文注入</h5>
+<p>当宿主页面需要动态向智能体注入业务上下文（如当前正在浏览的工单详情、设备资产编号、客户档案），或实现会话超时无感自动重连时，推荐使用 <strong>PostMessage 标准协议</strong>：</p>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Html</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>&lt;iframe
+  id=&quot;nanzi-agent-frame&quot;
+  src=&quot;https://your-nanzi-platform.com/embed/chat?instance_id=crm-assistant&quot;
+  width=&quot;100%&quot;
+  height=&quot;680&quot;
+  frameborder=&quot;0&quot;
+&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+const frame = document.getElementById(&#x27;nanzi-agent-frame&#x27;);
+const nanziOrigin = &#x27;https://your-nanzi-platform.com&#x27;;
+
+// 监听 EmbedChat 组件生命周期与上行事件
+window.addEventListener(&#x27;message&#x27;, async (event) =&gt; {
+  if (event.origin !== nanziOrigin) return;
+  const { source, type, payload } = event.data || {};
+  if (source !== &#x27;nanzi-agent-embed&#x27;) return;
+
+  // 1. 组件就绪：发送 Ticket 鉴权并注入业务上下文
+  if (type === &#x27;NANZI_WIDGET_READY&#x27;) {
+    const ticket = await fetchMyHostTicket(); // 从宿主后端申请 Ticket
+    frame.contentWindow.postMessage({
+      source: &#x27;nanzi-host&#x27;,
+      type: &#x27;INIT_CONFIG&#x27;,
+      payload: {
+        ticket: ticket,
+        theme: &#x27;light&#x27;,
+        business_context: {
+          order_id: &#x27;ORD-2026-0822&#x27;,
+          customer_name: &#x27;阿里云计算有限公司&#x27;,
+          environment: &#x27;生产机房A区&#x27;
+        }
+      }
+    }, nanziOrigin);
+  }
+
+  // 2. 会话闲置超 24h 断开：自动静默重新申请 Ticket 续期
+  if (type === &#x27;INIT_FAILURE&#x27; &amp;&amp; payload?.reason === &#x27;session_expired&#x27;) {
+    const newTicket = await fetchMyHostTicket();
+    frame.contentWindow.postMessage({
+      source: &#x27;nanzi-host&#x27;,
+      type: &#x27;RESET_SESSION&#x27;,
+      payload: { ticket: newTicket }
+    }, nanziOrigin);
+  }
+});
+&lt;/script&gt;</code></pre>
+</div>
+<hr />
+<h5 id="5-embed-chat-常用-url-参数速查表">5. Embed Chat 常用 URL 参数速查表</h5>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>参数名</th>
+<th>类型</th>
+<th>示例值</th>
+<th>作用说明</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>ticket</code></td>
+<td>String</td>
+<td><code>emt_xxx</code></td>
+<td>服务端签发的一次性免登票据（推荐生产使用，阅后即焚）。</td>
+</tr>
+<tr>
+<td><code>agent_id</code></td>
+<td>String</td>
+<td><code>sys-agent-chatbi</code></td>
+<td>锁定初始运行的智能体 ID；不传则为默认主助手并走自动意图调度。</td>
+</tr>
+<tr>
+<td><code>theme</code></td>
+<td>String</td>
+<td><code>light</code> / <code>dark</code> / <code>auto</code></td>
+<td>界面色彩模式；<code>auto</code> 自动跟随宿主系统/浏览器深浅色设置。</td>
+</tr>
+<tr>
+<td><code>instance_id</code></td>
+<td>String</td>
+<td><code>ticket-ops-drawer</code></td>
+<td>实例唯一标记，用于在同一宿主页面挂载多个 iframe 时隔离 postMessage 消息通道。</td>
+</tr>
+<tr>
+<td><code>strict_token</code></td>
+<td>Boolean</td>
+<td><code>1</code> / <code>0</code></td>
+<td>开启严格鉴权模式（未提供合法 Ticket/Token 时禁止任何访客级试用）。</td>
+</tr>
+</tbody></table></div>
+<blockquote class="info">📖 <strong>完整技术集成规范与多语言 Demo</strong>：<br>更多关于 Java (Spring Boot) / Python (FastAPI) / Go (Gin) 服务端完整代码、Vue 3 / React / 悬浮球组件示例及 PostMessage 协议字典，请参阅：<br>👉 <strong><a href="file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/docs/md/embed_integration_guide.md"><code>docs/md/embed_integration_guide.md</code></a></strong> (NanZi 智能体平台嵌入式组件集成指南)</blockquote>
+<hr />
+<h4 id="sec-3-2-4">3.2.4 小白实战：我该用单智能体还是多智能体？</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>业务场景</th>
+<th>推荐方案</th>
+<th>核心理由</th>
+</tr></thead><tbody>
+<tr>
+<td>:----------------------------------------------</td>
+<td>:--------------------------------</td>
+<td>:---------------------------------------------------------------------</td>
+</tr>
+<tr>
+<td><strong>日常客服问答、文档翻译、简单 SQL 查询</strong></td>
+<td><strong>单智能体 (Single Agent)</strong></td>
+<td>目标单一明确，单轮或短多轮即可解决，单智能体速度快、成本低。</td>
+</tr>
+<tr>
+<td><strong>全网竞品调研报告生成</strong></td>
+<td><strong>多智能体 (Multi-Agent)</strong></td>
+<td>包含多维度搜索、数据汇总、大纲撰写、正文扩写，子代理并行效率更高。</td>
+</tr>
+<tr>
+<td><strong>复杂工程级代码重构与单测编写</strong></td>
+<td><strong>多智能体 (Multi-Agent)</strong></td>
+<td>编程子代理负责写代码与执行单测，审核子代理负责 Lint 检查，防止死循环。</td>
+</tr>
+<tr>
+<td><strong>跨数据库与跨系统对账分析</strong></td>
+<td><strong>多智能体 (Multi-Agent)</strong></td>
+<td>分别由各数据源专属子代理提取脱敏指标，主代理汇总对账并出具分析图表。</td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-3-3">3.3 技能工作台与平台审核机制 (Skills Management)</h3>
+<p>【技能工作台】（Skills Management）是企业沉淀行业领域经验与标准化作业程序（SOP）的专家知识库。</p>
+<h4 id="sec-3-3-1">3.3.1 什么是技能 (Skill)？技能包的结构规范</h4>
+<p>技能并不是死板的代码，而是将人类专家的操作规范、分步流程、代码规范与避坑准则系统化封装成的“指南包”。</p>
+<p>一个标准的技能包含以下两个核心组成部分：</p>
+<ol>
+<li><strong>YAML Frontmatter 元数据</strong>（定义技能名、触发描述、图标与分类标签）：</li>
+</ol>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Yaml</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>   ---
+   name: financial-reconciliation
+   description: 专门用于处理财务对账、发票核对及银行流水匹配的专业技能。当用户提到账单核对、流水对比、差异对账时自动激活。
+   tags: [finance, reconciliation, audit]
+   icon: DocumentChartBarIcon
+   ---</code></pre>
+</div>
+<ol>
+<li><strong>Markdown 结构化指令正文</strong>（指导智能体分步骤如何思考与执行）：</li>
+</ol>
+<ul>
+<li><strong>Step 1 检查数据格式</strong>：必须校验金额字段是否为两位小数；</li>
+<li><strong>Step 2 执行比对规则</strong>：以订单号为唯一主键进行 Left Join 比对；</li>
+<li><strong>Step 3 输出规范</strong>：强制以 Markdown 表格形式列出对账差异项，并标注差异原因分类。</li>
+</ul>
+<h4 id="sec-3-3-2">3.3.2 私有技能 vs 平台公共技能及审核流转</h4>
+<p>为了兼顾“个人自由创新”与“企业安全合规”，平台设计了严密的工作流转生命周期：</p>
+<div class="mermaid-card"><pre class="mermaid">flowchart LR
+    User["👤 普通用户 / 开发者"] --> Create["1. 创建私有技能<br>(仅自己可见并调试)"]
+    Create --> Test["2. 在对话中实战测试验证"]
+    Test --> Submit["3. 点击【提交审核】"]
+    Submit --> Review{"4. 平台管理员审查<br>(element:skills:admin)"}
+    Review -- "审核通过" --> Public["5. 晋升为全局公共技能<br>(全员可用并可挂载)"]
+    Review -- "驳回修改" --> Reject["返回修改并说明原因"]
+    Reject --> Create</pre></div>
+<h4 id="sec-3-3-3">3.3.3 大模型是如何“动态发现与按需加载”技能的？</h4>
+<ul>
+<li><strong>痛点</strong>：如果企业沉淀了 100 个技能，一次性全塞给大模型会导致上下文瞬间溢出且大幅消耗费用。</li>
+<li><strong>解决机制</strong>：智能体在每轮对话开始时，先根据用户输入的语义意图，与所有可用技能的 <code>description</code> 进行<strong>语义相似度快速匹配</strong>；仅当意图命中时，系统才会把该技能的完整 Markdown 内容动态注入上下文，实现<strong>按需加载、毫秒级响应、极低 Token 消耗</strong>。</li>
+</ul>
+<hr />
+<h3 id="sec-3-4">3.4 MCP 工具集规范与容器内网关 (MCP Management)</h3>
+<p>【MCP 工具集】（Model Context Protocol）是连接大模型与外部数字化世界（数据库、Git 仓库、私有 API、操作系统）的标准桥梁。</p>
+<h4 id="sec-3-4-1">3.4.1 什么是 MCP？为什么它是智能体进化的关键？</h4>
+<p>在过去，让大模型调用工具需要针对每个平台编写专有适配代码。</p>
+<p><strong>MCP (Model Context Protocol)</strong> 统一了智能体调用工具的标准协议：</p>
+<ul>
+<li>任何外部工具只需实现一次 MCP Server，就能被任何支持 MCP 协议的智能体无缝调用；</li>
+<li>MCP 协议原生支持<strong>工具发现 (Tools Discovery)</strong>、<strong>提示词模板 (Prompts)</strong> 与<strong>上下文资源暴露 (Resources)</strong>。</li>
+</ul>
+<h4 id="sec-3-4-2">3.4.2 平台支持的 MCP 连接协议类型</h4>
+<p>平台全面支持两种标准 MCP 通信协议：</p>
+<ol>
+<li><strong>STDIO MCP (标准输入输出)</strong>：</li>
+</ol>
+<ul>
+<li>适用于本地可执行命令或脚手架工具（例如 <code>python -m my_mcp_server</code> 或 <code>npx -y @modelcontextprotocol/server-postgres</code>）；</li>
+<li>后端通过直接拉起子进程进行管道通信，低延迟、安全性高。</li>
+</ul>
+<ol>
+<li><strong>SSE MCP (Server-Sent Events / HTTP)</strong>：</li>
+</ol>
+<ul>
+<li>适用于独立微服务或部署在云端的 MCP 服务；</li>
+<li>通过标准 HTTP/SSE 端点进行远程 RPC 交互，适合跨主机、跨网络集群调用。</li>
+</ul>
+<h4 id="sec-3-4-3">3.4.3 Docker 安全沙箱中的 In-Container FastMCP 网关机制</h4>
+<p>当沙箱策略配置为 <code>docker</code> 时，平台在容器化隔离与 MCP 协议上实现了极致优雅的架构：</p>
+<ul>
+<li>容器启动时，平台自动在容器内的独立虚拟环境中拉起轻量级 <strong>FastMCP 网关</strong>；</li>
+<li>容器内的 Bash 命令行执行、文件读取（<code>read</code>）、文件写入（<code>write</code>）均以标准 FastMCP Tool 方式暴露；</li>
+<li>智能体与容器完全通过标准 MCP 协议通信，容器发生任何死循环或异常都不会影响宿主机主进程。</li>
+</ul>
+<hr />
+<h3 id="sec-3-5">3.5 平台全量工具矩阵与功能清单 (Platform Tool Registry & Built-in Matrix)</h3>
+<p>平台内置了涵盖<strong>沙箱执行、数据分析、文档处理、网络浏览、知识检索、人机协同、任务调度与通知分发</strong>的八大类原生工具库，同时支持通过 <strong>MCP 协议</strong> 与 <strong>OpenAPI</strong> 进行无限生态扩展。</p>
+<p>以下为平台支持的全量工具功能清单与内置属性一览：</p>
+<h4 id="1-沙箱系统与代码执行类工具-sandbox-system-execution">1. 沙箱系统与代码执行类工具 (Sandbox & System Execution)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>exec_command</code> (别名 <code>bash</code>/<code>Bash</code>)</td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>在沙箱（Local/Docker/E2B）中执行系统命令、运行 Python/Node/Shell 脚本，支持实时日志回传与超时控制。</td>
+</tr>
+<tr>
+<td><code>read_file</code> (别名 <code>read</code>/<code>Read</code>)</td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>读取沙箱用户工作区中的文件内容，支持分片读取大文件与行号定位。</td>
+</tr>
+<tr>
+<td><code>write_file</code> (别名 <code>write</code>/<code>Write</code>)</td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>向工作区写入或覆盖代码、配置文件及分析结果，并自动联动右侧画布渲染工件。</td>
+</tr>
+<tr>
+<td><code>search_text</code> (别名 <code>grep</code>/<code>Grep</code>)</td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>在工作区目录树中进行极速代码/文本全文正则搜索，快速定位关键词。</td>
+</tr>
+<tr>
+<td><code>read_image</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>读取工作区中的本地图片文件并交由多模态大模型进行图像识别与 OCR 理解。</td>
+</tr>
+<tr>
+<td><code>manage_process</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>启动、监控或终止沙箱内的后台长常驻进程（如 Web 服务、守护脚本）。</td>
+</tr>
+<tr>
+<td><code>list_process</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>查询沙箱中当前正在运行的所有进程列表与资源占用情况。</td>
+</tr>
+<tr>
+<td><code>sqlite_scratchpad</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>在沙箱内极速初始化临时 SQLite 数据库，用于存储复杂中间数据或进行多表关联分析。</td>
+</tr>
+<tr>
+<td><code>directory_tree_navigator</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>递归生成工作区指定目录的文件树层级结构视图。</td>
+</tr>
+<tr>
+<td><code>code_syntax_linter</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>对 Python/JavaScript/TypeScript 等语言的代码片段进行静态语法检查与合规校验。</td>
+</tr>
+<tr>
+<td><code>publish_generated_file</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>将沙箱内产出的分析报告、数据报表发布为平台专属文件下载链接。</td>
+</tr>
+</tbody></table></div>
+<h4 id="2-数据分析与智能报表类工具-data-chatbi">2. 数据分析与智能报表类工具 (Data & ChatBI)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>get_dataset_schema</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>获取平台已挂载数据集的数据字典、表结构、字段别名与枚举值注释。</td>
+</tr>
+<tr>
+<td><code>execute_sql_query</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>执行 Text-to-SQL 生成的只读 SQL 查询，支持多数据源（ClickHouse、MySQL、PostgreSQL 等）并返回结构化行数据。</td>
+</tr>
+<tr>
+<td><code>update_dashboard_context</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>更新当前 ChatBI 看板与指标卡上下文，动态切换数据图表视图。</td>
+</tr>
+<tr>
+<td><code>excel_document_read</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>读取并解析 Excel（<code>.xlsx</code>/<code>.xls</code>）表格中的所有 Sheet 与结构化数据。</td>
+</tr>
+<tr>
+<td><code>excel_document_write</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>自动生成多 Sheet、带格式美化与统计公式的 Excel 交付物表格。</td>
+</tr>
+<tr>
+<td><code>word_document_read</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>提取 Word（<code>.docx</code>）文档的正文段落、标题层级与内嵌表格数据。</td>
+</tr>
+<tr>
+<td><code>word_document_write</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>按照标准商务排版生成完整的 Word 报告交付物文件。</td>
+</tr>
+</tbody></table></div>
+<h4 id="3-网络检索与浏览器自动化类工具-web-browser-automation">3. 网络检索与浏览器自动化类工具 (Web & Browser Automation)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>fetch_static_web_url</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>快速抓取静态网页并将 HTML 转换为干净易读的 Markdown 正文。</td>
+</tr>
+<tr>
+<td><code>web_search_baidu</code> / <code>web_search_bing_http</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>调用外部搜索引擎（百度、必应等）获取全网最新资讯与搜索结果摘要。</td>
+</tr>
+<tr>
+<td><code>web_renderer_and_snapshot</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>针对包含复杂 JS 渲染的动态单页应用，启动无头渲染并抓取页面截图与文本。</td>
+</tr>
+<tr>
+<td><code>browser_open</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>启动一个受控的无头浏览器会话并打开目标网页 URL。</td>
+</tr>
+<tr>
+<td><code>browser_snapshot</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>捕获当前浏览器视口的完整结构快照与截图，用于视觉辅助决策。</td>
+</tr>
+<tr>
+<td><code>browser_click</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>模拟鼠标拟人化点击页面上的指定按钮、链接或坐标位置。</td>
+</tr>
+<tr>
+<td><code>browser_fill</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>在指定网页输入框中填入搜索词、账号或表单数据。</td>
+</tr>
+<tr>
+<td><code>browser_scroll</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>模拟用户上下滚动网页以加载瀑布流或查看底部内容。</td>
+</tr>
+<tr>
+<td><code>browser_press</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>模拟键盘物理按键（如 Enter 提交、Tab 切换焦点、Escape 关闭弹窗）。</td>
+</tr>
+<tr>
+<td><code>browser_hover</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>悬停鼠标至指定元素上方（触发悬浮下拉菜单或 Tooltip 提示）。</td>
+</tr>
+<tr>
+<td><code>browser_drag</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>模拟滑块拖拽或元素拖放操作（支持拟人化平滑贝塞尔曲线轨迹）。</td>
+</tr>
+<tr>
+<td><code>browser_select_option</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>在下拉列表（<code><select></code>）中选择指定选项值。</td>
+</tr>
+<tr>
+<td><code>browser_read_visible</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>仅提取当前浏览器可见视口内的纯文本内容，减少 Token 浪费。</td>
+</tr>
+<tr>
+<td><code>browser_wait_for</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>显式等待特定 DOM 元素出现或特定状态就绪后再继续下一步。</td>
+</tr>
+<tr>
+<td><code>browser_tabs</code> / <code>browser_switch_tab</code> / <code>browser_close_tab</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>多标签页列表管理、标签页切换与标签页关闭。</td>
+</tr>
+<tr>
+<td><code>browser_upload</code> / <code>browser_download</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>网页表单文件上传与下载文件监听管理。</td>
+</tr>
+</tbody></table></div>
+<h4 id="4-知识库与企业协作类工具-knowledge-enterprise-collab">4. 知识库与企业协作类工具 (Knowledge & Enterprise Collab)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>search_knowledge_base</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>检索平台已关联的企业知识库（RAGFlow / 向量库），提取匹配度最高的知识切片。</td>
+</tr>
+<tr>
+<td><code>search_qa_examples</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>检索业务 QA 语料库与 Few-shot 样例，供智能体参考历史高标准回复模式。</td>
+</tr>
+<tr>
+<td><code>jira_search</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>通过 JQL 查询 Jira 中的需求、缺陷（Issues）及工单状态。</td>
+</tr>
+<tr>
+<td><code>jira_create_issue</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>在指定的 Jira 项目与模块中自动创建 Bug 或 Task 任务工单。</td>
+</tr>
+<tr>
+<td><code>jira_get_projects</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>获取当前登录用户有权限访问的 Jira 项目清单。</td>
+</tr>
+</tbody></table></div>
+<h4 id="5-多智能体协同-人机交互与记忆类工具-multi-agent-hitl-memory">5. 多智能体协同、人机交互与记忆类工具 (Multi-Agent, HITL & Memory)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>sub_agent_call</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>单子代理分发：派发子任务给特定专家智能体，子代理在独立上下文中执行完毕后仅回传最终摘要。</td>
+</tr>
+<tr>
+<td><code>sub_agent_batch_call</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>并发批量分发：同时唤起多个子代理并行处理多项独立子任务（如并发分析 5 家竞品）。</td>
+</tr>
+<tr>
+<td><code>todo_write</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>创建与更新对话底部的 TODO 任务清单分步跟踪项（待办/进行中/已完成）。</td>
+</tr>
+<tr>
+<td><code>ask_user_question</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (交互卡)</td>
+<td>遇到需求不明确时，向用户弹出交互式单选/多选/文本提问卡，阻塞等待用户选择。</td>
+</tr>
+<tr>
+<td><code>request_user_confirmation</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (交互卡)</td>
+<td>在执行重大决策前向用户弹出结构化确认卡。</td>
+</tr>
+<tr>
+<td><code>memory_search</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>语义检索历史多轮对话记忆与长短期事实。</td>
+</tr>
+<tr>
+<td><code>fetch_user_long_term_memory</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>读取当前用户的长期个人偏好与定制档案。</td>
+</tr>
+<tr>
+<td><code>update_user_preference</code> / <code>delete_user_preference</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>动态沉淀或删除用户的长期个性化偏好记录。</td>
+</tr>
+<tr>
+<td><code>session_status</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>读取当前会话的上下文 Token 水位、预算状态与模型运行时参数。</td>
+</tr>
+</tbody></table></div>
+<h4 id="6-任务调度台与消息通知类工具-task-scheduling-notifications">6. 任务调度台与消息通知类工具 (Task Scheduling & Notifications)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>create_recurring_task</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>根据用户的自然语言需求，自动在任务调度台中创建 Cron 定时任务。</td>
+</tr>
+<tr>
+<td><code>get_my_tasks</code> / <code>cancel_task</code> / <code>start_task</code> / <code>pause_task</code> / <code>run_task_manually</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>查询个人定时任务清单，或对已有定时任务执行启动、暂停、取消与立即手动触发。</td>
+</tr>
+<tr>
+<td><code>send_dingtalk_message</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>向配置好的钉钉群机器人推送富文本/Markdown 工作卡片通知。</td>
+</tr>
+<tr>
+<td><code>send_wechat_work_message</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>向企业微信群机器人推送图文与文本报警消息。</td>
+</tr>
+<tr>
+<td><code>send_email</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>通过平台集成的 SMTP 邮件服务向指定邮箱发送格式化邮件报告。</td>
+</tr>
+<tr>
+<td><code>send_portal_notification</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>allow</code> (自动批准)</td>
+<td>向平台用户发送系统站内信与待办提醒。</td>
+</tr>
+</tbody></table></div>
+<h4 id="7-技能与资源目录发现类工具-skill-resource-discovery">7. 技能与资源目录发现类工具 (Skill & Resource Discovery)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具标识 (Tool Name)</th>
+<th>内置属性</th>
+<th>默认权限</th>
+<th>功能说明与典型应用场景</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><code>list_available_skills</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>动态检索当前智能体可用的公共与私有技能包清单（Skills）。</td>
+</tr>
+<tr>
+<td><code>read_skill_instruction</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>按需读取指定技能包的 <code>SKILL.md</code> 指令内容，将其动态注入会话上下文。</td>
+</tr>
+<tr>
+<td><code>create_skills</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>ask</code> (需批准)</td>
+<td>智能体在完成某项复杂任务后，自主将经验沉淀为全新的业务技能包。</td>
+</tr>
+<tr>
+<td><code>list_accessible_datasets</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>查询当前登录用户有权访问的所有数据集清单。</td>
+</tr>
+<tr>
+<td><code>list_accessible_knowledge_bases</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>查询用户可用的全部知识库目录与检索范围。</td>
+</tr>
+<tr>
+<td><code>list_available_agents</code></td>
+<td><strong>原生内置</strong></td>
+<td><code>read</code> (只读)</td>
+<td>查询当前环境中所有已发布的智能体角色列表。</td>
+</tr>
+</tbody></table></div>
+<h4 id="8-生态扩展工具体系-extensible-ecosystem-tools">8. 生态扩展工具体系 (Extensible Ecosystem Tools)</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>工具分类</th>
+<th>工具前缀</th>
+<th>来源与机制</th>
+<th>功能说明</th>
+</tr></thead><tbody>
+<tr>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><strong>MCP 工具集</strong></td>
+<td><code>mcp:{server_name}:{tool_name}</code></td>
+<td><strong>标准协议扩展</strong></td>
+<td>在【MCP 管理】中配置的 STDIO、SSE 外部工具服务或 Docker 容器内 FastMCP 工具。</td>
+</tr>
+<tr>
+<td><strong>OpenAPI 接口工具</strong></td>
+<td><code>api:{tool_name}</code></td>
+<td><strong>业务接口注册</strong></td>
+<td>在【工具管理】中直接导入 Swagger / OpenAPI 3.0 JSON 自动生成的 HTTP API 工具。</td>
+</tr>
+</tbody></table></div>
+<hr />
+<h3 id="sec-3-6">3.6 记忆工作台与 30 天持久化缓存</h3>
+<ul>
+<li><strong>短时记忆</strong>：基于 Redis 滑动窗口记录最近多轮对话；</li>
+<li><strong>长时向量记忆</strong>：基于 RediSearch 向量检索自动沉淀用户偏好与关键实体；</li>
+<li><strong>TTL 保障</strong>：全链路会话记忆统一享有 <strong>30 天超长有效期</strong>。</li>
+</ul>
+<hr />
+<h3 id="sec-3-7">3.7 任务调度台 (Task Center) 与 Cron 定时任务</h3>
+<p>【任务调度台】（Task Center）将智能体从传统的“人问机答”被动交互模式，升级为<strong>“AI 自主定时工作并汇报”的自动化无人值守工作流</strong>。</p>
+<h4 id="sec-3-7-1">3.7.1 任务中心核心运行原理</h4>
+<div class="mermaid-card"><pre class="mermaid">sequenceDiagram
+    autonumber
+    participant Cron as ⏰ 平台 Cron 调度引擎
+    participant Agent as 🤖 目标业务智能体
+    participant Sandbox as 📦 隔离执行沙箱
+    participant Push as 📢 通知通道 (企微/钉钉/飞书/邮件)
+
+    Cron->>Cron: 检测到调度时间触发 (如每天 09:00)
+    Cron->>Agent: 派发预设 Prompt 任务 (携带专属任务上下文)
+    Agent->>Sandbox: 自动执行脚本、拉取数据、分析生成报告
+    Sandbox-->>Agent: 返回数据结果与工件下载链接
+    Agent-->>Cron: 汇总生成最终格式化报告 (Success / Failed)
+    Cron->>Push: 根据任务推送策略向群机器人/邮件投递报告</pre></div>
+<h4 id="sec-3-7-2">3.7.2 定时任务创建“四步指南”</h4>
+<ol>
+<li><strong>选择执行智能体</strong>：指定由哪个业务智能体负责该任务（例如选择【销售数据对账智能体】）；</li>
+<li><strong>编写执行指令 (Task Prompt)</strong>：</li>
+</ol>
+<ul>
+<li>给出清晰详尽的工作指令（例如：“*拉取昨日全渠道销售订单，核对退款明细，若退款率超过 5% 标红预警，并生成分析表格*”）；</li>
+</ul>
+<ol>
+<li><strong>配置调度周期 (Cron 表达式)</strong>：</li>
+</ol>
+<ul>
+<li>支持标准 5 位 Cron 表达式（分钟 小时 日 月 星期）；</li>
+<li>界面内置常用快捷模板（每小时、每天早晨、工作日早晨、每月 1 号等）；</li>
+</ul>
+<ol>
+<li><strong>绑定通知通道与触发策略</strong>：</li>
+</ol>
+<ul>
+<li>选择推送到指定的企业微信群、钉钉群、飞书群或管理员邮箱；</li>
+<li><strong>推送策略</strong>：</li>
+<li><strong>全部通知</strong>：任务每次执行完毕（无论成功失败）均推送完整图文报告；</li>
+<li><strong>仅失败通知</strong>：执行成功保持静默，仅在异常报错时触发紧急告警。</li>
+</ul>
+<h4 id="sec-3-7-3">3.7.3 任务执行实例与生命周期监控</h4>
+<ul>
+<li>每次触发会自动创建唯一的 <code>Task Run</code> 历史记录；</li>
+<li>记录任务的精确开始时间、结束时间、执行耗时、消耗 Token 及完整的智能体思考过程与工具调用日志；</li>
+<li>执行失败时自动保留完整异常堆栈，支持管理员在后台“一键重试”。</li>
+</ul>
+<hr />
+<h3 id="sec-3-8">3.8 智能体单步调试 (Agent Debug) 与接口调试台 (Playground)</h3>
+<ul>
+<li><strong>智能体单步调试 (Agent Debug)</strong>：可视化拆解智能体的 Thought -> Action -> Observation -> Final Answer 执行链；</li>
+<li><strong>接口调试台 (Playground)</strong>：便于开发者直接调试底层 API 端点与参数。</li>
+</ul>
+<hr />
+<h3 id="sec-3-9">3.9 小白高频问题与智能体排查 Q&A</h3>
+
+<div class="qa-card" id="q1-我在技能工作台写了一个新技能-为什么智能体对话时好像没有使用">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 我在技能工作台写了一个新技能，为什么智能体对话时好像没有使用？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查</strong>：</li>
+</ul>
+<ol>
+<li>检查技能是否已通过审核并启用；</li>
+<li>检查技能的 Frontmatter 描述（<code>description</code>）是否准确清晰。大模型是根据你的 <code>description</code> 来语义判断何时调起该技能的，如果描述太模糊，模型可能无法命中。</li>
+</ol>
+  </div>
+</div>
+
+<div class="qa-card" id="q2-任务调度台中的-cron-表达式怎么写">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q2: 任务调度台中的 Cron 表达式怎么写？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>通俗速查表</strong>：</li>
+<li><code>*/10 * * * *</code>：每 10 分钟执行一次；</li>
+<li><code>0 * * * *</code>：每小时整点执行一次；</li>
+<li><code>0 9 * * *</code>：每天早上 9:00 执行一次；</li>
+<li><code>0 9 * * 1-5</code>：每周一至周五早上 9:00 执行一次（工作日打卡/日报）。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h2 id="sec-4">四、ChatBI 开发平台</h2>
+<h3 id="sec-4-1">4.1 核心逻辑：ChatBI 是如何安全查询企业数据的？</h3>
+<p>很多企业用户担心：“用大模型查数据库，会不会把我的机密客户数据泄露给第三方大模型服务商？”</p>
+<p><strong>平台的实现逻辑绝对安全，严守数据不出域原则</strong>：</p>
+<div class="mermaid-card"><pre class="mermaid">flowchart TD
+    UserQuery["用户自然语言提问<br>（例如：上月华东区销售额是多少？）"] --> Step1["① 提取元数据字典与字段别名<br>（仅包含表结构，绝无真实业务数据！）"]
+    Step1 --> Step2["② 发送给 LLM 生成只读 SQL"]
+    Step2 --> Step3["③ 平台本地只读连接池执行 SQL"]
+    Step3 --> Step4["④ 在本地将统计结果绘制为图表返回给前端"]</pre></div>
+<ol>
+<li><strong>只传 Schema，不传数据</strong>：发送给大模型的只有数据表结构、字段说明和几条示例，<strong>数据库中的真实数据记录绝不会发送给大模型</strong>；</li>
+<li><strong>纯只读安全执行</strong>：生成的 SQL 仅在平台本地数据库连接池中执行，并强制拦截一切写操作。</li>
+</ol>
+<hr />
+<h3 id="sec-4-2">4.2 元数据同步与业务语义字典标注 (Metadata Management)</h3>
+<p>【元数据管理】（Metadata Management）是 ChatBI 平台中最为关键的知识中枢与数据底座。它是大模型理解企业底层数据仓库的“罗塞塔石碑”与“业务翻译官”。</p>
+<div class="mermaid-card"><pre class="mermaid">graph TD
+    DS["💾 物理数据源<br>(MySQL / PG / ClickHouse)"] --> Dataset["📂 数据集 (Dataset)<br>按业务域划分 (交易域 / 流量域 / 财务域)"]
+    Dataset --> TableMeta["📁 库表级元数据<br>表物理名 + 表中文名 + 业务说明 + 启用状态"]
+    TableMeta --> ColMeta["📊 字段级元数据<br>物理列名 + 中文业务名 + 数据类型 + 维度/度量 + 主外键关系"]
+    ColMeta --> DictMeta["🏷️ 业务枚举与代码字典<br>状态代码 -> 真实业务含义 (0=未支付, 1=已支付)"]
+    DictMeta --> Assembly["🧠 动态 Schema 召回与 Prompt 组装<br>按用户提问按需抽取最相关的 3~5 张表组装注入大模型"]</pre></div>
+<hr />
+<h4 id="sec-4-2-1">4.2.1 为什么元数据是 Text-to-SQL 的生命线？</h4>
+<p>大语言模型虽然懂通用的 SQL 语法规则，但它<strong>完全不了解企业私有业务的缩写习惯与命名规范</strong>：</p>
+<ul>
+<li>例如：如果数据库字段名为 <code>c_je</code>、<code>f_is_vld</code>、<code>biz_cgy_cd</code>，大模型无法凭空猜出其实际业务含义；</li>
+<li>如果没有主外键关联关系，大模型在进行多表联结时容易发生 <code>CROSS JOIN</code> 笛卡尔积或错误的 <code>ON</code> 关联条件；</li>
+<li>如果状态码（如 <code>0/1/2/3</code>）没有业务字典，用户提问“*查已退款订单*”时，大模型只能盲猜 <code>status = 1</code> 或 <code>status = 'refund'</code>，导致查询结果完全错误。</li>
+</ul>
+<p><strong>元数据管理的目的，就是将生硬的物理数据库表结构，转化为大模型一读即懂的“业务语义网络”。</strong></p>
+<hr />
+<h4 id="sec-4-2-2">4.2.2 数据集 (Dataset) 与数据域划分架构</h4>
+<p>在大型企业中，一个数据库往往包含几百上千张数据表。如果把所有表全量塞给大模型，会导致严重的上下文溢出与 Token 浪费。</p>
+<p>平台通过<strong>数据集 (Dataset)</strong> 实现业务域分流与隔离：</p>
+<ul>
+<li><strong>按业务域组织</strong>：例如划分为【电商交易数据集】、【会员用户数据集】、【财务账单数据集】；</li>
+<li><strong>针对性挂载</strong>：针对特定岗位的智能体（如“财务对账助手”），只为其挂载【财务账单数据集】，既降低了大模型混淆不同业务表的概率，又极大提升了响应速度与安全性。</li>
+</ul>
+<hr />
+<h4 id="sec-4-2-3">4.2.3 库表与字段属性治理体系</h4>
+<p>在元数据管理界面中，支持对库表与字段进行多维度的精细化配置：</p>
+<ol>
+<li><strong>库表级属性治理</strong>：</li>
+</ol>
+<ul>
+<li><strong>表物理名 (Table Name)</strong>：数据库中的真实物理表名（如 <code>dwd_trade_orders_hi</code>）；</li>
+<li><strong>表中文业务名 (Display Name)</strong>：面向业务的规范命名（如 <code>全渠道订单明细表</code>）；</li>
+<li><strong>表用途说明 (Description)</strong>：简述该表的核心业务场景与时间粒度（如 <code>按天增量记录所有在线销售订单</code>）；</li>
+<li><strong>启用 / 禁用 (Visibility)</strong>：支持将底层的临时表、日志表或敏感薪资表设置为“禁用”，<strong>禁用的表绝不会被暴露给大模型</strong>。</li>
+</ul>
+<ol>
+<li><strong>字段级属性治理</strong>：</li>
+</ol>
+<ul>
+<li><strong>字段物理名 (Column Name)</strong> 与 <strong>中文业务别名 (Field Alias)</strong>；</li>
+<li><strong>字段类型 (Data Type)</strong>：明确指定 <code>VARCHAR</code>, <code>BIGINT</code>, <code>DECIMAL</code>, <code>DATETIME</code>；</li>
+<li><strong>维度 vs 度量 (Dimension vs Metric)</strong>：</li>
+<li><strong>维度 (Dimension)</strong>：用于分组与过滤的分类字段（如 <code>省份</code>、<code>商品分类</code>、<code>客户等级</code>）；</li>
+<li><strong>度量 (Metric)</strong>：用于聚合统计的数值字段（如 <code>订单金额</code>、<code>销量</code>、<code>客单价</code>）；</li>
+<li><strong>主键 / 外键关系 (Primary Key / Foreign Key)</strong>：</li>
+<li>明确标注各表的主键与外键关联目标表字段（如 <code>t_order.user_id -> t_user.id</code>），大模型在生成多表 JOIN 时能够 100% 准确编写关联条件。</li>
+</ul>
+<hr />
+<h4 id="sec-4-2-4">4.2.4 业务枚举与代码字典映射 (Dictionary Mapping)</h4>
+<p>针对包含状态码、类型代码的字段，平台提供了专属的<strong>枚举字典配置器</strong>：</p>
+<ul>
+<li><strong>配置示例</strong>：针对 <code>pay_status</code> 字段配置：</li>
+<li><code>0</code> -> <code>未支付 / 待付款</code></li>
+<li><code>1</code> -> <code>已支付 / 付款成功</code></li>
+<li><code>2</code> -> <code>已退款 / 退单</code></li>
+<li><code>3</code> -> <code>已取消 / 订单关闭</code></li>
+<li><strong>模型理解效果</strong>：当用户提问“*统计今年各渠道退单总金额*”时，大模型根据字典映射直接生成 <code>WHERE pay_status = 2</code>，精准无误。</li>
+</ul>
+<hr />
+<h4 id="sec-4-2-5">4.2.5 AI 辅助一键智能标注与动态 Schema 召回组装</h4>
+<p>针对数仓中上千个字段手动标注过于耗时的痛点，平台提供了<strong>智能化自动治理机制</strong>：</p>
+<ol>
+<li><strong>一键同步元数据 (Auto Sync)</strong>：系统通过 <code>Information Schema</code> 毫秒级抓取最新表结构；</li>
+<li><strong>AI 智能推荐中文别名</strong>：系统自动调用大模型根据表名英文单词、字段注释推导并推荐最地道的中文业务名称，管理员仅需人工复核点击保存；</li>
+<li><strong>动态 Schema 召回 (Dynamic Schema Retrieval)</strong>：</li>
+</ol>
+<ul>
+<li>用户提问时，系统并不是把整个数据集全部塞进 Prompt；</li>
+<li>而是先根据提问语义在元数据向量库中检索出<strong>与本次问题最相关的 Top 3~5 张数据表</strong>；</li>
+<li>动态拼接精准的最小 Schema 注入大模型，<strong>节约 80% 以上的 Token 消耗</strong>。</li>
+</ul>
+<hr />
+<h4 id="sec-4-2-6">4.2.6 小白实战避坑指南</h4>
+<ul>
+<li>💡 <strong>避坑 1：字段别名千万不要重名</strong>。例如在同一张表里不要把两个不同字段都起名叫“金额”，应明确标注为“订单总金额”与“实付金额”；</li>
+<li>💡 <strong>避坑 2：日期字段务必标明格式</strong>。如某些历史表用 <code>VARCHAR</code> 存 <code>YYYYMMDD</code> 字符串，需在字段说明中注明，以便大模型使用正确的字符串格式化函数（如 <code>SUBSTR</code> 或 <code>STR_TO_DATE</code>）；</li>
+<li>💡 <strong>避坑 3：库表结构变动后记得点【一键同步】</strong>。后端数据库加了新列或修改了类型后，需进入平台点击【一键同步元数据】更新缓存。</li>
+</ul>
+<hr />
+<h3 id="sec-4-3">4.3 案例集管理与 Few-Shot 向量匹配 (Examples Management)</h3>
+<p>【案例集管理】（Examples Management）是进一步将企业复杂查询准确率提升至 <strong>98% 以上</strong> 的核心武器。</p>
+<h4 id="sec-4-3-1">4.3.1 什么是 Few-Shot 案例集？为什么它不可或缺？</h4>
+<p>企业在日常运营中存在大量复杂的特定业务口径（例如：“*算复购率时剔除退款订单*”、“*跨多表的复杂 GROUP BY 统计*”、“*同比环比窗口函数*”）。</p>
+<p>单纯依赖表结构，大模型很难一次性猜中企业专属的计算口径。</p>
+<p><strong>案例集</strong> 将人类数据分析师精心调优好的黄金样本（<strong>自然语言提问 -> 标准答案 SQL</strong>）结构化沉淀进平台。</p>
+<h4 id="sec-4-3-2">4.3.2 动态 Few-Shot 向量相似度召回流程</h4>
+<div class="mermaid-card"><pre class="mermaid">sequenceDiagram
+    autonumber
+    actor User as 用户 (User)
+    participant ChatBI as 🧠 ChatBI 引擎
+    participant VectorDB as 📚 案例集向量库 (RediSearch)
+    participant LLM as 🤖 大语言模型
+
+    User->>ChatBI: 提问：“统计华东区各门店上月的复购率”
+    ChatBI->>VectorDB: 计算提问向量，检索语义最相似的 Top-N 案例
+    VectorDB-->>ChatBI: 召回 2 条高度相似的真实历史对账 SQL 范例
+    ChatBI->>LLM: 组装 Prompt：[表结构元数据] + [召回的 2 条黄金 SQL 案例] + [用户当前提问]
+    Note over LLM: 大模型“依葫芦画瓢”参考相似范例生成 SQL
+    LLM-->>ChatBI: 输出 100% 符合企业特定口径的正确 SQL
+    ChatBI-->>User: 执行 SQL 并自动绘制柱状图/折线图呈现</pre></div>
+<h4 id="sec-4-3-3">4.3.3 案例沉淀的双向闭环</h4>
+<ul>
+<li><strong>主动录入</strong>：数据分析师在【案例集管理】中录入高频疑难提问与标准 SQL；</li>
+<li><strong>一键采纳</strong>：在【聊天日志】中，如果用户对某次生成的 SQL 点赞或业务验证正确，管理员可“一键采纳沉淀为案例”。</li>
+</ul>
+<hr />
+<h3 id="sec-4-4">4.4 常见 ChatBI 问答与 SQL 执行排查 Q&A</h3>
+
+<div class="qa-card" id="q1-用户提问“上周五的-gmv-是多少”-大模型怎么知道“上周五”是哪一天">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 用户提问“上周五的 GMV 是多少”，大模型怎么知道“上周五”是哪一天？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：</li>
+<li>平台通过 <code>agentscope_inject_runtime_state</code> 机制，在每次生成 SQL 前向大模型注入了<strong>当前精确北京时间、当前日期与星期几</strong>；</li>
+<li>大模型会自动根据当前日期精准推算出“上周五”的具体日期（如 <code>2026-08-14</code>），并生成对应的日期过滤条件（<code>BETWEEN '2026-08-14 00:00:00' AND '2026-08-14 23:59:59'</code>）。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q2-为什么生成的-sql-在数据库执行报-unknown-column-或语法错误">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q2: 为什么生成的 SQL 在数据库执行报 <code>Unknown column</code> 或语法错误？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查步骤</strong>：</li>
+</ul>
+<ol>
+<li><strong>检查元数据是否陈旧</strong>：如果数据库最近新增或修改了字段，请进入【元数据管理】点击【一键同步元数据】；</li>
+<li><strong>检查数据库方言 (Dialect)</strong>：确认在数据源中配置的数据库类型正确（如 MySQL 的 <code>IFNULL</code>、PostgreSQL 的 <code>COALESCE</code>、ClickHouse 的 <code>toDate</code>），不同数据库方言语法不同。</li>
+</ol>
+  </div>
+</div>
+
+<div class="qa-card" id="q3-怎么防止大模型查询出几百万条全量数据把数据库或平台内存撑爆">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q3: 怎么防止大模型查询出几百万条全量数据把数据库或平台内存撑爆？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>安全机制</strong>：</li>
+</ul>
+<ol>
+<li>平台在数据源连接层设置了<strong>默认 <code>LIMIT</code> 硬拦截保护</strong>（默认最多返回 1000 条），防止全表扫描；</li>
+<li>平台设置了 SQL 查询最大执行超时（如 30 秒硬超时），慢查询自动被中断并提示用户缩小时间范围。</li>
+</ol>
+  </div>
+</div>
+
+<div class="qa-card" id="q4-数据库里有敏感表-如用户密码表-员工薪资表-如何防止被-chatbi-查到">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q4: 数据库里有敏感表（如用户密码表、员工薪资表），如何防止被 ChatBI 查到？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>配置方法</strong>：</li>
+<li>在【元数据管理】中，找到对应的敏感表，将其状态切换为 <strong><code>禁用 / 隐藏</code></strong>；</li>
+<li>隐藏后的表结构<strong>绝不会被放入 Prompt 发送给大模型</strong>，大模型完全不知道该表的存在，从而实现物理级权限隔离。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q5-chatbi-会不小心误删数据库或者修改数据吗">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q5: ChatBI 会不小心误删数据库或者修改数据吗？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：<strong>绝对不会</strong>。</li>
+<li>平台在后端 SQL 执行层设置了硬性只读校验守卫，<strong>严格只允许 <code>SELECT</code> 查询语句</strong>；</li>
+<li>任何包含 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>DROP</code>、<code>ALTER</code>、<code>TRUNCATE</code> 等修改性关键字的语句都会在执行前被直接拦截报错并记录审计日志。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h2 id="sec-5">五、知识库开发平台</h2>
+<h3 id="sec-5-1">5.1 核心逻辑：RAG 知识库检索与文档切片原理</h3>
+<p>知识库（RAG，检索增强生成）解决的是大模型“知识过时”与“不知道企业内部私有文档”的问题。</p>
+<p>其底层处理分为两个阶段：</p>
+<ol>
+<li><strong>构建期（文档切片与向量化）</strong>：</li>
+</ol>
+<p>用户上传 PDF/Word 等文档 -> 平台智能切片为一个个段落（Chunk） -> 调用 Embedding 模型将文字转换为多维数学向量 -> 存入 RediSearch 向量数据库；</p>
+<ol>
+<li><strong>检索期（语义匹配与回答生成）</strong>：</li>
+</ol>
+<p>用户提问 -> 提问内容转换为向量 -> 在知识库中比对查找最相似的 Top-K 个文档片段 -> 将这些片段作为参考依据喂给大模型 -> 大模型生成有依有据的回答。</p>
+<hr />
+<h3 id="sec-5-2">5.2 知识库创建与 RAGFlow 引擎对接</h3>
+<ul>
+<li>支持解析 PDF、Word (.docx)、Excel、Markdown、TXT 等格式文档；</li>
+<li>集成 RAGFlow 深度文档理解引擎，支持智能表格抽取与多模态图表解析。</li>
+</ul>
+<h3 id="sec-5-3">5.3 混合检索 (Hybrid Search) 与重排序 (Rerank) 调优</h3>
+<ul>
+<li><strong>混合检索 (Hybrid Search)</strong>：结合向量语义相似度（Dense Retrieval）与 BM25 关键词全文匹配（Sparse Retrieval）；</li>
+<li><strong>重排序 (Rerank)</strong>：支持接入 BGE-Reranker 等重排模型，对初筛结果进行二次精排打分。</li>
+</ul>
+<h3 id="sec-5-4">5.4 运营分析与无答案问题聚类挖掘</h3>
+<ul>
+<li>自动统计知识库召回命中率、用户点赞/点踩率；</li>
+<li>聚类“未命中任何知识库切片”的疑难问题，辅助知识库管理员针对性补充缺失文档。</li>
+</ul>
+<hr />
+<h3 id="sec-5-5">5.5 小白高频问题与知识库排查 Q&A</h3>
+
+<div class="qa-card" id="q1-为什么我明明上传了包含答案的文档-提问时-ai-却说“在知识库中未找到相关内容”">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 为什么我明明上传了包含答案的文档，提问时 AI 却说“在知识库中未找到相关内容”？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查与解决</strong>：</li>
+</ul>
+<ol>
+<li><strong>切片尚未完成</strong>：检查文档状态是否为 <code>解析完成</code>；</li>
+<li><strong>提问词差异过大</strong>：进入【检索测试】页面，直接输入你的问题进行召回调试，观察相似度得分是否低于系统设置的阈值；</li>
+<li><strong>分块被切断</strong>：如果关键信息恰好被跨段切分，可适当调大分块大小（Chunk Size）并开启重叠长度（Overlap）。</li>
+</ol>
+  </div>
+</div>
+
+<div class="qa-card" id="q2-什么是“重排序-rerank-”-我需要开启吗">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q2: 什么是“重排序 (Rerank)”，我需要开启吗？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：<strong>强烈建议开启</strong>。</li>
+<li>初筛（向量检索）速度很快，但容易混入语义相似却与答案无关的干扰段落；</li>
+<li>开启 Rerank 模型会对初筛出的前 10~20 条段落进行精细化语义交叉比对，将真正包含答案的段落排在最前，大幅减少 AI 胡说八道的概率。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h2 id="sec-6">六、日志与 Token 分析</h2>
+<h3 id="sec-6-1">6.1 核心逻辑：什么是 Token？平台是如何计费与统计的？</h3>
+<ul>
+<li><strong>什么是 Token？</strong></li>
+</ul>
+<p>Token 是大语言模型处理文本的基本单位。大模型不直接读文字，而是将文字拆解为一个个 Token 编码。</p>
+<ul>
+<li><strong>中文</strong>：通常 1 个汉字 ≈ 1 ~ 2 个 Tokens；</li>
+<li><strong>英文</strong>：通常 1 个英文单词 ≈ 1.3 个 Tokens。</li>
+<li><strong>Prompt Token vs Completion Token</strong>：</li>
+<li><code>Prompt Tokens</code>（输入）：你发送给模型的提示词、系统指令、历史对话和知识库参考内容；</li>
+<li><code>Completion Tokens</code>（输出）：大模型回复生成的文字内容。</li>
+</ul>
+<hr />
+<h3 id="sec-6-2">6.2 审计日志 (Audit Logs) 与操作追溯</h3>
+<ul>
+<li>完整记录平台所有敏感运维动作（用户管理、角色赋权、系统配置修改、数据源变动等），记录操作人、来源 IP、时间戳与前后变更 Diff。</li>
+</ul>
+<h3 id="sec-6-3">6.3 聊天日志 (Chat Logs) 与复盘诊断</h3>
+<ul>
+<li>管理员可多维度检索全平台的会话记录，查看完整的上下文压缩日志、模型 Token 消耗及工具调用细节。</li>
+</ul>
+<h3 id="sec-6-4">6.4 Token 统计与企业多维度成本分摊</h3>
+<ul>
+<li>支持按模型提供商、按具体模型、按用户及按时间跨度（日/周/月）统计 Prompt Tokens、Completion Tokens 与总消耗量；</li>
+<li>支持模型单价配置与企业调用成本自动核算及报表导出。</li>
+</ul>
+<hr />
+<h3 id="sec-6-5">6.5 小白高频问题与日志分析 Q&A</h3>
+
+<div class="qa-card" id="q1-审计日志和聊天日志有什么区别">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 审计日志和聊天日志有什么区别？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解答</strong>：</li>
+<li><strong>审计日志</strong>：关注<strong>系统安全与权限变更</strong>（如“张三在 10:00 修改了管理员角色权限”）；</li>
+<li><strong>聊天日志</strong>：关注<strong>AI 对话内容与消耗诊断</strong>（如“李四在 10:05 向智能体提问了一段 Python 代码，耗费了 1200 Tokens”）。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h2 id="sec-7">七、系统管理与配置</h2>
+<h3 id="sec-7-1">7.1 用户与角色权限</h3>
+<p>平台采用了兼具灵活性与严格安全性的 RBAC（基于角色的访问控制）架构，针对前端展示与后端 API 操作实施双重防护。</p>
+<h4 id="sec-7-1-1">7.1.1 平台双层权限架构 (菜单 menu vs 元素 element)</h4>
+<ol>
+<li><strong>菜单权限 (<code>menu:*</code>)</strong>：</li>
+</ol>
+<ul>
+<li>决定用户在左侧侧边栏能看到并进入哪些页面。</li>
+<li>例如：<code>menu:system:config</code> 控制【系统配置】菜单可见性，<code>menu:skills_management</code> 控制【技能工作台】可见性。</li>
+</ul>
+<ol>
+<li><strong>元素/功能级权限 (<code>element:*</code>)</strong>：</li>
+</ol>
+<ul>
+<li>决定用户在页面中是否具备执行敏感操作（创建、编辑、删除、发布、审核）的权限。</li>
+<li>例如：平台技能审核与全局技能管理使用 <code>element:skills:admin</code> 进行后端校验。</li>
+</ul>
+<h4 id="sec-7-1-2">7.1.2 API Key 的安全生成与使用</h4>
+<ul>
+<li>每个平台用户在创建时会自动生成唯一的 <code>api_key</code>（亦可在用户中心随时重新生成）。</li>
+<li>API Key 具有与该用户完全相同的权限上下文，外部系统调用平台 API 时，需在 HTTP 请求头中携带：</li>
+</ul>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Http</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>  Authorization: Bearer &lt;YOUR_API_KEY&gt;</code></pre>
+</div>
+<h4 id="sec-7-1-3">7.1.3 外部 V1 API 访问控制与白名单机制</h4>
+<ul>
+<li><strong>白名单核心接口 (<code>is_v1_api_whitelisted</code>)</strong>：</li>
+</ul>
+<p>基础对话（<code>/api/v1/chat</code>）、嵌入式会话（<code>/api/v1/embed</code>）、任务状态（<code>/api/v1/tasks</code>）及 Docker 沙箱工作区（<code>/api/v1/sandbox/docker/workspace</code>）为平台基础能力，登录用户无需单独分配资源权限即可直接调用。</p>
+<ul>
+<li><strong>受控分配接口 (<code>ASSIGNABLE_V1_API_RESOURCES</code>)</strong>：</li>
+</ul>
+<p>对于个人资料读取（<code>GET:/api/v1/users/profile</code>）、数据库 Schema 导出（<code>POST:/api/v1/schema</code>）及 ChatBI 独立 SQL 执行（<code>POST:/api/v1/chatbi/sql/execute</code>），需由管理员在【角色管理】中显式勾选分配。</p>
+<h4 id="sec-7-1-4">7.1.4 常见用户与权限 Q&A</h4>
+
+<div class="qa-card" id="q-为什么管理员给角色勾选了新权限-但在线用户没有生效">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 为什么管理员给角色勾选了新权限，但在线用户没有生效？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>原因</strong>：用户登录后，用户信息与权限会缓存在前端 <code>localStorage</code> 和后端的 Session 缓存中。</li>
+<li><strong>解决</strong>：用户退出重新登录（或刷新页面触发 <code>/api/portal/auth/me</code> 校验）即可更新最新权限状态。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q-首次部署后找不到超级管理员账号">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 首次部署后找不到超级管理员账号？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>说明</strong>：平台初次初始化数据库时，默认创建超级管理员账号：</li>
+<li>用户名：<code>admin</code></li>
+<li>初始密码：<code>admin123</code>（生产环境首次登录请务必进入【个人中心】修改默认密码）。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h3 id="sec-7-2">7.2 模型注册与提供商管理</h3>
+<p>【模型管理】（Model Registry）是平台所有 AI 对话、推理思考、多模态识图与向量检索的统一底座。</p>
+<h4 id="sec-7-2-1">7.2.1 支持的模型提供商生态与配置规范</h4>
+<p>平台原生内置了一线主流模型厂商与自建推理服务的预设：</p>
+<ul>
+<li><strong>公有云大模型</strong>：OpenAI、DeepSeek（深度求索）、Qwen（阿里百炼 / 通义千问）、Volcengine Ark（火山引擎 / 豆包）、SiliconFlow（硅基流动）、Moonshot（月之暗面）、ZhipuAI（智谱 GLM）、Baichuan（百川）等；</li>
+<li><strong>私有化与开源服务</strong>：Ollama（本地推理）、vLLM、Xinference、LocalAI 等兼容 OpenAI 协议的推理框架；</li>
+<li><strong>企业云平台</strong>：Azure OpenAI、AWS Bedrock 等。</li>
+</ul>
+<h4 id="sec-7-2-2">7.2.2 模型能力分类 (Chat / Embedding / Multimodal / Reasoning)</h4>
+<p>在模型注册时，需根据模型实际能力指定模型类型：</p>
+<ul>
+<li><strong><code>chat</code> (LLM)</strong>：通用大语言模型，用于智能体对话、代码生成、SQL 编写与任务规划。</li>
+<li><strong><code>embedding</code> (向量模型)</strong>：用于知识库检索、语义相似度计算与元数据召回（如 <code>text-embedding-v3</code>、<code>bge-large-zh-v1.5</code> 等）。</li>
+<li><strong><code>multimodal</code> (多模态识图)</strong>：当主对话模型不具备视觉能力时，系统可通过配置的 <code>multimodal_model_name</code> 自动将图片解析为结构化文本注入上下文。</li>
+<li><strong><code>reasoning</code> (思考模型)</strong>：具备深度思考与 CoT 推理能力的大模型（如 <code>deepseek-reasoner</code> / <code>qwq-32b</code>）。</li>
+</ul>
+<h4 id="sec-7-2-3">7.2.3 Base URL 智能版本号识别与端点规范化</h4>
+<p>在配置自定义 Embedding 或 Chat Base URL 时，平台具备<strong>智能版本号自动感知与规范化能力</strong>：</p>
+<ul>
+<li>若用户输入已带版本号的 URL（如火山引擎 Ark 提供的 <code>https://ark.cn-beijing.volces.com/api/coding/v3</code>），平台会自动识别并只补齐 <code>/embeddings</code>，而不会错误硬拼 <code>/v1/embeddings</code> 导致 404；</li>
+<li>若输入为根域名（如 <code>https://api.openai.com</code>），平台会自动规范化为 <code>https://api.openai.com/v1/embeddings</code>。</li>
+</ul>
+<h4 id="sec-7-2-4">7.2.4 深度思考模型 (DeepSeek-R1 / QwQ 等) 工具调用兼容层</h4>
+<ul>
+<li><strong>背景</strong>：部分深度推理模型在强制工具调用（Forced Tool Choice）或多步骤 Agent 规划场景下，倾向于先输出 <code><think>...</think></code> 思考过程再输出工具调用，这在标准 OpenAI 工具协议下易导致解析中断或死循环。</li>
+<li><strong>机制</strong>：平台内建 <code>ThinkingToolChoiceCompatAgent</code> 与流式事件适配器，能智能解析并过滤/转义 <code><think></code> 思考块，确保推理链完整呈现给用户界面的同时，准确触发底层的函数调用。</li>
+</ul>
+<h4 id="sec-7-2-5">7.2.5 常见模型配置与调用 Q&A</h4>
+
+<div class="qa-card" id="q-接入本地-ollama-报-connection-refused">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 接入本地 Ollama 报 <code>Connection Refused</code>？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查</strong>：</li>
+</ul>
+<ol>
+<li>检查 Ollama 服务是否绑定了 <code>0.0.0.0</code>（设置环境变量 <code>OLLAMA_HOST=0.0.0.0:11434</code>）；</li>
+<li>若平台以后端 Docker 容器运行，连接宿主机 Ollama 需将 Base URL 填写为 <code>http://host.docker.internal:11434/v1</code>。</li>
+</ol>
+  </div>
+</div>
+<hr />
+<h3 id="sec-7-3">7.3 参数配置专题</h3>
+<p>进入 <strong>系统管理 -> 系统配置 -> 参数配置</strong>，可全局微调平台 Agent 运行时行为。</p>
+<h4 id="sec-7-3-1">7.3.1 多策略安全沙箱 (Local / Docker / E2B / SSH) 对比选型</h4>
+<div class="table-wrapper"><table class="faq-table">
+<thead><tr>
+<th>沙箱策略</th>
+<th>隔离级别</th>
+<th>运行位置</th>
+<th>适用场景</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>:-------------------------</td>
+<td>:-----------</td>
+<td>:----------------</td>
+<td>:-------------------------------------------</td>
+<td>:-------------------------------------------------</td>
+</tr>
+<tr>
+<td><strong><code>local</code></strong> (默认)</td>
+<td>进程级</td>
+<td>本机 / 宿主机进程</td>
+<td>个人本地开发、单机快速体验</td>
+<td>命令在平台服务所在环境直接执行，需谨慎防范高危操作</td>
+</tr>
+<tr>
+<td><strong><code>docker</code></strong></td>
+<td>容器级</td>
+<td>本地 Docker 引擎</td>
+<td><strong>推荐</strong>。企业生产环境、多用户共享平台</td>
+<td>自动为每位用户分配独立容器，安全隔离 Bash/文件操作</td>
+</tr>
+<tr>
+<td><strong><code>e2b</code></strong></td>
+<td>云端微虚拟机</td>
+<td>E2B 云端托管沙箱</td>
+<td>无本地 Docker 资源的云原生架构</td>
+<td>需配置 E2B API Key，按用量计费</td>
+</tr>
+<tr>
+<td><strong><code>ssh</code></strong></td>
+<td>远程主机级</td>
+<td>独立远程服务器</td>
+<td>专用计算节点、特定内网机器</td>
+<td>需配置 SSH 连接凭据与独立主机</td>
+</tr>
+</tbody></table></div>
+<blockquote class="warning">⚠️ <strong>强烈注意（平台容器化部署场景）</strong>：<br>当 NanZi 平台自身以 Docker 容器化方式部署在服务器上时，<strong>安全沙箱强烈建议配置走 <code>docker</code> 策略</strong>（并在启动平台容器时挂载宿主机 Docker 套接字 <code>-v /var/run/docker.sock:/var/run/docker.sock</code>）。<br><strong>为什么不能在平台容器内使用 <code>local</code> 策略？</strong><br>因为若使用 <code>local</code> 策略，所有用户通过智能体执行的 Shell 命令（如 <code>apt-get</code>、<code>pip install</code>、甚至死循环/删文件）都会在<strong>平台后端主服务的容器内直接执行</strong>，极易污染平台主运行环境、耗尽主容器资源或误杀主服务进程！配置为 <code>docker</code> 沙箱策略后，平台会通知宿主机 Docker 引擎为每个用户独立启动专用的纯净子容器，从根本上隔离运行风险。</blockquote>
+<hr />
+<h4 id="sec-7-3-2">7.3.2 Docker 沙箱运行前提条件</h4>
+<p>要启用并稳定运行 <code>docker</code> 安全沙箱策略，需满足以下环境要求：</p>
+<ol>
+<li><strong>宿主机需安装 Docker 引擎</strong>：</li>
+</ol>
+<ul>
+<li>机器需安装 Docker 20.10+ / Docker Desktop，并确保 <code>dockerd</code> 守护进程正在运行。</li>
+<li>在终端执行 <code>docker ps</code> 或 <code>docker info</code> 验证可正常连通。</li>
+</ul>
+<ol>
+<li><strong>后端 Python 环境依赖</strong>：</li>
+</ol>
+<ul>
+<li>Python 环境需安装 <code>aiodocker</code> 依赖（已内置于平台的 <code>requirements.txt</code> 中）：</li>
+</ul>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>     pip install aiodocker</code></pre>
+</div>
+<ol>
+<li><strong>平台自身使用 Docker 容器化部署时的注意事项</strong>：</li>
+</ol>
+<ul>
+<li>若平台后端服务本身是以 Docker 容器方式运行，需在启动命令或 <code>docker-compose.yml</code> 中挂载宿主机的 Docker Socket，使后端容器具备调用宿主机 Docker daemon 的能力（Docker-out-of-Docker）：</li>
+</ul>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Yaml</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock</code></pre>
+</div>
+<hr />
+<h4 id="sec-7-3-3">7.3.3 Docker 沙箱镜像预构建指南</h4>
+<p>Docker 沙箱运行依赖 AgentScope 规范的专用执行基座镜像（内置 Python 运行时与 In-Container FastMCP 工具网关）。为避免用户首次发起对话时耗时等待构建，平台提供了<strong>一键预构建加速</strong>功能。</p>
+<h5 id="1-选择容器基础镜像">1. 选择容器基础镜像</h5>
+<p>在【系统配置】->【参数配置】->【安全沙箱】中：</p>
+<ul>
+<li>平台默认使用官方标准 <strong><code>python:3.11-slim</code></strong>（或完整版 <code>python:3.11</code>）；</li>
+<li>如在离线或内网环境部署，可选择「自定义镜像地址…」填写私有 Harbor 仓库镜像或已认证的企业镜像加速地址。</li>
+</ul>
+<h5 id="2-后台界面一键预构建">2. 后台界面一键预构建</h5>
+<ol>
+<li>管理员登录系统，进入 <strong>系统管理 -> 系统配置 -> 参数配置</strong> 面板；</li>
+<li>在【安全沙箱】分组中，将安全策略切换为 <strong><code>docker</code></strong>；</li>
+<li>点击 <strong><code>⚡ 预构建 / 重新预构建</code></strong> 按钮；</li>
+<li>后端将基于确定性哈希自动生成镜像构建上下文并持久化 Tag（例如 <code>agentscope-workspace:6e0fab447d44</code>）；</li>
+<li>构建完成后，界面将高亮展示 <code>✅ 镜像已预构建</code>。</li>
+</ol>
+<h5 id="3-管理端点-api-触发预构建">3. 管理端点 API 触发预构建</h5>
+<p>管理员亦可通过运维接口或 CI/CD 流程预先触发构建：</p>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code># 检查当前预构建状态
+curl -X GET &quot;http://127.0.0.1:8001/api/v1/admin/sandbox/docker/prebuild-status&quot; \
+     -H &quot;X-API-Key: &lt;ADMIN_API_KEY&gt;&quot;
+
+# 强制触发预构建
+curl -X POST &quot;http://127.0.0.1:8001/api/v1/admin/sandbox/docker/prebuild?force=true&quot; \
+     -H &quot;X-API-Key: &lt;ADMIN_API_KEY&gt;&quot;</code></pre>
+</div>
+<h5 id="4-运维脚本直接构建与代理支持-推荐排查方案">4. 运维脚本直接构建与代理支持（推荐排查方案）</h5>
+<p>在需要网络代理才能拉取 Docker 镜像或安装 pip 依赖的受限网络环境中，您可直接在宿主机或进入平台 Docker 容器内部运行预构建运维脚本：</p>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code># 1. 带 HTTP/HTTPS 代理执行预构建（实时流式查看 Docker build 进度）
+./prebuild-sandbox.sh --proxy http://10.0.0.1:7890
+
+# 2. 或在环境中预设代理环境变量后直接运行（自动识别）
+export HTTP_PROXY=http://10.0.0.1:7890 HTTPS_PROXY=http://10.0.0.1:7890
+./prebuild-sandbox.sh
+
+# 3. 仅检查预构建状态与确定性 Tag
+./prebuild-sandbox.sh --status
+
+# 4. 指定特定基础镜像或强制重建
+./prebuild-sandbox.sh --base-image python:3.11-slim --force --proxy http://10.0.0.1:7890</code></pre>
+</div>
+<blockquote class="success">💡 <strong>提示</strong>：通过 <code>./prebuild-sandbox.sh</code> 直接构建属于服务器本地/容器内部运维操作，<strong>无需传递 API Key</strong>。构建成功后会自动将预构建完成标记写入数据库与 Redis，回到前端管理页面刷新即可看到已就绪状态。</blockquote>
+<hr />
+<h4 id="sec-7-3-4">7.3.4 Docker 沙箱核心运行全流程与架构</h4>
+<div class="mermaid-card"><pre class="mermaid">sequenceDiagram
+    autonumber
+    actor User as 用户 (User)
+    participant Front as 前端界面 (Web UI)
+    participant Backend as 平台后端 (FastAPI)
+    participant Daemon as Docker Daemon
+    participant Container as 沙箱容器 (Sandbox Container)
+    participant Gateway as In-Container Gateway (MCP)
+
+    User->>Front: 发送对话请求 / 调试指令
+    Front->>Backend: POST /api/v1/chat (携带 session & token)
+    Backend->>Backend: 检查沙箱策略 (sandbox_policy = docker)
+    Backend->>Daemon: 探测或拉起该用户私有容器 (agentscope-workspace:<hash>)
+    Note over Backend,Daemon: 仅精准挂载当前用户目录 data/workspace/<user_id>
+    Daemon->>Container: 启动容器并孵化 In-Container Gateway
+    Container->>Gateway: 拉起 FastMCP 工具服务 (Bash / Read / Write)
+    Backend->>Gateway: 建立健康探活并分发智能体工具调用
+    Gateway->>Container: 在隔离容器内执行 Shell / 代码
+    Gateway-->>Backend: 返回截断保护的标准输出/错误日志
+    Backend-->>Front: SSE 流式响应渲染结果给用户
+    Note over Container: 30 分钟无交互自动触发空闲回收</pre></div>
+<h5 id="流程关键节点解析：">流程关键节点解析：</h5>
+<ol>
+<li><strong>多租户按需拉起</strong>：每个登录用户拥有独立的容器与物理隔离的工作区（<code>data/workspace/<user_id></code>），互不干扰。</li>
+<li><strong>同路径物理映射与 DooD 挂载对齐</strong>：宿主机用户物理工作区与容器内挂载目录完全对齐。平台后端部署在 Docker 中时，通过 <code>HOST_DATA_DIR</code> 环境变量自动将容器内 <code>/app/data/agent_workspaces/<user_id></code> 换算为宿主机物理硬盘上的对应真实路径下发给 Docker Daemon，保证生成的工件/文件能被画布实时预览和下载。</li>
+<li><strong>In-Container Gateway 通信</strong>：AgentScope 在容器内拉起专用的 FastMCP 网关，智能体调用工具均通过 RPC/STDIO 协议与网关交互，异常崩溃不影响平台主进程。</li>
+<li><strong>纵深安全防御</strong>：</li>
+</ol>
+<ul>
+<li><strong>防路径穿越</strong>：容器内工具严禁 <code>..</code> 越界访问工作区之外的文件；</li>
+<li><strong>硬超时保护</strong>：命令执行单次上限 600 秒，防止死循环耗尽资源；</li>
+<li><strong>日志截断保护</strong>：输出限制最大 100,000 字符，防范 OOM 溢出。</li>
+</ul>
+<ol>
+<li><strong>空闲自动回收</strong>：连续 30 分钟无交互的容器自动停止并回收，释放内存与 CPU。</li>
+</ol>
+<hr />
+<h4 id="sec-7-3-5">7.3.5 常见 Docker 沙箱排查与报错解决</h4>
+
+<div class="qa-card" id="q1-提示“当前环境无法连接-docker-daemon-请参考-faq-帮助文档”">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q1: 提示“当前环境无法连接 Docker daemon，请参考 FAQ 帮助文档”</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查步骤</strong>：</li>
+</ul>
+<ol>
+<li>检查宿主机 Docker 是否已启动：在终端执行 <code>docker info</code>；</li>
+<li>检查当前运行平台后端进程的用户是否有访问 Docker Socket 的权限（非 root 用户需加入 <code>docker</code> 用户组：<code>sudo usermod -aG docker $USER</code>）；</li>
+<li>若平台运行在容器内，确保挂载了 <code>-v /var/run/docker.sock:/var/run/docker.sock</code>。</li>
+</ol>
+  </div>
+</div>
+
+<div class="qa-card" id="q2-预构建阶段拉取基础镜像卡住-超时或报-access-denied">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q2: 预构建阶段拉取基础镜像卡住、超时或报 <code>access denied</code></span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>原因</strong>：部分公有云加速地址（如阿里云未登录状态）会拦截匿名拉取报 access denied，或直接访问 Docker Hub / PyPI 发生网络阻塞。</li>
+<li><strong>解决方案</strong>：</li>
+</ul>
+<ol>
+<li>在【系统配置】->【安全沙箱】中确保选用官方标准 <strong><code>python:3.11-slim</code></strong>，并在本地 Docker daemon 配置合法镜像加速器/代理；或选择「自定义镜像地址…」填入企业私有 Harbor 镜像地址后点击预构建；</li>
+<li>若当前机器需要 HTTP/HTTPS 代理才能访问外部网络，可直接在宿主机或进入容器终端运行 <code>./prebuild-sandbox.sh --proxy http://<代理IP>:<端口></code> 进行构建，可实时流式观察下载与编译日志并自动落库。</li>
+</ol>
+  </div>
+</div>
+
+<div class="qa-card" id="q3-普通用户提示-403-forbidden-无法启动沙箱">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q3: 普通用户提示 <code>403 Forbidden</code> 无法启动沙箱</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>原因</strong>：老版本未将普通用户沙箱工作区端点加入 V1 API 白名单。</li>
+<li><strong>解决方案</strong>：平台已在 <code>v1.0.12+</code> 中将 <code>/sandbox/docker/workspace</code> 纳入白名单放行，请同步拉取平台最新代码。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h4 id="sec-7-3-6">7.3.6 智能体上下文预算管控与两阶段溢出压缩</h4>
+<ul>
+<li><strong><code>agent_context_max_tokens</code></strong>：会话上下文 Token 预算上限（默认 <code>64000</code>）。</li>
+<li><strong><code>agent_max_context_messages</code></strong>：发送给 LLM 的最大历史消息条目数（兜底上限，默认 <code>60</code>）。</li>
+<li><strong><code>agent_context_compaction_enabled</code></strong>：启用历史溢出压缩。当长对话接近预算时，系统自动触发两阶段压缩机制：</li>
+</ul>
+<ol>
+<li><strong>确定性结构化摘录</strong>：提取早期轮次的提问、工具调用结论及核心工件；</li>
+<li><strong>LLM 语义摘要降级</strong>：可选利用后台小模型生成语义摘要，失败自动降级为确定性摘录，确保关键上下文永不丢失。</li>
+</ol>
+<h4 id="sec-7-3-7">7.3.7 生成文件与工件发布配置 (File Download Prefix)</h4>
+<ul>
+<li><strong><code>file_download_url_prefix</code></strong>：智能体通过 <code>publish_generated_file</code> 工具发布图表、报告等生成文件时，拼接公网绝对下载链接的地址前缀（例如 <code>https://agent.yourdomain.com</code>）。若留空，则默认生成以 <code>/api/v1/chat/artifacts/download/...</code> 开头的相对路径。</li>
+</ul>
+<h4 id="sec-7-3-8">7.3.8 AgentScope 运行时状态注入与时间感知</h4>
+<ul>
+<li><strong><code>agentscope_inject_runtime_state</code></strong>：开启后，系统在每轮对话开始前向 Agent 注入当前精确北京时间、当前活跃任务数及上下文用量指标，使 Agent 具备准确的现实时间感知（如正确判断“今天星期几”、“上周五的数据”等）。</li>
+</ul>
+<hr />
+<h3 id="sec-7-4">7.4 通知通道与外部集成</h3>
+<p>平台支持将自动化任务调度（Task Center）的执行结果、审批提醒及系统异常实时推送到第三方办公与协作平台。</p>
+<h4 id="sec-7-4-1">7.4.1 多通道通知配置指引 (企微 / 钉钉 / 飞书 / 邮件 / Webhook)</h4>
+<p>在【系统配置】->【通知渠道】中支持配置以下通道：</p>
+<ol>
+<li><strong>企业微信群机器人 (WeCom Bot)</strong>：</li>
+</ol>
+<ul>
+<li>填入企微群机器人的 Webhook Key / URL 即可。</li>
+</ul>
+<ol>
+<li><strong>钉钉机器人 (DingTalk Bot)</strong>：</li>
+</ol>
+<ul>
+<li>支持填写 Webhook 地址；若开启了“加签”安全设置，需同步填写加签 Secret。</li>
+</ul>
+<ol>
+<li><strong>飞书机器人 (Feishu Bot)</strong>：</li>
+</ol>
+<ul>
+<li>填入飞书群机器人的 Webhook URL；若开启签名校验需配置 Secret。</li>
+</ul>
+<ol>
+<li><strong>SMTP 邮件通知 (Email)</strong>：</li>
+</ol>
+<ul>
+<li>配置 SMTP 主机（如 <code>smtp.exmail.qq.com</code> / <code>smtp.163.com</code>）、端口（SSL 465 或 TLS 587）、发件人邮箱及授权码。</li>
+</ul>
+<ol>
+<li><strong>通用 Webhook (Custom Webhook)</strong>：</li>
+</ol>
+<ul>
+<li>支持向企业内部业务系统推送标准 JSON Payload（包含事件类型、任务详情、错误堆栈与执行耗时）。</li>
+</ul>
+<h4 id="sec-7-4-2">7.4.2 自动化任务调度中心的通知与告警绑定</h4>
+<ul>
+<li>在【任务调度台】中创建或编辑 Cron 定时任务时，可针对单任务选择通知通道，并设置触发策略：</li>
+<li><strong>全部通知</strong>：任务每次执行完毕（成功/失败）均发送报告；</li>
+<li><strong>仅失败通知</strong>：任务执行成功保持静默，仅在异常报错时触发告警；</li>
+<li><strong>关闭通知</strong>：不发送外部消息。</li>
+</ul>
+<h4 id="sec-7-4-3">7.4.3 常见通知推送失败排查 Q&A</h4>
+
+<div class="qa-card" id="q-钉钉-企微机器人偶发推送失败报-310000-ip-not-in-whitelist">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 钉钉/企微机器人偶发推送失败报 <code>310000 / IP not in whitelist</code>？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查</strong>：部分企业微信或钉钉机器人开启了出口 IP 安全白名单，需将平台部署服务器的公网 IP 填入机器人的 IP 白名单中。</li>
+</ul>
+  </div>
+</div>
+
+<div class="qa-card" id="q-邮件测试连接报-535-authentication-failed">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 邮件测试连接报 <code>535 Authentication Failed</code>？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>排查</strong>：各大邮箱服务商（QQ 邮箱、163 邮箱、Gmail 等）均要求使用独立的<strong>客户端授权码</strong>而非邮箱登录密码，请在邮箱网页版安全设置中生成专用授权码。</li>
+</ul>
+  </div>
+</div>
+<hr />
+<h3 id="sec-7-5">7.5 数据库与缓存维护</h3>
+<p>平台主库全面支持 <strong>MySQL</strong> 与 <strong>PostgreSQL</strong>，并强依赖 <strong>Redis Stack</strong> 实现高速会话记忆与语义检索。</p>
+<h4 id="sec-7-5-1">7.5.1 MySQL 与 PostgreSQL 双数据库迁移规范</h4>
+<ul>
+<li><strong>MySQL 迁移目录</strong>：<a href="file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/db-prod/"><code>db-prod/</code></a>（命名如 <code>V129-*.sql</code>）；</li>
+<li><strong>PostgreSQL 迁移目录</strong>：<a href="file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/db-prod-pg/"><code>db-prod-pg/</code></a>（命名如 <code>V29-*.sql</code>）；</li>
+<li><strong>开发与升级准则</strong>：</li>
+</ul>
+<ol>
+<li>平台支持两套数据库，所有数据表结构变更必须<strong>同步新增双库版本的增量迁移 SQL</strong>；</li>
+<li>严禁直接手动修改已有历史版本的 SQL 脚本，保证平滑增量升级。</li>
+</ol>
+<h4 id="sec-7-5-2">7.5.2 Redis Stack / RediSearch 依赖与 30 天状态 TTL</h4>
+<ul>
+<li><strong>RediSearch 引擎</strong>：平台利用 RediSearch 对历史会话记忆与上下文进行高效的向量与全文检索。</li>
+<li><strong>全链路 30 天 TTL 保障</strong>：会话历史（<code>MemoryService</code>）、上下文压缩快照（<code>ContextCompactionLogService</code>）、工件下载链接及 Agent 运行时状态缓存统一设置为 <strong>30 天（2592000秒）有效周期</strong>，确保用户长周期跨天会话不丢上下文。</li>
+</ul>
+<h4 id="sec-7-5-3">7.5.3 常见数据库与缓存排查 Q&A</h4>
+
+<div class="qa-card" id="q-平台启动报错-redis-command-error-ft-create-not-supported">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 平台启动报错 <code>Redis Command Error: FT.CREATE not supported</code>？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>原因</strong>：当前使用的是传统 Redis Server，缺少 RediSearch 模块。</li>
+<li><strong>解决</strong>：请改用官方 <strong>Redis Stack</strong> 镜像或安装 Redis 扩展模块：</li>
+</ul>
+
+<div class="code-container">
+  <div class="code-header">
+    <span>Bash</span>
+    <button class="copy-btn" onclick="copyCode(this)">复制</button>
+  </div>
+  <pre><code>  docker run -d --name redis-stack -p 6379:6379 redis/redis-stack-server:latest</code></pre>
+</div>
+  </div>
+</div>
+
+<div class="qa-card" id="q-数据库从-mysql-切换为-postgresql-后启动报表不存在">
+  <div class="qa-question">
+    <span><span class="q-tag">Q</span> Q: 数据库从 MySQL 切换为 PostgreSQL 后启动报表不存在？</span>
+    
+  </div>
+  <div class="qa-answer">
+<ul>
+<li><strong>解决</strong>：在 <code>.env</code> 中修改数据库连接串（<code>DATABASE_URL=postgresql+asyncpg://...</code>）后，需先执行 <code>db-prod-pg/</code> 下的基础初始化与增量 SQL 脚本完成表结构构建。</li>
+</ul>
+  </div>
+</div>
         </article>
       </main>
     </div>
@@ -760,14 +2914,11 @@
       </div>
     </footer>
 
-    <!-- RAW 100% FULL MARKDOWN DATA SCRIPT -->
-    <script type="text/plain" id="raw-faq-md">"# NanZi AI 开源智能体平台 · 疑难解答与常见问题手册 (FAQ)\n\n欢迎查阅 **NanZi AI 开源智能体平台** 常见问题与疑难解答手册。本手册按照平台左侧功能菜单结构进行编排分类，包含通俗易懂的原理机制解析、小白用户常见概念混淆答疑，以及各类运行环境配置与异常排查方法。\n\n![NanZi AI FAQ Overview](docs/images/faq.png)\n\n---\n\n## 📑 目录导航 (Table of Contents)\n\n- [一、平台概览与基础环境 (Overview &amp; Environment)](#一平台概览与基础环境)\n  - [1.1 推荐运行依赖与系统要求](#11-推荐运行依赖与系统要求)\n  - [1.2 本地与服务器快速启动指南 (`dev.sh`)](#12-本地与服务器快速启动指南-devsh)\n  - [1.3 核心逻辑：平台前后端是如何协作运行的？](#13-核心逻辑平台前后端是如何协作运行的)\n  - [1.4 小白高频问题与排查 Q&amp;A](#14-小白高频问题与排查-qa)\n- [二、智能助手与交互画布 (Smart Assistant & Canvas)](#二智能助手与交互画布)\n  - [2.1 核心逻辑：智能助手与交互画布的协同机制](#21-核心逻辑智能助手与交互画布的协同机制)\n  - [2.2 聊天输入框全能工具箱：附件、@专家、/快捷指令、技能与MCP挂载](#22-聊天输入框全能工具箱附件专家快捷指令技能与mcp挂载)\n  - [2.3 输入框浮标：Token 水位线、压缩日志与沙箱运行状态卡片](#23-输入框浮标token-水位线压缩日志与沙箱运行状态卡片)\n  - [2.4 右上角控制台：排版主题、单/多轮记忆、模型调用全维统计与调试](#24-右上角控制台排版主题单多轮记忆模型调用全维统计与调试)\n  - [2.5 浏览器自动化会话与实时投屏接管](#25-浏览器自动化会话与实时投屏接管)\n  - [2.6 小白高频问题与交互排查 Q&A](#26-小白高频问题与交互排查-qa)\n- [三、智能体开发平台 (Agent Development Platform)](#三智能体开发平台)\n  - [3.1 核心逻辑：智能体、技能 (Skill) 与 MCP 工具的区别与联系](#31-核心逻辑智能体技能-skill-与-mcp-工具的区别与联系)\n  - [3.2 智能体中心与多 Agent 协作 (Agent Management)](#32-智能体中心与多-agent-协作)\n    - [3.2.1 智能体核心构建的“五大要素”](#321-智能体核心构建的五大要素)\n    - [3.2.2 多智能体协同编排与子代理机制 (Subagents Architecture)](#322-多智能体协同编排与子代理机制-subagents-architecture)\n    - [3.2.3 嵌入式发布与一键共享 (Embed Chat)](#323-嵌入式发布与一键共享-embed-chat)\n    - [3.2.4 小白实战：我该用单智能体还是多智能体？](#324-小白实战我该用单智能体还是多智能体)\n  - [3.3 技能工作台与平台审核机制 (Skills Management)](#33-技能工作台与平台审核机制-skills-management)\n    - [3.3.1 什么是技能 (Skill)？技能包的结构规范](#331-什么是技能-skill技能包的结构规范)\n    - [3.3.2 私有技能 vs 平台公共技能及审核流转](#332-私有技能-vs-平台公共技能及审核流转)\n    - [3.3.3 大模型是如何“动态发现与按需加载”技能的？](#333-大模型是如何动态发现与按需加载技能的)\n  - [3.4 MCP 工具集规范与容器内网关 (MCP Management)](#34-mcp-工具集规范与容器内网关-mcp-management)\n    - [3.4.1 什么是 MCP？为什么它是智能体进化的关键？](#341-什么是-mcp为什么它是智能体进化的关键)\n    - [3.4.2 平台支持的 MCP 连接协议类型 (STDIO vs SSE)](#342-平台支持的-mcp-连接协议类型)\n    - [3.4.3 Docker 安全沙箱中的 In-Container FastMCP 网关机制](#343-docker-安全沙箱中的-in-container-fastmcp-网关机制)\n  - [3.5 平台全量工具矩阵与功能清单 (Platform Tool Registry & Built-in Matrix)](#35-平台全量工具矩阵与功能清单-platform-tool-registry--built-in-matrix)\n  - [3.6 记忆工作台与 30 天持久化缓存](#36-记忆工作台与-30-天持久化缓存)\n  - [3.7 任务调度台 (Task Center) 与 Cron 定时任务](#37-任务调度台-task-center-与-cron-定时任务)\n    - [3.7.1 任务中心核心运行原理](#371-任务中心核心运行原理)\n    - [3.7.2 定时任务创建“四步指南”](#372-定时任务创建四步指南)\n    - [3.7.3 任务执行实例与生命周期监控](#373-任务执行实例与生命周期监控)\n  - [3.8 智能体单步调试 (Agent Debug) 与接口调试台 (Playground)](#38-智能体单步调试-agent-debug-与接口调试台-playground)\n  - [3.9 小白高频问题与智能体排查 Q&A](#39-小白高频问题与智能体排查-qa)\n- [四、ChatBI 开发平台 (ChatBI Platform)](#四chatbi-开发平台)\n  - [4.1 核心逻辑：ChatBI 是如何安全查询企业数据的？](#41-核心逻辑chatbi-是如何安全查询企业数据的)\n  - [4.2 元数据同步与业务语义字典标注 (Metadata Management)](#42-元数据同步与业务语义字典标注-metadata-management)\n    - [4.2.1 为什么元数据是 Text-to-SQL 的生命线？](#421-为什么元数据是-text-to-sql-的生命线)\n    - [4.2.2 数据集 (Dataset) 与数据域划分架构](#422-数据集-dataset-与数据域划分架构)\n    - [4.2.3 库表与字段属性治理体系](#423-库表与字段属性治理体系)\n    - [4.2.4 业务枚举与代码字典映射 (Dictionary Mapping)](#424-业务枚举与代码字典映射-dictionary-mapping)\n    - [4.2.5 AI 辅助一键智能标注与动态 Schema 召回组装](#425-ai-辅助一键智能标注与动态-schema-召回组装)\n    - [4.2.6 小白实战避坑指南](#426-小白实战避坑指南)\n  - [4.3 案例集管理与 Few-Shot 向量匹配 (Examples Management)](#43-案例集管理与-few-shot-向量匹配-examples-management)\n    - [4.3.1 什么是 Few-Shot 案例集？为什么它不可或缺？](#431-什么是-few-shot-案例集为什么它不可或缺)\n    - [4.3.2 动态 Few-Shot 向量相似度召回流程](#432-动态-few-shot-向量相似度召回流程)\n    - [4.3.3 案例沉淀的双向闭环](#433-案例沉淀的双向闭环)\n  - [4.4 常见 ChatBI 问答与 SQL 执行排查 Q&amp;A](#44-常见-chatbi-问答与-sql-执行排查-qa)\n- [五、知识库开发平台 (Knowledge Base Platform)](#五知识库开发平台)\n  - [5.1 核心逻辑：RAG 知识库检索与文档切片原理](#51-核心逻辑rag-知识库检索与文档切片原理)\n  - [5.2 知识库创建与 RAGFlow 引擎对接](#52-知识库创建与-ragflow-引擎对接)\n  - [5.3 混合检索 (Hybrid Search) 与重排序 (Rerank) 调优](#53-混合检索-hybrid-search-与重排序-rerank-调优)\n  - [5.4 运营分析与无答案问题聚类挖掘](#54-运营分析与无答案问题聚类挖掘)\n  - [5.5 小白高频问题与知识库排查 Q&amp;A](#55-小白高频问题与知识库排查-qa)\n- [六、日志与 Token 分析 (Logs &amp; Token Analytics)](#六日志与-token-分析)\n  - [6.1 核心逻辑：什么是 Token？平台是如何计费与统计的？](#61-核心逻辑什么是-token平台是如何计费与统计的)\n  - [6.2 审计日志 (Audit Logs) 与操作追溯](#62-审计日志-audit-logs-与操作追溯)\n  - [6.3 聊天日志 (Chat Logs) 与复盘诊断](#63-聊天日志-chat-logs-与复盘诊断)\n  - [6.4 Token 统计与企业多维度成本分摊](#64-token-统计与企业多维度成本分摊)\n  - [6.5 小白高频问题与日志分析 Q&amp;A](#65-小白高频问题与日志分析-qa)\n- [七、系统管理与配置 (System Management &amp; Configuration)](#七系统管理与配置)\n  - [7.1 用户与角色权限 (Users &amp; Roles)](#71-用户与角色权限)\n    - [7.1.1 平台双层权限架构 (菜单 menu vs 元素 element)](#711-平台双层权限架构-菜单-menu-vs-元素-element)\n    - [7.1.2 API Key 的安全生成与使用](#712-api-key-的安全生成与使用)\n    - [7.1.3 外部 V1 API 访问控制与白名单机制](#713-外部-v1-api-访问控制与白名单机制)\n    - [7.1.4 常见用户与权限 Q&amp;A](#714-常见用户与权限-qa)\n  - [7.2 模型注册与提供商管理 (Model Registry)](#72-模型注册与提供商管理)\n    - [7.2.1 支持的模型提供商生态与配置规范](#721-支持的模型提供商生态与配置规范)\n    - [7.2.2 模型能力分类 (Chat / Embedding / Multimodal / Reasoning)](#722-模型能力分类-chat--embedding--multimodal--reasoning)\n    - [7.2.3 Base URL 智能版本号识别与端点规范化](#723-base-url-智能版本号识别与端点规范化)\n    - [7.2.4 深度思考模型 (DeepSeek-R1 / QwQ 等) 工具调用兼容层](#724-深度思考模型-deepseek-r1--qwq-等-工具调用兼容层)\n    - [7.2.5 常见模型配置与调用 Q&amp;A](#725-常见模型配置与调用-qa)\n  - [7.3 参数配置专题 (System Parameters)](#73-参数配置专题)\n    - [7.3.1 多策略安全沙箱 (Local / Docker / E2B / SSH) 对比选型](#731-多策略安全沙箱-local--docker--e2b--ssh-对比选型)\n    - [7.3.2 Docker 沙箱运行前提条件](#732-docker-沙箱运行前提条件)\n    - [7.3.3 Docker 沙箱镜像预构建指南](#733-docker-沙箱镜像预构建指南)\n    - [7.3.4 Docker 沙箱核心运行全流程与架构](#734-docker-沙箱核心运行全流程与架构)\n    - [7.3.5 常见 Docker 沙箱排查与报错解决](#735-常见-docker-沙箱排查与报错解决)\n    - [7.3.6 智能体上下文预算管控与两阶段溢出压缩](#736-智能体上下文预算管控与两阶段溢出压缩)\n    - [7.3.7 生成文件与工件发布配置 (File Download Prefix)](#737-生成文件与工件发布配置-file-download-prefix)\n    - [7.3.8 AgentScope 运行时状态注入与时间感知](#738-agentscope-运行时状态注入与时间感知)\n  - [7.4 通知通道与外部集成 (Notifications &amp; Webhooks)](#74-通知通道与外部集成)\n    - [7.4.1 多通道通知配置指引 (企微 / 钉钉 / 飞书 / 邮件 / Webhook)](#741-多通道通知配置指引-企微--钉钉--飞书--邮件--webhook)\n    - [7.4.2 自动化任务调度中心的通知与告警绑定](#742-自动化任务调度中心的通知与告警绑定)\n    - [7.4.3 常见通知推送失败排查 Q&amp;A](#743-常见通知推送失败排查-qa)\n  - [7.5 数据库与缓存维护 (Database &amp; Redis Maintenance)](#75-数据库与缓存维护)\n    - [7.5.1 MySQL 与 PostgreSQL 双数据库迁移规范](#751-mysql-与-postgresql-双数据库迁移规范)\n    - [7.5.2 Redis Stack / RediSearch 依赖与 30 天状态 TTL](#752-redis-stack--redisearch-依赖与-30-天状态-ttl)\n    - [7.5.3 常见数据库与缓存排查 Q&amp;A](#753-常见数据库与缓存排查-qa)\n\n---\n\n## 一、平台概览与基础环境\n\n### 1.1 推荐运行依赖与系统要求\n\n- **操作系统**：Linux (Ubuntu 20.04+/CentOS 7+/Debian 11+)、macOS (Intel/Apple Silicon)、Windows (WSL2)；\n- **Python 运行时**：**Python 3.11**（推荐使用 `uv` 极速虚拟环境管理器，严禁使用 Python 3.10 或 3.12+ 专有语法）；\n- **Node.js 运行时**：**Node.js 18.18+ / 20.x**（用于前端 Vite 7 + Vue 3 编译与构建）；\n- **缓存与搜索引擎**：**Redis Stack Server 7.x+**（必须包含 RediSearch 模块，不能使用裸 Redis 6.x）；\n- **主数据库**：**MySQL 8.0+** 或 **PostgreSQL 14+**；\n- **安全沙箱环境 (Docker)**：\n  - 推荐主机安装 **Docker 20.10+**；\n  - **核心建议**：**当平台自身部署在 Docker 容器内运行时，强烈建议安全沙箱配置走 `docker` 策略**（通过在平台容器启动时挂载 `-v /var/run/docker.sock:/var/run/docker.sock`）。若在平台主容器内使用 `local` 策略，所有 Agent 执行的 Shell 脚本和命令都会在平台后端主服务容器内裸奔执行，可能导致平台主环境被污染或崩溃；而配置为 `docker` 沙箱策略，可以为每个用户在宿主机 Docker 引擎上独立拉起纯净隔离的沙箱子容器，实现真正的操作系统级多租户安全隔离！\n\n---\n\n### 1.2 本地与服务器快速启动指南 (`dev.sh`)\n\n平台根目录下提供了自动化启动脚本 [`./dev.sh`](file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/dev.sh)：\n\n1. **前台调试启动 (实时查看编译与后端日志)**：\n   ```bash\n   ./dev.sh\n   ```\n2. **后台常驻启动 (Daemon 模式，适合服务器部署)**：\n   ```bash\n   ./dev.sh -d\n   # 或\n   ./dev.sh --daemon\n   ```\n3. **`dev.sh` 核心特性**：\n   - 自动检测并停止占用旧端口的服务进程；\n   - 自动校验 `frontend/package.json` 的校验和（Checksum），在依赖变更时自动执行 `npm install`；\n   - 动态解析 `.env` 中的 `API_SERVICE_PORT`（默认 8001），避免端口硬编码；\n   - 前端自动执行 `npx vite build` 产出静态资源并交由 FastAPI 统一托管。\n\n---\n\n### 1.3 核心逻辑：平台前后端是如何协作运行的？\n\n```mermaid\nflowchart LR\n    Browser[\"用户浏览器 (Vue3 SPA)\"] -- \"① REST API / SSE 流式\" --> FastAPI[\"FastAPI 后端 (Port 8001)\"]\n    FastAPI -- \"② 静态资源托管\" --> Static[\"Vite 产物 (frontend/dist)\"]\n    FastAPI -- \"③ 会话与向量检索\" --> Redis[\"Redis Stack (RediSearch)\"]\n    FastAPI -- \"④ 业务数据持久化\" --> DB[(\"MySQL / PostgreSQL\")]\n    FastAPI -- \"⑤ 隔离执行 Shell/代码\" --> Sandbox[\"Docker / E2B / Local 沙箱\"]\n```\n\n1. **统一单端口托管**：开发与生产环境下，FastAPI 会自动挂载并托管前端构建生成的 `frontend/dist` 静态资源目录。用户只需访问 `http://IP:8001` 即可体验完整的 Web 界面与后端 API 服务，无需额外配置复杂的 Nginx 反向代理。\n2. **流式打字与协议通信**：对话采用标准的 **Server-Sent Events (SSE)** 流式长连接。后端在执行 Agent 思考、工具调用、文字输出时，实时向前端推送结构化事件流。\n\n---\n\n### 1.4 小白高频问题与排查 Q&A\n\n##### Q1: 为什么强烈要求使用 Python 3.11？系统自带的 Python 3.8 或 3.12 可以吗？\n\n- **解答**：**不可以**。\n  - Python 3.8/3.9 缺少平台所需的现代异步特性与类型系统（如 `asyncio.TaskGroup`、Pydantic 2 新语法）；\n  - Python 3.12+ 移除或改变了部分底层标准库 API，且部分 AI/数据分析第三方 C 扩展依赖（如旧版本轮子包）在 3.12+ 上可能缺少 pre-built wheels 导致本地编译报错。\n- **推荐做法**：使用 `uv` 极速安装隔离的 3.11 环境：\n  ```bash\n  uv python install 3.11\n  uv venv --python 3.11 .venv\n  source .venv/bin/activate\n  ```\n\n##### Q2: `./dev.sh` 和 `./dev.sh -d` 有什么区别？关掉终端窗口后服务会停止吗？\n\n- **解答**：\n  - `./dev.sh`：**前台运行模式**。所有编译日志、FastAPI 访问日志都会实时打印在当前终端窗口中。**一旦关闭终端窗口或按 Ctrl+C，服务会随之终止**。适合本地开发与排查问题。\n  - `./dev.sh -d`：**后台常驻模式 (Daemon)**。服务会通过 `nohup` 在后台静默运行。**即使关闭 SSH 终端窗口或断开网络，服务依然会在后台持续运行**。适合长期测试或部署在云服务器上。可以通过查看 `nohup.out` 或 `dev.sh` 停止。\n\n##### Q3: `.env` 配置文件在哪里？我修改了配置为什么不生效？\n\n- **解答**：\n  - 项目根目录下有模板文件 `.env.example`，首次使用需复制一份命名为 `.env`：`cp .env.example .env`；\n  - **重要逻辑**：`.env` 中的环境变量仅在**服务启动初始化阶段**由 Python 读取。**修改 `.env` 后必须重启服务（重新执行 `./dev.sh`）才能生效**。\n\n##### Q4: 启动报 `Address already in use` 端口冲突？\n\n- **排查**：脚本会自动检查并在启动前释放旧端口。若仍有外部其他服务占用了 8001 端口，可以在 `.env` 中修改 `API_SERVICE_PORT=8002`，然后重新执行 `./dev.sh`。\n\n---\n\n## 二、智能助手与交互画布 (Smart Assistant & Canvas)\n\n### 2.1 核心逻辑：智能助手与交互画布的协同机制\n\n智能助手采用**左右分栏、双向协同**的工作流：\n\n- **左侧（对话与控制区）**：负责智能体的自然语言交流、思考过程（Thinking CoT）展开折叠、工具调用状态跟踪、AI 提问卡片确认及 TODO 任务清单分步跟踪；\n- **右侧（交互画布 Canvas）**：当智能体生成前端代码（HTML/JS/Vue）、数据图表、Markdown 技术方案、或通过工具产出交付物文件时，右侧画布会自动呼出并实时渲染工件（Artifact）。用户可以在画布中直接编辑代码、切换设备预览尺寸，并一键保存写回沙箱工作区。\n\n---\n\n### 2.2 聊天输入框全能工具箱：附件、@专家、/快捷指令、技能与MCP挂载\n\n平台输入框不仅是一个文本框，而是一个**全功能 Agent 协同工作台**：\n\n#### 1. 多模态附件与剪贴板截图粘贴\n- **点击附件图标**：支持上传本地图片（PNG/JPG/GIF/WebP）、文档（PDF/Word/Excel/TXT/CSV 等）；\n- **剪贴板极速粘贴**：在任意界面截图后，直接在输入框按 `Ctrl+V`（Mac 为 `Cmd+V`）即可快速贴入图片缩略图，智能体将自动调用多模态 Vision 模型进行图像理解与 OCR 识别。\n\n#### 2. `@` 提及呼出专家直选与自动路由\n- **输入 `@` 符号**：输入框上方将弹出专家智能体下拉列表（如 `@ChatBI数据分析师`、`@代码审计员`）；\n- **专家直选模式**：选中专家后本轮对话将精准直达该专属智能体，享受其定制的 System Prompt 与限定工具；\n- **自动路由模式 (Auto-route)**：默认模式，系统根据用户意图语义由 Router 自动分发给最适合的智能体或由主助手全能接管。\n\n#### 3. `/` 斜杠呼出快捷指令 (Slash Commands)\n- **输入 `/` 符号**：即刻呼出预设快捷指令面板（例如常用 Prompt 模板、数据集快捷提问、代码评审模板等）；\n- 选中后自动将结构化提示词填充到输入框中，支持一键发送，大幅提升高频任务操作效率。\n\n#### 4. 技能 (Skill) 与 MCP 工具动态级联挂载\n- **技能挂载 (Skills)**：点击输入框底部的技能图标，可级联浏览并动态勾选当前会话需要生效的技能包（如 `brand-guidelines`、`doc-coauthoring`），无需全局修改 Prompt；\n- **MCP 工具集选择**：点击 MCP 按钮，可直观查看并切换当前挂载的 In-Container / STDIO / SSE 外部工具服务。\n\n#### 5. 权限审批模式 (Approval Mode)\n在输入框下方可随时切换当前会话的工具执行安全级别：\n- **请求批准 (`ask`，默认)**：执行文件写入、Bash 命令等需确认操作前，AI 会先弹出交互确认卡，由用户点击确认后方才执行；\n- **自动批准 (`allow`)**：全自动极速模式，自动放行所有常规工具调用，仅在触发高危安全规则时拦截；\n- **拒绝执行 (`deny`)**：严格只读防护模式，禁止一切写入与远程执行工具。\n\n#### 6. 模型选择与深度思考强度 (Reasoning Effort) 调节\n- **实时切换模型**：支持在输入框底部的下拉菜单中随时切换不同的对话基座大模型（如 DeepSeek-R1、Claude 3.7 Sonnet、GPT-4o、Qwen 2.5 等）；\n- **思考模型控制**：针对推理模型（如 DeepSeek-R1 / QwQ），支持开关思考模式，并精细化调节思考预算强度（无 / 极简 / 低 / 中 / 高 / 极高）。\n\n---\n\n### 2.3 输入框浮标：Token 水位线、压缩日志与沙箱运行状态卡片\n\n在聊天输入框右上角集成了**多功能自适应状态浮标**：\n\n1. **Token 水位线与用量健康度**：\n   - 动态环形进度条展示当前会话已占用的 Token 数量及当前预算上限（默认 64k）的占比；\n   - 状态徽标自适应提示（🟢使用正常 / 🟡接近上限 / 🔴已达输入上限）；\n2. **上下文压缩历史时间线 (Compaction Timeline)**：\n   - 当多轮会话触发平台两阶段压缩或 AgentScope 内部上下文压缩时，浮标展示压缩次数入口；\n   - 点击可展开时间线弹窗，查看各轮次提炼的高浓度摘要与节省比例；\n3. **沙箱运行环境卡片**：\n   - 展开浮标可直观查看当前生效策略（Local/Docker/E2B/SSH）；\n   - `docker` 策略下展示容器实时状态（🟢已运行 / 🟡启动中 / 🔴失败 / ⚪未启动）、分配的 Container ID、秒级递增运行时长及【启动容器 / 重新连接】按钮。\n\n---\n\n### 2.4 右上角控制台：排版主题、单/多轮记忆、模型调用全维统计与调试\n\n在智能助手页面右上角的工具栏中，提供了深度的个性化与可观测性配置：\n\n1. **排版主题与代码高亮风格 (Typography Themes)**：\n   - 内置 **5+ 套精美排版主题**（极简白、优雅蓝、护眼绿、暗黑极客等）；\n   - 自动匹配高对比度代码高亮配色与等宽字体，支持一键切换适合阅读或截图的渲染风格；\n2. **单轮 / 多轮记忆模式 (Memory Mode)**：\n   - **多轮记忆（默认）**：智能体在多轮对话中保持连续上下文与用户意图；\n   - **单轮模式**：每轮对话独立处理，不携带历史上下文，非常适合独立 Prompt 效果测试或快速单步提问；\n3. **模型调用四维 Token 拆解与性能分析 (Model Call Stats Modal)**：\n   - 点击调试图标可弹出当前轮次调用的全维度性能面板：\n     - 包含：首字响应延迟 (TTFT)、总耗时 (Latency)、物理上下文窗口占用比；\n     - **四维 Token 结构化分项占比图**：精准拆解 System Prompt、Tools Schema、Memory/History 与 Current Turn 的 Token 占比，方便开发者优化 Prompt 空间；\n4. **会话管理与工件导出**：\n   - 支持一键清空当前会话记忆、导出完整对话为 Markdown 文件或复制嵌入链接。\n\n---\n\n### 2.5 浏览器自动化会话与实时投屏接管\n\n- **持久化会话**：智能体调用 `browser_*` 工具系列（打开网页、滚动、点击、表单输入、截图）时，在后台保持无头浏览器会话；\n- **实时投屏接管**：右侧画布支持展开【浏览器面板】，实时查看 Agent 操作的页面截图，支持人工直接点击、输入网址实现人机协同接管。\n\n---\n\n### 2.6 小白高频问题与交互排查 Q&A\n\n##### Q1: 智能助手（左侧菜单第二项）与智能体中心里的智能体有什么区别？\n\n- **解答**：\n  - **智能助手**：是面向最终用户的**统一综合对话门户**，默认预装了代码解释器、文件读写、网页浏览与知识库问答等全能工具，开箱即用；\n  - **智能体中心**：是面向企业开发者的**配置与编排工坊**。在这里你可以基于特定业务场景，定制专属智能体（如“财务对账助手”、“SQL 审计员”），为其配置专属的 System Prompt、特定知识库和限定工具集。\n\n##### Q2: 聊天记录中出现的“自动整理线”是什么意思？我的聊天记录被删除了吗？\n\n- **解答**：**没有被删除**。\n  - 大模型单次会话所能接收的上下文长度是有上限的（默认 64k Tokens）。如果多轮长对话的历史记录太长，会导致模型报错或费用暴增。\n  - 当逼近预算上限时，系统会自动启动**两阶段智能溢出压缩**：将较早轮次的历史对话提炼为结构化关键摘录，并在界面插入一条「自动整理线」。新一轮对话将基于这个高浓度摘要继续进行，既保留了前文核心信息，又大幅降低了 Token 消耗。\n\n##### Q3: 点击 AI 回答中的 `[打开文件]` 为什么有时候在画布里打不开？\n\n- **解答**：\n  - 平台已在 `v1.0.12+` 中全面支持逻辑路径映射。无论 Agent 输出的是容器内逻辑路径 `/workspace/...` 还是宿主机物理路径，系统都会自动转义定位到当前登录用户的真实工作区文件；\n  - 若提示文件不存在，请检查智能体是否真正执行了写入工具（Write/Save），或者该文件在之前的临时会话中已被清空。\n\n---\n\n## 三、智能体开发平台\n\n### 3.1 核心逻辑：智能体、技能 (Skill) 与 MCP 工具的区别与联系\n\n很多刚接触 Agent 开发的用户容易混淆这三个概念，它们在平台中的分工如下：\n\n```mermaid\ngraph TD\n    Agent[\"🤖 智能体 (Agent)<br>大脑与核心角色，定义 Prompt 与人格\"] --> Skill[\"📚 技能 (Skill)<br>专业知识与工作流指导手册 (Markdown)\"]\n    Agent --> MCP[\"🛠️ MCP 工具 (Tool)<br>具体执行代码/查数据/调 API 的手脚程序\"]\n    Agent --> Memory[\"🧠 记忆 (Memory)<br>长短期记忆与用户偏好库\"]\n```\n\n- **智能体 (Agent)**：是拥有独立人设、目标和决策逻辑的 AI 角色实体；\n- **技能 (Skill)**：是传授给智能体的**领域专业工作流知识**（以标准 `SKILL.md` 形式存储），告诉智能体“遇到这类任务应该分几步做、遵循什么规范”；\n- **MCP 工具 (Model Context Protocol)**：是智能体用来与外界交互的**可执行代码接口**（如查询天气、执行 Python 脚本、操作浏览器等）。\n\n---\n\n### 3.2 智能体中心与多 Agent 协作\n\n【智能体中心】（Agent Management）是平台对 AI 角色、能力边界、模型绑定、知识记忆与多 Agent 协同体系进行全生命周期管理的控制台。\n\n#### 3.2.1 智能体核心构建的“五大要素”\n\n创建一个高水准的专业智能体，平台提供了五个维度的精细化配置：\n\n```mermaid\nmindmap\n  root((🤖 智能体))\n    👤 角色人设 Persona\n      System Prompt\n      行为准则与约束\n      动态变量插值\n    🧠 双模型绑定\n      主对话模型\n      深度思考推理模型\n    🛠️ 技能与工具集\n      标准 MCP 工具\n      专业 SKILL 工作流\n      内置代码与沙箱\n    📚 知识挂载范围\n      企业知识库\n      向量检索阈值\n      Top-K 召回上限\n    🔒 运行策略与沙箱\n      安全沙箱策略\n      最大执行轮数\n      多代理协作模式\n```\n\n1. **角色人设与 Prompt 工程 (Persona & System Prompt)**：\n   - 定义智能体的专业身份、语气风格、输出格式规范及禁止行为；\n   - 支持动态环境变量注入（如 `{{user_name}}`、`{{current_time}}`、`{{workspace_root}}`），使智能体精准感知用户身份与现实时间。\n2. **双模型协同绑定 (Main Model + Reasoning Model)**：\n   - **主对话模型 (Main Model)**：负责通用交互、对话规划与工具调度（如通义千问 Qwen-Max、GPT-4o、DeepSeek-V3 等）；\n   - **思考推理模型 (Reasoning Model)**：负责复杂数学运算、深度逻辑推演与多分支决策（如 DeepSeek-R1、QwQ-32B 等），支持输出 `<think>` 深度思考链。\n3. **技能与工具集动态装载 (Skills & Tools)**：\n   - **系统内置工具**：代码解释器（Bash）、文件读写、网页浏览、工件发布等；\n   - **专业技能库 (Skills)**：挂载领域专精的 `SKILL.md`（如金融对账、合同法务审查、爬虫解析）；\n   - **外部 MCP 扩展**：无缝调用接入的外部数据库、内部 ERP/CRM API。\n4. **私有知识库范围限定 (Knowledge Scope)**：\n   - 指定该智能体仅允许检索哪些特定知识库，设置精准的相似度过滤阈值，避免不相关知识干扰。\n5. **执行策略与沙箱环境 (Execution Policy & Sandbox)**：\n   - 为该智能体单独指定运行沙箱（继承全局 / 强制 Docker / E2B / Local），设置最大执行步数（Max Steps）防范死循环。\n\n---\n\n#### 3.2.2 多智能体协同编排与子代理机制 (Subagents Architecture)\n\n在处理极其复杂的跨领域任务（如“先全网调研行业竞品，再编写后端 API 代码，最后生成可视化 HTML 报告”）时，单个智能体容易因为上下文过长而遗忘关键细节。\n\n平台引入了**主代理 + 专家子代理（Master-Subagent）编排模式**：\n\n```mermaid\nsequenceDiagram\n    autonumber\n    actor User as 用户 (User)\n    participant Master as 👑 主编排智能体 (Master Agent)\n    participant Sub1 as 🔍 检索专家子代理 (Research Subagent)\n    participant Sub2 as 💻 编程专家子代理 (Coding Subagent)\n    participant Sub3 as 📊 汇报呈现子代理 (Report Subagent)\n\n    User->>Master: 提出综合性复杂需求\n    Master->>Master: 任务拆解与执行规划 (Task Decomposition)\n  \n    rect rgb(240, 248, 255)\n    Note over Master,Sub1: 孵化独立会话上下文\n    Master->>Sub1: 派发检索任务 (invoke_subagent)\n    Sub1->>Sub1: 深度搜索与数据清洗 (私有上下文)\n    Sub1-->>Master: 仅返回结构化调研摘要结论\n    end\n\n    rect rgb(255, 245, 238)\n    Note over Master,Sub2: 孵化独立代码沙箱\n    Master->>Sub2: 派发代码编写与沙箱验证任务\n    Sub2->>Sub2: 编写并执行测试 (私有上下文)\n    Sub2-->>Master: 仅返回最终代码工件与验证状态\n    end\n\n    rect rgb(245, 255, 250)\n    Master->>Sub3: 派发可视化图表生成\n    Sub3-->>Master: 返回交互图表 HTML\n    end\n\n    Master-->>User: 汇总交付高水准最终方案\n```\n\n##### 🌟 子代理机制的杀手级优势：\n\n- **上下文纯净隔离**：子代理在自己独立的专属会话与沙箱中尝试、纠错与调试，产生的巨量中间过程日志**绝不会污染主会话**，主会话上下文始终保持轻量与高聚焦；\n- **各司其职，模型异构**：主代理可以使用规划能力强的通用模型，编程子代理可以使用代码微调模型，各取所长；\n- **防止单点崩溃**：某个子代理报错重试不影响主流程其他环节。\n\n---\n\n#### 3.2.3 嵌入式发布与一键共享 (Embed Chat)\n\n【嵌入式对话组件】（Embed Chat，路由地址 `/embed/chat`）是平台面向企业第三方系统（如内部 OA、CRM、ERP、运维监控看板、Wiki 文档库、客服门户或官网）提供的高性能、零侵入、自适应嵌入方案。\n\n---\n\n##### 1. 为什么选择 Embed Chat 嵌入集成？\n\n- **全功能开箱即用**：内置多模态附件上传、交互画布抽屉（代码高亮/Markdown渲染/图表生成/工件下载）、多轮记忆控制、快捷指令库与独立站内消息弹窗；\n- **自适应响应式布局**：无论是 380px 的右下角悬浮气泡挂件，还是 100% 宽高的全屏嵌入，均可自动适配亮色/暗色主题；\n- **全隔离多实例机制**：支持通过 `instance_id` 在同一页面挂载多个独立的智能体挂件，会话与上下文互不串扰。\n\n---\n\n##### 2. 企业级生产架构：Embed Ticket 临时票据体系\n\n为彻底避免在前端浏览器中暴露长期 API Key，生产环境**强烈推荐使用 Embed Ticket 三步安全时序**：\n\n```mermaid\nsequenceDiagram\n    autonumber\n    actor User as 业务系统员工 (User)\n    participant HostFront as 宿主系统前端 (CRM/OA)\n    participant HostBack as 宿主系统后端 (Server)\n    participant NanziAPI as 平台接口 (NanZi Backend)\n    participant EmbedFrame as EmbedChat IFrame\n\n    User->>HostFront: 登录并打开业务工单/分析页面\n    HostFront->>HostBack: 请求加载 AI 助手\n    HostBack->>NanziAPI: POST /api/v1/embed/tickets (携带系统 Master Key & username)\n    Note over HostBack,NanziAPI: 长期 API Key 留在宿主后端环境变量，绝不出内网\n    NanziAPI-->>HostBack: 返回 5 分钟一次性 Ticket (如 emt_a8f9c2d1...)\n    HostBack-->>HostFront: 下发 ticket\n    HostFront->>EmbedFrame: 挂载 IFrame: /embed/chat?ticket=emt_xxx\n    EmbedFrame->>NanziAPI: 自动核销 Ticket 并兑换 24 小时短期 Session Token (阅后即焚)\n    NanziAPI-->>EmbedFrame: 鉴权通过，建立 SSE 流式连接\n    EmbedFrame->>EmbedFrame: 渲染专属对话面板，就绪可用\n    Note over EmbedFrame,NanziAPI: 持续聊天时自动触发活跃滑动续期 (Sliding TTL)\n```\n\n---\n\n##### 3. 服务端签发 Ticket 示例与标准 IFrame 挂载\n\n###### ① 宿主后端签发 Ticket 接口规范：\n- **请求方式**：`POST /api/v1/embed/tickets`\n- **请求头**：`X-API-Key: YOUR_SYSTEM_MASTER_KEY`\n- **请求体 (JSON)**：\n  ```json\n  {\n    \"username\": \"zhangsan\",          // 必填：目标员工用户名（代表谁提问，自动关联该用户权限与记忆）\n    \"agent_id\": \"sys-agent-chatbi\",  // 可选：指定初始锁定的智能体 ID（留空则走全局智能路由）\n    \"expires_in\": 300                // 可选：Ticket 有效期（秒，默认 300 秒，一次性核销）\n  }\n  ```\n\n###### ② 宿主前端 HTML 嵌入代码：\n```html\n<!-- 宿主前端：直接传入 ticket 渲染 IFrame -->\n<iframe\n  src=\"https://your-nanzi-platform.com/embed/chat?ticket=emt_a8f9c2d1e0b3456789abcdef&theme=light\"\n  width=\"100%\"\n  height=\"680\"\n  frameborder=\"0\"\n  allow=\"clipboard-read; clipboard-write\"\n  style=\"border: 0; border-radius: 12px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);\"\n></iframe>\n```\n\n---\n\n##### 4. 高级进阶：PostMessage 双向通信与业务上下文注入\n\n当宿主页面需要动态向智能体注入业务上下文（如当前正在浏览的工单详情、设备资产编号、客户档案），或实现会话超时无感自动重连时，推荐使用 **PostMessage 标准协议**：\n\n```html\n<iframe\n  id=\"nanzi-agent-frame\"\n  src=\"https://your-nanzi-platform.com/embed/chat?instance_id=crm-assistant\"\n  width=\"100%\"\n  height=\"680\"\n  frameborder=\"0\"\n></iframe>\n\n<script>\nconst frame = document.getElementById('nanzi-agent-frame');\nconst nanziOrigin = 'https://your-nanzi-platform.com';\n\n// 监听 EmbedChat 组件生命周期与上行事件\nwindow.addEventListener('message', async (event) => {\n  if (event.origin !== nanziOrigin) return;\n  const { source, type, payload } = event.data || {};\n  if (source !== 'nanzi-agent-embed') return;\n\n  // 1. 组件就绪：发送 Ticket 鉴权并注入业务上下文\n  if (type === 'NANZI_WIDGET_READY') {\n    const ticket = await fetchMyHostTicket(); // 从宿主后端申请 Ticket\n    frame.contentWindow.postMessage({\n      source: 'nanzi-host',\n      type: 'INIT_CONFIG',\n      payload: {\n        ticket: ticket,\n        theme: 'light',\n        business_context: {\n          order_id: 'ORD-2026-0822',\n          customer_name: '阿里云计算有限公司',\n          environment: '生产机房A区'\n        }\n      }\n    }, nanziOrigin);\n  }\n\n  // 2. 会话闲置超 24h 断开：自动静默重新申请 Ticket 续期\n  if (type === 'INIT_FAILURE' && payload?.reason === 'session_expired') {\n    const newTicket = await fetchMyHostTicket();\n    frame.contentWindow.postMessage({\n      source: 'nanzi-host',\n      type: 'RESET_SESSION',\n      payload: { ticket: newTicket }\n    }, nanziOrigin);\n  }\n});\n</script>\n```\n\n---\n\n##### 5. Embed Chat 常用 URL 参数速查表\n\n| 参数名 | 类型 | 示例值 | 作用说明 |\n| :--- | :--- | :--- | :--- |\n| `ticket` | String | `emt_xxx` | 服务端签发的一次性免登票据（推荐生产使用，阅后即焚）。 |\n| `agent_id` | String | `sys-agent-chatbi` | 锁定初始运行的智能体 ID；不传则为默认主助手并走自动意图调度。 |\n| `theme` | String | `light` / `dark` / `auto` | 界面色彩模式；`auto` 自动跟随宿主系统/浏览器深浅色设置。 |\n| `instance_id` | String | `ticket-ops-drawer` | 实例唯一标记，用于在同一宿主页面挂载多个 iframe 时隔离 postMessage 消息通道。 |\n| `strict_token` | Boolean | `1` / `0` | 开启严格鉴权模式（未提供合法 Ticket/Token 时禁止任何访客级试用）。 |\n\n> 📖 **完整技术集成规范与多语言 Demo**：\n> 更多关于 Java (Spring Boot) / Python (FastAPI) / Go (Gin) 服务端完整代码、Vue 3 / React / 悬浮球组件示例及 PostMessage 协议字典，请参阅：\n> 👉 **[`docs/md/embed_integration_guide.md`](file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/docs/md/embed_integration_guide.md)** (NanZi 智能体平台嵌入式组件集成指南)\n\n---\n\n#### 3.2.4 小白实战：我该用单智能体还是多智能体？\n\n| 业务场景                                        | 推荐方案                          | 核心理由                                                               |\n| :---------------------------------------------- | :-------------------------------- | :--------------------------------------------------------------------- |\n| **日常客服问答、文档翻译、简单 SQL 查询** | **单智能体 (Single Agent)** | 目标单一明确，单轮或短多轮即可解决，单智能体速度快、成本低。           |\n| **全网竞品调研报告生成**                  | **多智能体 (Multi-Agent)**  | 包含多维度搜索、数据汇总、大纲撰写、正文扩写，子代理并行效率更高。     |\n| **复杂工程级代码重构与单测编写**          | **多智能体 (Multi-Agent)**  | 编程子代理负责写代码与执行单测，审核子代理负责 Lint 检查，防止死循环。 |\n| **跨数据库与跨系统对账分析**              | **多智能体 (Multi-Agent)**  | 分别由各数据源专属子代理提取脱敏指标，主代理汇总对账并出具分析图表。   |\n\n### 3.3 技能工作台与平台审核机制 (Skills Management)\n\n【技能工作台】（Skills Management）是企业沉淀行业领域经验与标准化作业程序（SOP）的专家知识库。\n\n#### 3.3.1 什么是技能 (Skill)？技能包的结构规范\n\n技能并不是死板的代码，而是将人类专家的操作规范、分步流程、代码规范与避坑准则系统化封装成的“指南包”。\n\n一个标准的技能包含以下两个核心组成部分：\n\n1. **YAML Frontmatter 元数据**（定义技能名、触发描述、图标与分类标签）：\n   ```yaml\n   ---\n   name: financial-reconciliation\n   description: 专门用于处理财务对账、发票核对及银行流水匹配的专业技能。当用户提到账单核对、流水对比、差异对账时自动激活。\n   tags: [finance, reconciliation, audit]\n   icon: DocumentChartBarIcon\n   ---\n   ```\n2. **Markdown 结构化指令正文**（指导智能体分步骤如何思考与执行）：\n   - **Step 1 检查数据格式**：必须校验金额字段是否为两位小数；\n   - **Step 2 执行比对规则**：以订单号为唯一主键进行 Left Join 比对；\n   - **Step 3 输出规范**：强制以 Markdown 表格形式列出对账差异项，并标注差异原因分类。\n\n#### 3.3.2 私有技能 vs 平台公共技能及审核流转\n\n为了兼顾“个人自由创新”与“企业安全合规”，平台设计了严密的工作流转生命周期：\n\n```mermaid\nflowchart LR\n    User[\"👤 普通用户 / 开发者\"] --> Create[\"1. 创建私有技能<br>(仅自己可见并调试)\"]\n    Create --> Test[\"2. 在对话中实战测试验证\"]\n    Test --> Submit[\"3. 点击【提交审核】\"]\n    Submit --> Review{\"4. 平台管理员审查<br>(element:skills:admin)\"}\n    Review -- \"审核通过\" --> Public[\"5. 晋升为全局公共技能<br>(全员可用并可挂载)\"]\n    Review -- \"驳回修改\" --> Reject[\"返回修改并说明原因\"]\n    Reject --> Create\n```\n\n#### 3.3.3 大模型是如何“动态发现与按需加载”技能的？\n\n- **痛点**：如果企业沉淀了 100 个技能，一次性全塞给大模型会导致上下文瞬间溢出且大幅消耗费用。\n- **解决机制**：智能体在每轮对话开始时，先根据用户输入的语义意图，与所有可用技能的 `description` 进行**语义相似度快速匹配**；仅当意图命中时，系统才会把该技能的完整 Markdown 内容动态注入上下文，实现**按需加载、毫秒级响应、极低 Token 消耗**。\n\n---\n\n### 3.4 MCP 工具集规范与容器内网关 (MCP Management)\n\n【MCP 工具集】（Model Context Protocol）是连接大模型与外部数字化世界（数据库、Git 仓库、私有 API、操作系统）的标准桥梁。\n\n#### 3.4.1 什么是 MCP？为什么它是智能体进化的关键？\n\n在过去，让大模型调用工具需要针对每个平台编写专有适配代码。\n**MCP (Model Context Protocol)** 统一了智能体调用工具的标准协议：\n\n- 任何外部工具只需实现一次 MCP Server，就能被任何支持 MCP 协议的智能体无缝调用；\n- MCP 协议原生支持**工具发现 (Tools Discovery)**、**提示词模板 (Prompts)** 与**上下文资源暴露 (Resources)**。\n\n#### 3.4.2 平台支持的 MCP 连接协议类型\n\n平台全面支持两种标准 MCP 通信协议：\n\n1. **STDIO MCP (标准输入输出)**：\n   - 适用于本地可执行命令或脚手架工具（例如 `python -m my_mcp_server` 或 `npx -y @modelcontextprotocol/server-postgres`）；\n   - 后端通过直接拉起子进程进行管道通信，低延迟、安全性高。\n2. **SSE MCP (Server-Sent Events / HTTP)**：\n   - 适用于独立微服务或部署在云端的 MCP 服务；\n   - 通过标准 HTTP/SSE 端点进行远程 RPC 交互，适合跨主机、跨网络集群调用。\n\n#### 3.4.3 Docker 安全沙箱中的 In-Container FastMCP 网关机制\n\n当沙箱策略配置为 `docker` 时，平台在容器化隔离与 MCP 协议上实现了极致优雅的架构：\n\n- 容器启动时，平台自动在容器内的独立虚拟环境中拉起轻量级 **FastMCP 网关**；\n- 容器内的 Bash 命令行执行、文件读取（`read`）、文件写入（`write`）均以标准 FastMCP Tool 方式暴露；\n- 智能体与容器完全通过标准 MCP 协议通信，容器发生任何死循环或异常都不会影响宿主机主进程。\n\n---\n\n### 3.5 平台全量工具矩阵与功能清单 (Platform Tool Registry & Built-in Matrix)\n\n平台内置了涵盖**沙箱执行、数据分析、文档处理、网络浏览、知识检索、人机协同、任务调度与通知分发**的八大类原生工具库，同时支持通过 **MCP 协议** 与 **OpenAPI** 进行无限生态扩展。\n\n以下为平台支持的全量工具功能清单与内置属性一览：\n\n#### 1. 沙箱系统与代码执行类工具 (Sandbox & System Execution)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `exec_command` (别名 `bash`/`Bash`) | **原生内置** | `ask` (需批准) | 在沙箱（Local/Docker/E2B）中执行系统命令、运行 Python/Node/Shell 脚本，支持实时日志回传与超时控制。 |\n| `read_file` (别名 `read`/`Read`) | **原生内置** | `read` (只读) | 读取沙箱用户工作区中的文件内容，支持分片读取大文件与行号定位。 |\n| `write_file` (别名 `write`/`Write`) | **原生内置** | `ask` (需批准) | 向工作区写入或覆盖代码、配置文件及分析结果，并自动联动右侧画布渲染工件。 |\n| `search_text` (别名 `grep`/`Grep`) | **原生内置** | `read` (只读) | 在工作区目录树中进行极速代码/文本全文正则搜索，快速定位关键词。 |\n| `read_image` | **原生内置** | `read` (只读) | 读取工作区中的本地图片文件并交由多模态大模型进行图像识别与 OCR 理解。 |\n| `manage_process` | **原生内置** | `ask` (需批准) | 启动、监控或终止沙箱内的后台长常驻进程（如 Web 服务、守护脚本）。 |\n| `list_process` | **原生内置** | `read` (只读) | 查询沙箱中当前正在运行的所有进程列表与资源占用情况。 |\n| `sqlite_scratchpad` | **原生内置** | `allow` (自动批准) | 在沙箱内极速初始化临时 SQLite 数据库，用于存储复杂中间数据或进行多表关联分析。 |\n| `directory_tree_navigator` | **原生内置** | `read` (只读) | 递归生成工作区指定目录的文件树层级结构视图。 |\n| `code_syntax_linter` | **原生内置** | `read` (只读) | 对 Python/JavaScript/TypeScript 等语言的代码片段进行静态语法检查与合规校验。 |\n| `publish_generated_file` | **原生内置** | `allow` (自动批准) | 将沙箱内产出的分析报告、数据报表发布为平台专属文件下载链接。 |\n\n#### 2. 数据分析与智能报表类工具 (Data & ChatBI)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `get_dataset_schema` | **原生内置** | `read` (只读) | 获取平台已挂载数据集的数据字典、表结构、字段别名与枚举值注释。 |\n| `execute_sql_query` | **原生内置** | `read` (只读) | 执行 Text-to-SQL 生成的只读 SQL 查询，支持多数据源（ClickHouse、MySQL、PostgreSQL 等）并返回结构化行数据。 |\n| `update_dashboard_context` | **原生内置** | `allow` (自动批准) | 更新当前 ChatBI 看板与指标卡上下文，动态切换数据图表视图。 |\n| `excel_document_read` | **原生内置** | `read` (只读) | 读取并解析 Excel（`.xlsx`/`.xls`）表格中的所有 Sheet 与结构化数据。 |\n| `excel_document_write` | **原生内置** | `ask` (需批准) | 自动生成多 Sheet、带格式美化与统计公式的 Excel 交付物表格。 |\n| `word_document_read` | **原生内置** | `read` (只读) | 提取 Word（`.docx`）文档的正文段落、标题层级与内嵌表格数据。 |\n| `word_document_write` | **原生内置** | `ask` (需批准) | 按照标准商务排版生成完整的 Word 报告交付物文件。 |\n\n#### 3. 网络检索与浏览器自动化类工具 (Web & Browser Automation)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `fetch_static_web_url` | **原生内置** | `read` (只读) | 快速抓取静态网页并将 HTML 转换为干净易读的 Markdown 正文。 |\n| `web_search_baidu` / `web_search_bing_http` | **原生内置** | `read` (只读) | 调用外部搜索引擎（百度、必应等）获取全网最新资讯与搜索结果摘要。 |\n| `web_renderer_and_snapshot` | **原生内置** | `read` (只读) | 针对包含复杂 JS 渲染的动态单页应用，启动无头渲染并抓取页面截图与文本。 |\n| `browser_open` | **原生内置** | `ask` (需批准) | 启动一个受控的无头浏览器会话并打开目标网页 URL。 |\n| `browser_snapshot` | **原生内置** | `read` (只读) | 捕获当前浏览器视口的完整结构快照与截图，用于视觉辅助决策。 |\n| `browser_click` | **原生内置** | `allow` (自动批准) | 模拟鼠标拟人化点击页面上的指定按钮、链接或坐标位置。 |\n| `browser_fill` | **原生内置** | `allow` (自动批准) | 在指定网页输入框中填入搜索词、账号或表单数据。 |\n| `browser_scroll` | **原生内置** | `allow` (自动批准) | 模拟用户上下滚动网页以加载瀑布流或查看底部内容。 |\n| `browser_press` | **原生内置** | `allow` (自动批准) | 模拟键盘物理按键（如 Enter 提交、Tab 切换焦点、Escape 关闭弹窗）。 |\n| `browser_hover` | **原生内置** | `allow` (自动批准) | 悬停鼠标至指定元素上方（触发悬浮下拉菜单或 Tooltip 提示）。 |\n| `browser_drag` | **原生内置** | `allow` (自动批准) | 模拟滑块拖拽或元素拖放操作（支持拟人化平滑贝塞尔曲线轨迹）。 |\n| `browser_select_option` | **原生内置** | `allow` (自动批准) | 在下拉列表（`<select>`）中选择指定选项值。 |\n| `browser_read_visible` | **原生内置** | `read` (只读) | 仅提取当前浏览器可见视口内的纯文本内容，减少 Token 浪费。 |\n| `browser_wait_for` | **原生内置** | `read` (只读) | 显式等待特定 DOM 元素出现或特定状态就绪后再继续下一步。 |\n| `browser_tabs` / `browser_switch_tab` / `browser_close_tab` | **原生内置** | `allow` (自动批准) | 多标签页列表管理、标签页切换与标签页关闭。 |\n| `browser_upload` / `browser_download` | **原生内置** | `ask` (需批准) | 网页表单文件上传与下载文件监听管理。 |\n\n#### 4. 知识库与企业协作类工具 (Knowledge & Enterprise Collab)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `search_knowledge_base` | **原生内置** | `read` (只读) | 检索平台已关联的企业知识库（RAGFlow / 向量库），提取匹配度最高的知识切片。 |\n| `search_qa_examples` | **原生内置** | `read` (只读) | 检索业务 QA 语料库与 Few-shot 样例，供智能体参考历史高标准回复模式。 |\n| `jira_search` | **原生内置** | `read` (只读) | 通过 JQL 查询 Jira 中的需求、缺陷（Issues）及工单状态。 |\n| `jira_create_issue` | **原生内置** | `ask` (需批准) | 在指定的 Jira 项目与模块中自动创建 Bug 或 Task 任务工单。 |\n| `jira_get_projects` | **原生内置** | `read` (只读) | 获取当前登录用户有权限访问的 Jira 项目清单。 |\n\n#### 5. 多智能体协同、人机交互与记忆类工具 (Multi-Agent, HITL & Memory)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `sub_agent_call` | **原生内置** | `allow` (自动批准) | 单子代理分发：派发子任务给特定专家智能体，子代理在独立上下文中执行完毕后仅回传最终摘要。 |\n| `sub_agent_batch_call` | **原生内置** | `allow` (自动批准) | 并发批量分发：同时唤起多个子代理并行处理多项独立子任务（如并发分析 5 家竞品）。 |\n| `todo_write` | **原生内置** | `allow` (自动批准) | 创建与更新对话底部的 TODO 任务清单分步跟踪项（待办/进行中/已完成）。 |\n| `ask_user_question` | **原生内置** | `allow` (交互卡) | 遇到需求不明确时，向用户弹出交互式单选/多选/文本提问卡，阻塞等待用户选择。 |\n| `request_user_confirmation` | **原生内置** | `allow` (交互卡) | 在执行重大决策前向用户弹出结构化确认卡。 |\n| `memory_search` | **原生内置** | `read` (只读) | 语义检索历史多轮对话记忆与长短期事实。 |\n| `fetch_user_long_term_memory` | **原生内置** | `read` (只读) | 读取当前用户的长期个人偏好与定制档案。 |\n| `update_user_preference` / `delete_user_preference` | **原生内置** | `allow` (自动批准) | 动态沉淀或删除用户的长期个性化偏好记录。 |\n| `session_status` | **原生内置** | `read` (只读) | 读取当前会话的上下文 Token 水位、预算状态与模型运行时参数。 |\n\n#### 6. 任务调度台与消息通知类工具 (Task Scheduling & Notifications)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `create_recurring_task` | **原生内置** | `ask` (需批准) | 根据用户的自然语言需求，自动在任务调度台中创建 Cron 定时任务。 |\n| `get_my_tasks` / `cancel_task` / `start_task` / `pause_task` / `run_task_manually` | **原生内置** | `ask` (需批准) | 查询个人定时任务清单，或对已有定时任务执行启动、暂停、取消与立即手动触发。 |\n| `send_dingtalk_message` | **原生内置** | `ask` (需批准) | 向配置好的钉钉群机器人推送富文本/Markdown 工作卡片通知。 |\n| `send_wechat_work_message` | **原生内置** | `ask` (需批准) | 向企业微信群机器人推送图文与文本报警消息。 |\n| `send_email` | **原生内置** | `ask` (需批准) | 通过平台集成的 SMTP 邮件服务向指定邮箱发送格式化邮件报告。 |\n| `send_portal_notification` | **原生内置** | `allow` (自动批准) | 向平台用户发送系统站内信与待办提醒。 |\n\n#### 7. 技能与资源目录发现类工具 (Skill & Resource Discovery)\n\n| 工具标识 (Tool Name) | 内置属性 | 默认权限 | 功能说明与典型应用场景 |\n| :--- | :--- | :--- | :--- |\n| `list_available_skills` | **原生内置** | `read` (只读) | 动态检索当前智能体可用的公共与私有技能包清单（Skills）。 |\n| `read_skill_instruction` | **原生内置** | `read` (只读) | 按需读取指定技能包的 `SKILL.md` 指令内容，将其动态注入会话上下文。 |\n| `create_skills` | **原生内置** | `ask` (需批准) | 智能体在完成某项复杂任务后，自主将经验沉淀为全新的业务技能包。 |\n| `list_accessible_datasets` | **原生内置** | `read` (只读) | 查询当前登录用户有权访问的所有数据集清单。 |\n| `list_accessible_knowledge_bases` | **原生内置** | `read` (只读) | 查询用户可用的全部知识库目录与检索范围。 |\n| `list_available_agents` | **原生内置** | `read` (只读) | 查询当前环境中所有已发布的智能体角色列表。 |\n\n#### 8. 生态扩展工具体系 (Extensible Ecosystem Tools)\n\n| 工具分类 | 工具前缀 | 来源与机制 | 功能说明 |\n| :--- | :--- | :--- | :--- |\n| **MCP 工具集** | `mcp:{server_name}:{tool_name}` | **标准协议扩展** | 在【MCP 管理】中配置的 STDIO、SSE 外部工具服务或 Docker 容器内 FastMCP 工具。 |\n| **OpenAPI 接口工具** | `api:{tool_name}` | **业务接口注册** | 在【工具管理】中直接导入 Swagger / OpenAPI 3.0 JSON 自动生成的 HTTP API 工具。 |\n\n---\n\n### 3.6 记忆工作台与 30 天持久化缓存\n\n- **短时记忆**：基于 Redis 滑动窗口记录最近多轮对话；\n- **长时向量记忆**：基于 RediSearch 向量检索自动沉淀用户偏好与关键实体；\n- **TTL 保障**：全链路会话记忆统一享有 **30 天超长有效期**。\n\n---\n\n### 3.7 任务调度台 (Task Center) 与 Cron 定时任务\n\n【任务调度台】（Task Center）将智能体从传统的“人问机答”被动交互模式，升级为**“AI 自主定时工作并汇报”的自动化无人值守工作流**。\n\n#### 3.7.1 任务中心核心运行原理\n\n```mermaid\nsequenceDiagram\n    autonumber\n    participant Cron as ⏰ 平台 Cron 调度引擎\n    participant Agent as 🤖 目标业务智能体\n    participant Sandbox as 📦 隔离执行沙箱\n    participant Push as 📢 通知通道 (企微/钉钉/飞书/邮件)\n\n    Cron->>Cron: 检测到调度时间触发 (如每天 09:00)\n    Cron->>Agent: 派发预设 Prompt 任务 (携带专属任务上下文)\n    Agent->>Sandbox: 自动执行脚本、拉取数据、分析生成报告\n    Sandbox-->>Agent: 返回数据结果与工件下载链接\n    Agent-->>Cron: 汇总生成最终格式化报告 (Success / Failed)\n    Cron->>Push: 根据任务推送策略向群机器人/邮件投递报告\n```\n\n#### 3.7.2 定时任务创建“四步指南”\n\n1. **选择执行智能体**：指定由哪个业务智能体负责该任务（例如选择【销售数据对账智能体】）；\n2. **编写执行指令 (Task Prompt)**：\n   - 给出清晰详尽的工作指令（例如：“*拉取昨日全渠道销售订单，核对退款明细，若退款率超过 5% 标红预警，并生成分析表格*”）；\n3. **配置调度周期 (Cron 表达式)**：\n   - 支持标准 5 位 Cron 表达式（分钟 小时 日 月 星期）；\n   - 界面内置常用快捷模板（每小时、每天早晨、工作日早晨、每月 1 号等）；\n4. **绑定通知通道与触发策略**：\n   - 选择推送到指定的企业微信群、钉钉群、飞书群或管理员邮箱；\n   - **推送策略**：\n     * **全部通知**：任务每次执行完毕（无论成功失败）均推送完整图文报告；\n     * **仅失败通知**：执行成功保持静默，仅在异常报错时触发紧急告警。\n\n#### 3.7.3 任务执行实例与生命周期监控\n\n- 每次触发会自动创建唯一的 `Task Run` 历史记录；\n- 记录任务的精确开始时间、结束时间、执行耗时、消耗 Token 及完整的智能体思考过程与工具调用日志；\n- 执行失败时自动保留完整异常堆栈，支持管理员在后台“一键重试”。\n\n---\n\n### 3.8 智能体单步调试 (Agent Debug) 与接口调试台 (Playground)\n\n- **智能体单步调试 (Agent Debug)**：可视化拆解智能体的 Thought -> Action -> Observation -> Final Answer 执行链；\n- **接口调试台 (Playground)**：便于开发者直接调试底层 API 端点与参数。\n\n---\n\n### 3.9 小白高频问题与智能体排查 Q&A\n\n##### Q1: 我在技能工作台写了一个新技能，为什么智能体对话时好像没有使用？\n\n- **排查**：\n  1. 检查技能是否已通过审核并启用；\n  2. 检查技能的 Frontmatter 描述（`description`）是否准确清晰。大模型是根据你的 `description` 来语义判断何时调起该技能的，如果描述太模糊，模型可能无法命中。\n\n##### Q2: 任务调度台中的 Cron 表达式怎么写？\n\n- **通俗速查表**：\n  - `*/10 * * * *`：每 10 分钟执行一次；\n  - `0 * * * *`：每小时整点执行一次；\n  - `0 9 * * *`：每天早上 9:00 执行一次；\n  - `0 9 * * 1-5`：每周一至周五早上 9:00 执行一次（工作日打卡/日报）。\n\n---\n\n## 四、ChatBI 开发平台\n\n### 4.1 核心逻辑：ChatBI 是如何安全查询企业数据的？\n\n很多企业用户担心：“用大模型查数据库，会不会把我的机密客户数据泄露给第三方大模型服务商？”\n**平台的实现逻辑绝对安全，严守数据不出域原则**：\n\n```mermaid\nflowchart TD\n    UserQuery[\"用户自然语言提问<br>（例如：上月华东区销售额是多少？）\"] --> Step1[\"① 提取元数据字典与字段别名<br>（仅包含表结构，绝无真实业务数据！）\"]\n    Step1 --> Step2[\"② 发送给 LLM 生成只读 SQL\"]\n    Step2 --> Step3[\"③ 平台本地只读连接池执行 SQL\"]\n    Step3 --> Step4[\"④ 在本地将统计结果绘制为图表返回给前端\"]\n```\n\n1. **只传 Schema，不传数据**：发送给大模型的只有数据表结构、字段说明和几条示例，**数据库中的真实数据记录绝不会发送给大模型**；\n2. **纯只读安全执行**：生成的 SQL 仅在平台本地数据库连接池中执行，并强制拦截一切写操作。\n\n---\n\n### 4.2 元数据同步与业务语义字典标注 (Metadata Management)\n\n【元数据管理】（Metadata Management）是 ChatBI 平台中最为关键的知识中枢与数据底座。它是大模型理解企业底层数据仓库的“罗塞塔石碑”与“业务翻译官”。\n\n```mermaid\ngraph TD\n    DS[\"💾 物理数据源<br>(MySQL / PG / ClickHouse)\"] --> Dataset[\"📂 数据集 (Dataset)<br>按业务域划分 (交易域 / 流量域 / 财务域)\"]\n    Dataset --> TableMeta[\"📁 库表级元数据<br>表物理名 + 表中文名 + 业务说明 + 启用状态\"]\n    TableMeta --> ColMeta[\"📊 字段级元数据<br>物理列名 + 中文业务名 + 数据类型 + 维度/度量 + 主外键关系\"]\n    ColMeta --> DictMeta[\"🏷️ 业务枚举与代码字典<br>状态代码 -> 真实业务含义 (0=未支付, 1=已支付)\"]\n    DictMeta --> Assembly[\"🧠 动态 Schema 召回与 Prompt 组装<br>按用户提问按需抽取最相关的 3~5 张表组装注入大模型\"]\n```\n\n---\n\n#### 4.2.1 为什么元数据是 Text-to-SQL 的生命线？\n\n大语言模型虽然懂通用的 SQL 语法规则，但它**完全不了解企业私有业务的缩写习惯与命名规范**：\n\n- 例如：如果数据库字段名为 `c_je`、`f_is_vld`、`biz_cgy_cd`，大模型无法凭空猜出其实际业务含义；\n- 如果没有主外键关联关系，大模型在进行多表联结时容易发生 `CROSS JOIN` 笛卡尔积或错误的 `ON` 关联条件；\n- 如果状态码（如 `0/1/2/3`）没有业务字典，用户提问“*查已退款订单*”时，大模型只能盲猜 `status = 1` 或 `status = 'refund'`，导致查询结果完全错误。\n\n**元数据管理的目的，就是将生硬的物理数据库表结构，转化为大模型一读即懂的“业务语义网络”。**\n\n---\n\n#### 4.2.2 数据集 (Dataset) 与数据域划分架构\n\n在大型企业中，一个数据库往往包含几百上千张数据表。如果把所有表全量塞给大模型，会导致严重的上下文溢出与 Token 浪费。\n平台通过**数据集 (Dataset)** 实现业务域分流与隔离：\n\n- **按业务域组织**：例如划分为【电商交易数据集】、【会员用户数据集】、【财务账单数据集】；\n- **针对性挂载**：针对特定岗位的智能体（如“财务对账助手”），只为其挂载【财务账单数据集】，既降低了大模型混淆不同业务表的概率，又极大提升了响应速度与安全性。\n\n---\n\n#### 4.2.3 库表与字段属性治理体系\n\n在元数据管理界面中，支持对库表与字段进行多维度的精细化配置：\n\n1. **库表级属性治理**：\n   - **表物理名 (Table Name)**：数据库中的真实物理表名（如 `dwd_trade_orders_hi`）；\n   - **表中文业务名 (Display Name)**：面向业务的规范命名（如 `全渠道订单明细表`）；\n   - **表用途说明 (Description)**：简述该表的核心业务场景与时间粒度（如 `按天增量记录所有在线销售订单`）；\n   - **启用 / 禁用 (Visibility)**：支持将底层的临时表、日志表或敏感薪资表设置为“禁用”，**禁用的表绝不会被暴露给大模型**。\n2. **字段级属性治理**：\n   - **字段物理名 (Column Name)** 与 **中文业务别名 (Field Alias)**；\n   - **字段类型 (Data Type)**：明确指定 `VARCHAR`, `BIGINT`, `DECIMAL`, `DATETIME`；\n   - **维度 vs 度量 (Dimension vs Metric)**：\n     * **维度 (Dimension)**：用于分组与过滤的分类字段（如 `省份`、`商品分类`、`客户等级`）；\n     * **度量 (Metric)**：用于聚合统计的数值字段（如 `订单金额`、`销量`、`客单价`）；\n   - **主键 / 外键关系 (Primary Key / Foreign Key)**：\n     * 明确标注各表的主键与外键关联目标表字段（如 `t_order.user_id -> t_user.id`），大模型在生成多表 JOIN 时能够 100% 准确编写关联条件。\n\n---\n\n#### 4.2.4 业务枚举与代码字典映射 (Dictionary Mapping)\n\n针对包含状态码、类型代码的字段，平台提供了专属的**枚举字典配置器**：\n\n- **配置示例**：针对 `pay_status` 字段配置：\n  * `0` -> `未支付 / 待付款`\n  * `1` -> `已支付 / 付款成功`\n  * `2` -> `已退款 / 退单`\n  * `3` -> `已取消 / 订单关闭`\n- **模型理解效果**：当用户提问“*统计今年各渠道退单总金额*”时，大模型根据字典映射直接生成 `WHERE pay_status = 2`，精准无误。\n\n---\n\n#### 4.2.5 AI 辅助一键智能标注与动态 Schema 召回组装\n\n针对数仓中上千个字段手动标注过于耗时的痛点，平台提供了**智能化自动治理机制**：\n\n1. **一键同步元数据 (Auto Sync)**：系统通过 `Information Schema` 毫秒级抓取最新表结构；\n2. **AI 智能推荐中文别名**：系统自动调用大模型根据表名英文单词、字段注释推导并推荐最地道的中文业务名称，管理员仅需人工复核点击保存；\n3. **动态 Schema 召回 (Dynamic Schema Retrieval)**：\n   - 用户提问时，系统并不是把整个数据集全部塞进 Prompt；\n   - 而是先根据提问语义在元数据向量库中检索出**与本次问题最相关的 Top 3~5 张数据表**；\n   - 动态拼接精准的最小 Schema 注入大模型，**节约 80% 以上的 Token 消耗**。\n\n---\n\n#### 4.2.6 小白实战避坑指南\n\n- 💡 **避坑 1：字段别名千万不要重名**。例如在同一张表里不要把两个不同字段都起名叫“金额”，应明确标注为“订单总金额”与“实付金额”；\n- 💡 **避坑 2：日期字段务必标明格式**。如某些历史表用 `VARCHAR` 存 `YYYYMMDD` 字符串，需在字段说明中注明，以便大模型使用正确的字符串格式化函数（如 `SUBSTR` 或 `STR_TO_DATE`）；\n- 💡 **避坑 3：库表结构变动后记得点【一键同步】**。后端数据库加了新列或修改了类型后，需进入平台点击【一键同步元数据】更新缓存。\n\n---\n\n### 4.3 案例集管理与 Few-Shot 向量匹配 (Examples Management)\n\n【案例集管理】（Examples Management）是进一步将企业复杂查询准确率提升至 **98% 以上** 的核心武器。\n\n#### 4.3.1 什么是 Few-Shot 案例集？为什么它不可或缺？\n\n企业在日常运营中存在大量复杂的特定业务口径（例如：“*算复购率时剔除退款订单*”、“*跨多表的复杂 GROUP BY 统计*”、“*同比环比窗口函数*”）。\n\n单纯依赖表结构，大模型很难一次性猜中企业专属的计算口径。\n**案例集** 将人类数据分析师精心调优好的黄金样本（**自然语言提问 -> 标准答案 SQL**）结构化沉淀进平台。\n\n#### 4.3.2 动态 Few-Shot 向量相似度召回流程\n\n```mermaid\nsequenceDiagram\n    autonumber\n    actor User as 用户 (User)\n    participant ChatBI as 🧠 ChatBI 引擎\n    participant VectorDB as 📚 案例集向量库 (RediSearch)\n    participant LLM as 🤖 大语言模型\n\n    User->>ChatBI: 提问：“统计华东区各门店上月的复购率”\n    ChatBI->>VectorDB: 计算提问向量，检索语义最相似的 Top-N 案例\n    VectorDB-->>ChatBI: 召回 2 条高度相似的真实历史对账 SQL 范例\n    ChatBI->>LLM: 组装 Prompt：[表结构元数据] + [召回的 2 条黄金 SQL 案例] + [用户当前提问]\n    Note over LLM: 大模型“依葫芦画瓢”参考相似范例生成 SQL\n    LLM-->>ChatBI: 输出 100% 符合企业特定口径的正确 SQL\n    ChatBI-->>User: 执行 SQL 并自动绘制柱状图/折线图呈现\n```\n\n#### 4.3.3 案例沉淀的双向闭环\n\n- **主动录入**：数据分析师在【案例集管理】中录入高频疑难提问与标准 SQL；\n- **一键采纳**：在【聊天日志】中，如果用户对某次生成的 SQL 点赞或业务验证正确，管理员可“一键采纳沉淀为案例”。\n\n---\n\n### 4.4 常见 ChatBI 问答与 SQL 执行排查 Q&A\n\n##### Q1: 用户提问“上周五的 GMV 是多少”，大模型怎么知道“上周五”是哪一天？\n\n- **解答**：\n  - 平台通过 `agentscope_inject_runtime_state` 机制，在每次生成 SQL 前向大模型注入了**当前精确北京时间、当前日期与星期几**；\n  - 大模型会自动根据当前日期精准推算出“上周五”的具体日期（如 `2026-08-14`），并生成对应的日期过滤条件（`BETWEEN '2026-08-14 00:00:00' AND '2026-08-14 23:59:59'`）。\n\n##### Q2: 为什么生成的 SQL 在数据库执行报 `Unknown column` 或语法错误？\n\n- **排查步骤**：\n  1. **检查元数据是否陈旧**：如果数据库最近新增或修改了字段，请进入【元数据管理】点击【一键同步元数据】；\n  2. **检查数据库方言 (Dialect)**：确认在数据源中配置的数据库类型正确（如 MySQL 的 `IFNULL`、PostgreSQL 的 `COALESCE`、ClickHouse 的 `toDate`），不同数据库方言语法不同。\n\n##### Q3: 怎么防止大模型查询出几百万条全量数据把数据库或平台内存撑爆？\n\n- **安全机制**：\n  1. 平台在数据源连接层设置了**默认 `LIMIT` 硬拦截保护**（默认最多返回 1000 条），防止全表扫描；\n  2. 平台设置了 SQL 查询最大执行超时（如 30 秒硬超时），慢查询自动被中断并提示用户缩小时间范围。\n\n##### Q4: 数据库里有敏感表（如用户密码表、员工薪资表），如何防止被 ChatBI 查到？\n\n- **配置方法**：\n  - 在【元数据管理】中，找到对应的敏感表，将其状态切换为 **`禁用 / 隐藏`**；\n  - 隐藏后的表结构**绝不会被放入 Prompt 发送给大模型**，大模型完全不知道该表的存在，从而实现物理级权限隔离。\n\n##### Q5: ChatBI 会不小心误删数据库或者修改数据吗？\n\n- **解答**：**绝对不会**。\n  - 平台在后端 SQL 执行层设置了硬性只读校验守卫，**严格只允许 `SELECT` 查询语句**；\n  - 任何包含 `INSERT`、`UPDATE`、`DELETE`、`DROP`、`ALTER`、`TRUNCATE` 等修改性关键字的语句都会在执行前被直接拦截报错并记录审计日志。\n\n---\n\n## 五、知识库开发平台\n\n### 5.1 核心逻辑：RAG 知识库检索与文档切片原理\n\n知识库（RAG，检索增强生成）解决的是大模型“知识过时”与“不知道企业内部私有文档”的问题。\n其底层处理分为两个阶段：\n\n1. **构建期（文档切片与向量化）**：\n   用户上传 PDF/Word 等文档 -> 平台智能切片为一个个段落（Chunk） -> 调用 Embedding 模型将文字转换为多维数学向量 -> 存入 RediSearch 向量数据库；\n2. **检索期（语义匹配与回答生成）**：\n   用户提问 -> 提问内容转换为向量 -> 在知识库中比对查找最相似的 Top-K 个文档片段 -> 将这些片段作为参考依据喂给大模型 -> 大模型生成有依有据的回答。\n\n---\n\n### 5.2 知识库创建与 RAGFlow 引擎对接\n\n- 支持解析 PDF、Word (.docx)、Excel、Markdown、TXT 等格式文档；\n- 集成 RAGFlow 深度文档理解引擎，支持智能表格抽取与多模态图表解析。\n\n### 5.3 混合检索 (Hybrid Search) 与重排序 (Rerank) 调优\n\n- **混合检索 (Hybrid Search)**：结合向量语义相似度（Dense Retrieval）与 BM25 关键词全文匹配（Sparse Retrieval）；\n- **重排序 (Rerank)**：支持接入 BGE-Reranker 等重排模型，对初筛结果进行二次精排打分。\n\n### 5.4 运营分析与无答案问题聚类挖掘\n\n- 自动统计知识库召回命中率、用户点赞/点踩率；\n- 聚类“未命中任何知识库切片”的疑难问题，辅助知识库管理员针对性补充缺失文档。\n\n---\n\n### 5.5 小白高频问题与知识库排查 Q&A\n\n##### Q1: 为什么我明明上传了包含答案的文档，提问时 AI 却说“在知识库中未找到相关内容”？\n\n- **排查与解决**：\n  1. **切片尚未完成**：检查文档状态是否为 `解析完成`；\n  2. **提问词差异过大**：进入【检索测试】页面，直接输入你的问题进行召回调试，观察相似度得分是否低于系统设置的阈值；\n  3. **分块被切断**：如果关键信息恰好被跨段切分，可适当调大分块大小（Chunk Size）并开启重叠长度（Overlap）。\n\n##### Q2: 什么是“重排序 (Rerank)”，我需要开启吗？\n\n- **解答**：**强烈建议开启**。\n  - 初筛（向量检索）速度很快，但容易混入语义相似却与答案无关的干扰段落；\n  - 开启 Rerank 模型会对初筛出的前 10~20 条段落进行精细化语义交叉比对，将真正包含答案的段落排在最前，大幅减少 AI 胡说八道的概率。\n\n---\n\n## 六、日志与 Token 分析\n\n### 6.1 核心逻辑：什么是 Token？平台是如何计费与统计的？\n\n- **什么是 Token？**\n  Token 是大语言模型处理文本的基本单位。大模型不直接读文字，而是将文字拆解为一个个 Token 编码。\n  - **中文**：通常 1 个汉字 ≈ 1 ~ 2 个 Tokens；\n  - **英文**：通常 1 个英文单词 ≈ 1.3 个 Tokens。\n- **Prompt Token vs Completion Token**：\n  - `Prompt Tokens`（输入）：你发送给模型的提示词、系统指令、历史对话和知识库参考内容；\n  - `Completion Tokens`（输出）：大模型回复生成的文字内容。\n\n---\n\n### 6.2 审计日志 (Audit Logs) 与操作追溯\n\n- 完整记录平台所有敏感运维动作（用户管理、角色赋权、系统配置修改、数据源变动等），记录操作人、来源 IP、时间戳与前后变更 Diff。\n\n### 6.3 聊天日志 (Chat Logs) 与复盘诊断\n\n- 管理员可多维度检索全平台的会话记录，查看完整的上下文压缩日志、模型 Token 消耗及工具调用细节。\n\n### 6.4 Token 统计与企业多维度成本分摊\n\n- 支持按模型提供商、按具体模型、按用户及按时间跨度（日/周/月）统计 Prompt Tokens、Completion Tokens 与总消耗量；\n- 支持模型单价配置与企业调用成本自动核算及报表导出。\n\n---\n\n### 6.5 小白高频问题与日志分析 Q&A\n\n##### Q1: 审计日志和聊天日志有什么区别？\n\n- **解答**：\n  - **审计日志**：关注**系统安全与权限变更**（如“张三在 10:00 修改了管理员角色权限”）；\n  - **聊天日志**：关注**AI 对话内容与消耗诊断**（如“李四在 10:05 向智能体提问了一段 Python 代码，耗费了 1200 Tokens”）。\n\n---\n\n## 七、系统管理与配置\n\n### 7.1 用户与角色权限\n\n平台采用了兼具灵活性与严格安全性的 RBAC（基于角色的访问控制）架构，针对前端展示与后端 API 操作实施双重防护。\n\n#### 7.1.1 平台双层权限架构 (菜单 menu vs 元素 element)\n\n1. **菜单权限 (`menu:*`)**：\n   - 决定用户在左侧侧边栏能看到并进入哪些页面。\n   - 例如：`menu:system:config` 控制【系统配置】菜单可见性，`menu:skills_management` 控制【技能工作台】可见性。\n2. **元素/功能级权限 (`element:*`)**：\n   - 决定用户在页面中是否具备执行敏感操作（创建、编辑、删除、发布、审核）的权限。\n   - 例如：平台技能审核与全局技能管理使用 `element:skills:admin` 进行后端校验。\n\n#### 7.1.2 API Key 的安全生成与使用\n\n- 每个平台用户在创建时会自动生成唯一的 `api_key`（亦可在用户中心随时重新生成）。\n- API Key 具有与该用户完全相同的权限上下文，外部系统调用平台 API 时，需在 HTTP 请求头中携带：\n  ```http\n  Authorization: Bearer <YOUR_API_KEY>\n  ```\n\n#### 7.1.3 外部 V1 API 访问控制与白名单机制\n\n- **白名单核心接口 (`is_v1_api_whitelisted`)**：\n  基础对话（`/api/v1/chat`）、嵌入式会话（`/api/v1/embed`）、任务状态（`/api/v1/tasks`）及 Docker 沙箱工作区（`/api/v1/sandbox/docker/workspace`）为平台基础能力，登录用户无需单独分配资源权限即可直接调用。\n- **受控分配接口 (`ASSIGNABLE_V1_API_RESOURCES`)**：\n  对于个人资料读取（`GET:/api/v1/users/profile`）、数据库 Schema 导出（`POST:/api/v1/schema`）及 ChatBI 独立 SQL 执行（`POST:/api/v1/chatbi/sql/execute`），需由管理员在【角色管理】中显式勾选分配。\n\n#### 7.1.4 常见用户与权限 Q&A\n\n##### Q: 为什么管理员给角色勾选了新权限，但在线用户没有生效？\n\n- **原因**：用户登录后，用户信息与权限会缓存在前端 `localStorage` 和后端的 Session 缓存中。\n- **解决**：用户退出重新登录（或刷新页面触发 `/api/portal/auth/me` 校验）即可更新最新权限状态。\n\n##### Q: 首次部署后找不到超级管理员账号？\n\n- **说明**：平台初次初始化数据库时，默认创建超级管理员账号：\n  - 用户名：`admin`\n  - 初始密码：`admin123`（生产环境首次登录请务必进入【个人中心】修改默认密码）。\n\n---\n\n### 7.2 模型注册与提供商管理\n\n【模型管理】（Model Registry）是平台所有 AI 对话、推理思考、多模态识图与向量检索的统一底座。\n\n#### 7.2.1 支持的模型提供商生态与配置规范\n\n平台原生内置了一线主流模型厂商与自建推理服务的预设：\n\n- **公有云大模型**：OpenAI、DeepSeek（深度求索）、Qwen（阿里百炼 / 通义千问）、Volcengine Ark（火山引擎 / 豆包）、SiliconFlow（硅基流动）、Moonshot（月之暗面）、ZhipuAI（智谱 GLM）、Baichuan（百川）等；\n- **私有化与开源服务**：Ollama（本地推理）、vLLM、Xinference、LocalAI 等兼容 OpenAI 协议的推理框架；\n- **企业云平台**：Azure OpenAI、AWS Bedrock 等。\n\n#### 7.2.2 模型能力分类 (Chat / Embedding / Multimodal / Reasoning)\n\n在模型注册时，需根据模型实际能力指定模型类型：\n\n- **`chat` (LLM)**：通用大语言模型，用于智能体对话、代码生成、SQL 编写与任务规划。\n- **`embedding` (向量模型)**：用于知识库检索、语义相似度计算与元数据召回（如 `text-embedding-v3`、`bge-large-zh-v1.5` 等）。\n- **`multimodal` (多模态识图)**：当主对话模型不具备视觉能力时，系统可通过配置的 `multimodal_model_name` 自动将图片解析为结构化文本注入上下文。\n- **`reasoning` (思考模型)**：具备深度思考与 CoT 推理能力的大模型（如 `deepseek-reasoner` / `qwq-32b`）。\n\n#### 7.2.3 Base URL 智能版本号识别与端点规范化\n\n在配置自定义 Embedding 或 Chat Base URL 时，平台具备**智能版本号自动感知与规范化能力**：\n\n- 若用户输入已带版本号的 URL（如火山引擎 Ark 提供的 `https://ark.cn-beijing.volces.com/api/coding/v3`），平台会自动识别并只补齐 `/embeddings`，而不会错误硬拼 `/v1/embeddings` 导致 404；\n- 若输入为根域名（如 `https://api.openai.com`），平台会自动规范化为 `https://api.openai.com/v1/embeddings`。\n\n#### 7.2.4 深度思考模型 (DeepSeek-R1 / QwQ 等) 工具调用兼容层\n\n- **背景**：部分深度推理模型在强制工具调用（Forced Tool Choice）或多步骤 Agent 规划场景下，倾向于先输出 `<think>...</think>` 思考过程再输出工具调用，这在标准 OpenAI 工具协议下易导致解析中断或死循环。\n- **机制**：平台内建 `ThinkingToolChoiceCompatAgent` 与流式事件适配器，能智能解析并过滤/转义 `<think>` 思考块，确保推理链完整呈现给用户界面的同时，准确触发底层的函数调用。\n\n#### 7.2.5 常见模型配置与调用 Q&A\n\n##### Q: 接入本地 Ollama 报 `Connection Refused`？\n\n- **排查**：\n  1. 检查 Ollama 服务是否绑定了 `0.0.0.0`（设置环境变量 `OLLAMA_HOST=0.0.0.0:11434`）；\n  2. 若平台以后端 Docker 容器运行，连接宿主机 Ollama 需将 Base URL 填写为 `http://host.docker.internal:11434/v1`。\n\n---\n\n### 7.3 参数配置专题\n\n进入 **系统管理 -> 系统配置 -> 参数配置**，可全局微调平台 Agent 运行时行为。\n\n#### 7.3.1 多策略安全沙箱 (Local / Docker / E2B / SSH) 对比选型\n\n| 沙箱策略                   | 隔离级别     | 运行位置          | 适用场景                                     | 说明                                               |\n| :------------------------- | :----------- | :---------------- | :------------------------------------------- | :------------------------------------------------- |\n| **`local`** (默认) | 进程级       | 本机 / 宿主机进程 | 个人本地开发、单机快速体验                   | 命令在平台服务所在环境直接执行，需谨慎防范高危操作 |\n| **`docker`**       | 容器级       | 本地 Docker 引擎  | **推荐**。企业生产环境、多用户共享平台 | 自动为每位用户分配独立容器，安全隔离 Bash/文件操作 |\n| **`e2b`**          | 云端微虚拟机 | E2B 云端托管沙箱  | 无本地 Docker 资源的云原生架构               | 需配置 E2B API Key，按用量计费                     |\n| **`ssh`**          | 远程主机级   | 独立远程服务器    | 专用计算节点、特定内网机器                   | 需配置 SSH 连接凭据与独立主机                      |\n\n> ⚠️ **强烈注意（平台容器化部署场景）**：\n> 当 NanZi 平台自身以 Docker 容器化方式部署在服务器上时，**安全沙箱强烈建议配置走 `docker` 策略**（并在启动平台容器时挂载宿主机 Docker 套接字 `-v /var/run/docker.sock:/var/run/docker.sock`）。\n> **为什么不能在平台容器内使用 `local` 策略？**\n> 因为若使用 `local` 策略，所有用户通过智能体执行的 Shell 命令（如 `apt-get`、`pip install`、甚至死循环/删文件）都会在**平台后端主服务的容器内直接执行**，极易污染平台主运行环境、耗尽主容器资源或误杀主服务进程！配置为 `docker` 沙箱策略后，平台会通知宿主机 Docker 引擎为每个用户独立启动专用的纯净子容器，从根本上隔离运行风险。\n\n---\n\n#### 7.3.2 Docker 沙箱运行前提条件\n\n要启用并稳定运行 `docker` 安全沙箱策略，需满足以下环境要求：\n\n1. **宿主机需安装 Docker 引擎**：\n   - 机器需安装 Docker 20.10+ / Docker Desktop，并确保 `dockerd` 守护进程正在运行。\n   - 在终端执行 `docker ps` 或 `docker info` 验证可正常连通。\n2. **后端 Python 环境依赖**：\n   - Python 环境需安装 `aiodocker` 依赖（已内置于平台的 `requirements.txt` 中）：\n     ```bash\n     pip install aiodocker\n     ```\n3. **平台自身使用 Docker 容器化部署时的注意事项**：\n   - 若平台后端服务本身是以 Docker 容器方式运行，需在启动命令或 `docker-compose.yml` 中挂载宿主机的 Docker Socket，使后端容器具备调用宿主机 Docker daemon 的能力（Docker-out-of-Docker）：\n     ```yaml\n     volumes:\n       - /var/run/docker.sock:/var/run/docker.sock\n     ```\n\n---\n\n#### 7.3.3 Docker 沙箱镜像预构建指南\n\nDocker 沙箱运行依赖 AgentScope 规范的专用执行基座镜像（内置 Python 运行时与 In-Container FastMCP 工具网关）。为避免用户首次发起对话时耗时等待构建，平台提供了**一键预构建加速**功能。\n\n##### 1. 选择容器基础镜像\n\n在【系统配置】->【参数配置】->【安全沙箱】中：\n\n- 平台默认使用官方标准 **`python:3.11-slim`**（或完整版 `python:3.11`）；\n- 如在离线或内网环境部署，可选择「自定义镜像地址…」填写私有 Harbor 仓库镜像或已认证的企业镜像加速地址。\n\n##### 2. 后台界面一键预构建\n\n1. 管理员登录系统，进入 **系统管理 -> 系统配置 -> 参数配置** 面板；\n2. 在【安全沙箱】分组中，将安全策略切换为 **`docker`**；\n3. 点击 **`⚡ 预构建 / 重新预构建`** 按钮；\n4. 后端将基于确定性哈希自动生成镜像构建上下文并持久化 Tag（例如 `agentscope-workspace:6e0fab447d44`）；\n5. 构建完成后，界面将高亮展示 `✅ 镜像已预构建`。\n\n##### 3. 管理端点 API 触发预构建\n\n管理员亦可通过运维接口或 CI/CD 流程预先触发构建：\n\n```bash\n# 检查当前预构建状态\ncurl -X GET \"http://127.0.0.1:8001/api/v1/admin/sandbox/docker/prebuild-status\" \\\n     -H \"X-API-Key: <ADMIN_API_KEY>\"\n\n# 强制触发预构建\ncurl -X POST \"http://127.0.0.1:8001/api/v1/admin/sandbox/docker/prebuild?force=true\" \\\n     -H \"X-API-Key: <ADMIN_API_KEY>\"\n```\n\n##### 4. 运维脚本直接构建与代理支持（推荐排查方案）\n\n在需要网络代理才能拉取 Docker 镜像或安装 pip 依赖的受限网络环境中，您可直接在宿主机或进入平台 Docker 容器内部运行预构建运维脚本：\n\n```bash\n# 1. 带 HTTP/HTTPS 代理执行预构建（实时流式查看 Docker build 进度）\n./prebuild-sandbox.sh --proxy http://10.0.0.1:7890\n\n# 2. 或在环境中预设代理环境变量后直接运行（自动识别）\nexport HTTP_PROXY=http://10.0.0.1:7890 HTTPS_PROXY=http://10.0.0.1:7890\n./prebuild-sandbox.sh\n\n# 3. 仅检查预构建状态与确定性 Tag\n./prebuild-sandbox.sh --status\n\n# 4. 指定特定基础镜像或强制重建\n./prebuild-sandbox.sh --base-image python:3.11-slim --force --proxy http://10.0.0.1:7890\n```\n\n> 💡 **提示**：通过 `./prebuild-sandbox.sh` 直接构建属于服务器本地/容器内部运维操作，**无需传递 API Key**。构建成功后会自动将预构建完成标记写入数据库与 Redis，回到前端管理页面刷新即可看到已就绪状态。\n\n---\n\n#### 7.3.4 Docker 沙箱核心运行全流程与架构\n\n```mermaid\nsequenceDiagram\n    autonumber\n    actor User as 用户 (User)\n    participant Front as 前端界面 (Web UI)\n    participant Backend as 平台后端 (FastAPI)\n    participant Daemon as Docker Daemon\n    participant Container as 沙箱容器 (Sandbox Container)\n    participant Gateway as In-Container Gateway (MCP)\n\n    User->>Front: 发送对话请求 / 调试指令\n    Front->>Backend: POST /api/v1/chat (携带 session & token)\n    Backend->>Backend: 检查沙箱策略 (sandbox_policy = docker)\n    Backend->>Daemon: 探测或拉起该用户私有容器 (agentscope-workspace:<hash>)\n    Note over Backend,Daemon: 仅精准挂载当前用户目录 data/workspace/<user_id>\n    Daemon->>Container: 启动容器并孵化 In-Container Gateway\n    Container->>Gateway: 拉起 FastMCP 工具服务 (Bash / Read / Write)\n    Backend->>Gateway: 建立健康探活并分发智能体工具调用\n    Gateway->>Container: 在隔离容器内执行 Shell / 代码\n    Gateway-->>Backend: 返回截断保护的标准输出/错误日志\n    Backend-->>Front: SSE 流式响应渲染结果给用户\n    Note over Container: 30 分钟无交互自动触发空闲回收\n```\n\n##### 流程关键节点解析：\n\n1. **多租户按需拉起**：每个登录用户拥有独立的容器与物理隔离的工作区（`data/workspace/<user_id>`），互不干扰。\n2. **同路径物理映射与 DooD 挂载对齐**：宿主机用户物理工作区与容器内挂载目录完全对齐。平台后端部署在 Docker 中时，通过 `HOST_DATA_DIR` 环境变量自动将容器内 `/app/data/agent_workspaces/<user_id>` 换算为宿主机物理硬盘上的对应真实路径下发给 Docker Daemon，保证生成的工件/文件能被画布实时预览和下载。\n3. **In-Container Gateway 通信**：AgentScope 在容器内拉起专用的 FastMCP 网关，智能体调用工具均通过 RPC/STDIO 协议与网关交互，异常崩溃不影响平台主进程。\n4. **纵深安全防御**：\n   - **防路径穿越**：容器内工具严禁 `..` 越界访问工作区之外的文件；\n   - **硬超时保护**：命令执行单次上限 600 秒，防止死循环耗尽资源；\n   - **日志截断保护**：输出限制最大 100,000 字符，防范 OOM 溢出。\n5. **空闲自动回收**：连续 30 分钟无交互的容器自动停止并回收，释放内存与 CPU。\n\n---\n\n#### 7.3.5 常见 Docker 沙箱排查与报错解决\n\n##### Q1: 提示“当前环境无法连接 Docker daemon，请参考 FAQ 帮助文档”\n\n- **排查步骤**：\n  1. 检查宿主机 Docker 是否已启动：在终端执行 `docker info`；\n  2. 检查当前运行平台后端进程的用户是否有访问 Docker Socket 的权限（非 root 用户需加入 `docker` 用户组：`sudo usermod -aG docker $USER`）；\n  3. 若平台运行在容器内，确保挂载了 `-v /var/run/docker.sock:/var/run/docker.sock`。\n\n##### Q2: 预构建阶段拉取基础镜像卡住、超时或报 `access denied`\n \n- **原因**：部分公有云加速地址（如阿里云未登录状态）会拦截匿名拉取报 access denied，或直接访问 Docker Hub / PyPI 发生网络阻塞。\n- **解决方案**：\n  1. 在【系统配置】->【安全沙箱】中确保选用官方标准 **`python:3.11-slim`**，并在本地 Docker daemon 配置合法镜像加速器/代理；或选择「自定义镜像地址…」填入企业私有 Harbor 镜像地址后点击预构建；\n  2. 若当前机器需要 HTTP/HTTPS 代理才能访问外部网络，可直接在宿主机或进入容器终端运行 `./prebuild-sandbox.sh --proxy http://<代理IP>:<端口>` 进行构建，可实时流式观察下载与编译日志并自动落库。\n\n##### Q3: 普通用户提示 `403 Forbidden` 无法启动沙箱\n\n- **原因**：老版本未将普通用户沙箱工作区端点加入 V1 API 白名单。\n- **解决方案**：平台已在 `v1.0.12+` 中将 `/sandbox/docker/workspace` 纳入白名单放行，请同步拉取平台最新代码。\n\n---\n\n#### 7.3.6 智能体上下文预算管控与两阶段溢出压缩\n\n- **`agent_context_max_tokens`**：会话上下文 Token 预算上限（默认 `64000`）。\n- **`agent_max_context_messages`**：发送给 LLM 的最大历史消息条目数（兜底上限，默认 `60`）。\n- **`agent_context_compaction_enabled`**：启用历史溢出压缩。当长对话接近预算时，系统自动触发两阶段压缩机制：\n  1. **确定性结构化摘录**：提取早期轮次的提问、工具调用结论及核心工件；\n  2. **LLM 语义摘要降级**：可选利用后台小模型生成语义摘要，失败自动降级为确定性摘录，确保关键上下文永不丢失。\n\n#### 7.3.7 生成文件与工件发布配置 (File Download Prefix)\n\n- **`file_download_url_prefix`**：智能体通过 `publish_generated_file` 工具发布图表、报告等生成文件时，拼接公网绝对下载链接的地址前缀（例如 `https://agent.yourdomain.com`）。若留空，则默认生成以 `/api/v1/chat/artifacts/download/...` 开头的相对路径。\n\n#### 7.3.8 AgentScope 运行时状态注入与时间感知\n\n- **`agentscope_inject_runtime_state`**：开启后，系统在每轮对话开始前向 Agent 注入当前精确北京时间、当前活跃任务数及上下文用量指标，使 Agent 具备准确的现实时间感知（如正确判断“今天星期几”、“上周五的数据”等）。\n\n---\n\n### 7.4 通知通道与外部集成\n\n平台支持将自动化任务调度（Task Center）的执行结果、审批提醒及系统异常实时推送到第三方办公与协作平台。\n\n#### 7.4.1 多通道通知配置指引 (企微 / 钉钉 / 飞书 / 邮件 / Webhook)\n\n在【系统配置】->【通知渠道】中支持配置以下通道：\n\n1. **企业微信群机器人 (WeCom Bot)**：\n   - 填入企微群机器人的 Webhook Key / URL 即可。\n2. **钉钉机器人 (DingTalk Bot)**：\n   - 支持填写 Webhook 地址；若开启了“加签”安全设置，需同步填写加签 Secret。\n3. **飞书机器人 (Feishu Bot)**：\n   - 填入飞书群机器人的 Webhook URL；若开启签名校验需配置 Secret。\n4. **SMTP 邮件通知 (Email)**：\n   - 配置 SMTP 主机（如 `smtp.exmail.qq.com` / `smtp.163.com`）、端口（SSL 465 或 TLS 587）、发件人邮箱及授权码。\n5. **通用 Webhook (Custom Webhook)**：\n   - 支持向企业内部业务系统推送标准 JSON Payload（包含事件类型、任务详情、错误堆栈与执行耗时）。\n\n#### 7.4.2 自动化任务调度中心的通知与告警绑定\n\n- 在【任务调度台】中创建或编辑 Cron 定时任务时，可针对单任务选择通知通道，并设置触发策略：\n  - **全部通知**：任务每次执行完毕（成功/失败）均发送报告；\n  - **仅失败通知**：任务执行成功保持静默，仅在异常报错时触发告警；\n  - **关闭通知**：不发送外部消息。\n\n#### 7.4.3 常见通知推送失败排查 Q&A\n\n##### Q: 钉钉/企微机器人偶发推送失败报 `310000 / IP not in whitelist`？\n\n- **排查**：部分企业微信或钉钉机器人开启了出口 IP 安全白名单，需将平台部署服务器的公网 IP 填入机器人的 IP 白名单中。\n\n##### Q: 邮件测试连接报 `535 Authentication Failed`？\n\n- **排查**：各大邮箱服务商（QQ 邮箱、163 邮箱、Gmail 等）均要求使用独立的**客户端授权码**而非邮箱登录密码，请在邮箱网页版安全设置中生成专用授权码。\n\n---\n\n### 7.5 数据库与缓存维护\n\n平台主库全面支持 **MySQL** 与 **PostgreSQL**，并强依赖 **Redis Stack** 实现高速会话记忆与语义检索。\n\n#### 7.5.1 MySQL 与 PostgreSQL 双数据库迁移规范\n\n- **MySQL 迁移目录**：[`db-prod/`](file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/db-prod/)（命名如 `V129-*.sql`）；\n- **PostgreSQL 迁移目录**：[`db-prod-pg/`](file:///Users/chenxiaolong/workspace/nanzi-ai-agent-platform/db-prod-pg/)（命名如 `V29-*.sql`）；\n- **开发与升级准则**：\n  1. 平台支持两套数据库，所有数据表结构变更必须**同步新增双库版本的增量迁移 SQL**；\n  2. 严禁直接手动修改已有历史版本的 SQL 脚本，保证平滑增量升级。\n\n#### 7.5.2 Redis Stack / RediSearch 依赖与 30 天状态 TTL\n\n- **RediSearch 引擎**：平台利用 RediSearch 对历史会话记忆与上下文进行高效的向量与全文检索。\n- **全链路 30 天 TTL 保障**：会话历史（`MemoryService`）、上下文压缩快照（`ContextCompactionLogService`）、工件下载链接及 Agent 运行时状态缓存统一设置为 **30 天（2592000秒）有效周期**，确保用户长周期跨天会话不丢上下文。\n\n#### 7.5.3 常见数据库与缓存排查 Q&A\n\n##### Q: 平台启动报错 `Redis Command Error: FT.CREATE not supported`？\n\n- **原因**：当前使用的是传统 Redis Server，缺少 RediSearch 模块。\n- **解决**：请改用官方 **Redis Stack** 镜像或安装 Redis 扩展模块：\n  ```bash\n  docker run -d --name redis-stack -p 6379:6379 redis/redis-stack-server:latest\n  ```\n\n##### Q: 数据库从 MySQL 切换为 PostgreSQL 后启动报表不存在？\n\n- **解决**：在 `.env` 中修改数据库连接串（`DATABASE_URL=postgresql+asyncpg://...`）后，需先执行 `db-prod-pg/` 下的基础初始化与增量 SQL 脚本完成表结构构建。\n"</script>
-
-    <!-- Main Logic -->
+    <!-- Main Interactive Script -->
     <script>
       // 1. Initialize Mermaid
       mermaid.initialize({
-        startOnLoad: false,
+        startOnLoad: true,
         theme: 'default',
         securityLevel: 'loose',
         themeVariables: {
@@ -779,134 +2930,7 @@
         }
       });
 
-      // 2. Custom Markdown Renderer
-      const rawMarkdown = JSON.parse(document.getElementById('raw-faq-md').textContent);
-      const renderer = new marked.Renderer();
-
-      // Image custom renderer: correct relative path
-      renderer.image = function(href, title, text) {
-        if (href.includes('faq.png')) {
-          // Already shown on top banner, hide first occurrence or map to assets
-          return '';
-        }
-        let finalHref = href;
-        if (href.startsWith('docs/images/')) {
-          finalHref = '../assets/images/' + href.replace('docs/images/', '');
-        }
-        return `<img src="${finalHref}" alt="${text || ''}" title="${title || ''}" />`;
-      };
-
-      // Heading custom renderer to generate clean IDs
-      let headingCounters = { h2: 0, h3: 0, h4: 0, h5: 0 };
-      renderer.heading = function(text, level) {
-        let cleanText = text.replace(/<[^>]*>/g, '').trim();
-        let slug = cleanText
-          .toLowerCase()
-          .replace(/[\s\/&().,?，。？（）]+/g, '-')
-          .replace(/^-+|-+$/g, '');
-        
-        if (!slug) slug = 'sec-' + level + '-' + (++headingCounters['h' + level]);
-
-        // If it's a Q&A heading like "Q1: ..."
-        if (level === 5 && /^Q[0-9]*:?/i.test(cleanText)) {
-          return `<div class="qa-box" id="${slug}"><div class="qa-title"><span class="qa-tag">Q</span> ${text}</div>`;
-        }
-
-        return `<h${level} id="${slug}">${text}</h${level}>`;
-      };
-
-      // Custom Code block renderer (for Mermaid & Copy Button)
-      renderer.code = function(code, lang) {
-        if (lang === 'mermaid') {
-          return `<div class="mermaid-card"><pre class="mermaid">${code}</pre></div>`;
-        }
-        
-        const highlighted = (lang && hljs.getLanguage(lang))
-          ? hljs.highlight(code, { language: lang }).value
-          : hljs.highlightAuto(code).value;
-
-        const langDisplay = lang || 'Text';
-
-        return `
-          <div class="code-container">
-            <div class="code-header">
-              <span>${langDisplay}</span>
-              <button class="copy-btn" onclick="copyCode(this)">复制</button>
-            </div>
-            <pre><code class="hljs language-${lang || ''}">${highlighted}</code></pre>
-          </div>
-        `;
-      };
-
-      // Custom Table renderer (with wrapper)
-      renderer.table = function(header, body) {
-        return `<div class="table-wrapper"><table class="faq-table"><thead>${header}</thead><tbody>${body}</tbody></table></div>`;
-      };
-
-      // Custom Blockquote (callouts)
-      renderer.blockquote = function(quote) {
-        let type = 'info';
-        if (quote.includes('⚠️') || quote.includes('WARNING') || quote.includes('强烈注意')) {
-          type = 'warning';
-        } else if (quote.includes('✅') || quote.includes('成功')) {
-          type = 'success';
-        }
-        return `<blockquote class="${type}">${quote}</blockquote>`;
-      };
-
-      // Set marked options
-      marked.setOptions({
-        renderer: renderer,
-        gfm: true,
-        breaks: false
-      });
-
-      // Render Markdown
-      const container = document.getElementById('faq-markdown-container');
-      container.innerHTML = marked.parse(rawMarkdown);
-
-      // Render Mermaid Diagrams
-      mermaid.run({
-        querySelector: '.mermaid'
-      });
-
-      // 3. Build Dynamic TOC from DOM Headings
-      const tocContainer = document.getElementById('dynamic-toc');
-      const allHeadings = container.querySelectorAll('h2, h3');
-      let currentGroup = null;
-      let currentSubList = null;
-
-      allHeadings.forEach((h, idx) => {
-        const id = h.getAttribute('id');
-        const text = h.innerText.replace(/^[一二三四五六七八九十]+、/, '').trim();
-        const fullText = h.innerText.trim();
-
-        if (h.tagName === 'H2') {
-          currentGroup = document.createElement('div');
-          currentGroup.className = 'sidebar-group';
-
-          const groupLink = document.createElement('a');
-          groupLink.className = 'sidebar-group-title';
-          groupLink.href = '#' + id;
-          groupLink.innerText = fullText;
-          currentGroup.appendChild(groupLink);
-
-          currentSubList = document.createElement('ul');
-          currentSubList.className = 'sidebar-sublinks';
-          currentGroup.appendChild(currentSubList);
-
-          tocContainer.appendChild(currentGroup);
-        } else if (h.tagName === 'H3' && currentSubList) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = '#' + id;
-          a.innerText = fullText;
-          li.appendChild(a);
-          currentSubList.appendChild(li);
-        }
-      });
-
-      // 4. Reading Progress Bar & Back to Top
+      // 2. Reading Progress Bar & Back to Top
       window.addEventListener('scroll', () => {
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = (window.scrollY / totalHeight) * 100;
@@ -924,7 +2948,13 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // 5. Copy Code
+      // 3. QA Accordion Toggle
+      function toggleQA(element) {
+        const card = element.closest('.qa-card');
+        card.classList.toggle('open');
+      }
+
+      // 4. Copy Code
       function copyCode(button) {
         const pre = button.parentElement.nextElementSibling;
         const code = pre.innerText;
@@ -939,7 +2969,7 @@
         });
       }
 
-      // 6. Mobile Drawer Toggle
+      // 5. Mobile Drawer Toggle
       const mobileTocBtn = document.getElementById('mobile-toc-btn');
       const sidebar = document.getElementById('faq-sidebar');
       const backdrop = document.getElementById('sidebar-backdrop');
@@ -960,8 +2990,10 @@
         });
       });
 
-      // 7. ScrollSpy Active Highlight
-      const tocLinks = tocContainer.querySelectorAll('a');
+      // 6. ScrollSpy Active Highlight
+      const allHeadings = document.querySelectorAll('.markdown-body h2, .markdown-body h3');
+      const tocLinks = document.querySelectorAll('#dynamic-toc a');
+
       window.addEventListener('scroll', () => {
         let currentHeadingId = '';
         allHeadings.forEach(h => {
@@ -981,24 +3013,22 @@
         });
       }, { passive: true });
 
-      // 8. Keyword Search Filter
+      // 7. Keyword Search Filter
       const searchInput = document.getElementById('faq-search-input');
       searchInput?.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
-        const elements = container.querySelectorAll('h2, h3, h4, h5, p, li, .qa-box, .table-wrapper');
+        const qaCards = document.querySelectorAll('.qa-card');
 
         if (!query) {
-          elements.forEach(el => el.style.opacity = '1');
+          qaCards.forEach(card => card.style.display = '');
           return;
         }
 
-        // Highlight matching sections
-        allHeadings.forEach(h => {
-          const match = h.innerText.toLowerCase().includes(query);
-          const tocLink = tocContainer.querySelector(`a[href="#${h.id}"]`);
-          if (tocLink) {
-            tocLink.style.fontWeight = match ? '800' : '';
-            tocLink.style.color = match ? 'var(--faq-primary)' : '';
+        qaCards.forEach(card => {
+          const match = card.innerText.toLowerCase().includes(query);
+          card.style.display = match ? '' : 'none';
+          if (match) {
+            card.classList.add('open');
           }
         });
       });
