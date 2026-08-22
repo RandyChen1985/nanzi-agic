@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NanZi AI 开源智能体平台 · 疑难解答与常见问题手册 (FAQ)：覆盖平台概览、智能助手、AgentScope 编排、ChatBI、知识库、安全沙箱、MCP与系统运维全流程。"
+    />
+    <title>常见问题手册 (FAQ) | NanZi · 智能体平台</title>
+    <link rel="canonical" href="https://randychen1985.github.io/nanzi-aigc/products/faq.html" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <!-- Mermaid.js for architecture diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+      :root {
+        --faq-sidebar-width: 290px;
+        --faq-header-height: 72px;
+        --faq-primary: #1060eb;
+        --faq-primary-soft: rgba(16, 96, 235, 0.08);
+        --faq-primary-hover: #0c4dc0;
+        --faq-border: #e2e8f0;
+        --faq-border-light: #f1f5f9;
+        --faq-text: #1e293b;
+        --faq-muted: #64748b;
+        --faq-bg-page: #f8fafc;
+        --faq-bg-card: #ffffff;
+        --faq-code-bg: #0f172a;
+      }
+
+      body.faq-page-body {
+        background-color: var(--faq-bg-page);
+        color: var(--faq-text);
+        margin: 0;
+        font-family: inherit;
+        scroll-behavior: smooth;
+      }
+
+      /* Reading progress bar */
+      #reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #1060eb, #00d2ff);
+        z-index: 1000;
+        width: 0%;
+        transition: width 0.1s ease-out;
+      }
+
+      /* Top Header Refinements */
+      .faq-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--faq-border);
+      }
+
+      /* Layout Container */
+      .faq-layout {
+        display: flex;
+        max-width: 1560px;
+        margin: 0 auto;
+        min-height: calc(100vh - var(--faq-header-height));
+        position: relative;
+      }
+
+      /* Sidebar Navigation */
+      .faq-sidebar {
+        width: var(--faq-sidebar-width);
+        flex-shrink: 0;
+        position: sticky;
+        top: var(--faq-header-height);
+        height: calc(100vh - var(--faq-header-height));
+        overflow-y: auto;
+        padding: 24px 16px 40px;
+        border-right: 1px solid var(--faq-border);
+        background: #ffffff;
+      }
+
+      .faq-sidebar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .faq-sidebar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+
+      .sidebar-search {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .sidebar-search input {
+        width: 100%;
+        padding: 10px 12px 10px 36px;
+        border: 1px solid var(--faq-border);
+        border-radius: 8px;
+        font-size: 13px;
+        background: #f8fafc;
+        color: var(--faq-text);
+        outline: none;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+      }
+
+      .sidebar-search input:focus {
+        background: #ffffff;
+        border-color: var(--faq-primary);
+        box-shadow: 0 0 0 3px rgba(16, 96, 235, 0.15);
+      }
+
+      .sidebar-search svg {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--faq-muted);
+        pointer-events: none;
+      }
+
+      .sidebar-nav-title {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--faq-muted);
+        padding: 0 8px 8px;
+        margin: 0;
+      }
+
+      .sidebar-group {
+        margin-bottom: 20px;
+      }
+
+      .sidebar-group-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #334155;
+        text-decoration: none;
+        transition: all 0.15s ease;
+      }
+
+      .sidebar-group-title:hover {
+        background: #f1f5f9;
+        color: var(--faq-primary);
+      }
+
+      .sidebar-group-title.active {
+        background: var(--faq-primary-soft);
+        color: var(--faq-primary);
+      }
+
+      .sidebar-sublinks {
+        list-style: none;
+        padding: 0;
+        margin: 4px 0 0 0;
+        border-left: 2px solid #e2e8f0;
+        margin-left: 12px;
+      }
+
+      .sidebar-sublinks li a {
+        display: block;
+        padding: 5px 12px;
+        font-size: 12.5px;
+        color: #64748b;
+        text-decoration: none;
+        line-height: 1.4;
+        transition: all 0.15s ease;
+        position: relative;
+      }
+
+      .sidebar-sublinks li a:hover {
+        color: var(--faq-primary);
+      }
+
+      .sidebar-sublinks li a.active {
+        color: var(--faq-primary);
+        font-weight: 700;
+        border-left: 2px solid var(--faq-primary);
+        margin-left: -2px;
+        background: var(--faq-primary-soft);
+        border-radius: 0 4px 4px 0;
+      }
+
+      /* Main Content Area */
+      .faq-content {
+        flex: 1;
+        min-width: 0;
+        padding: 36px 48px 80px;
+        max-width: 1040px;
+      }
+
+      /* Hero Banner within Content */
+      .faq-hero-box {
+        background: linear-gradient(135deg, #091a3c 0%, #0d2757 60%, #10418d 100%);
+        border-radius: 16px;
+        padding: 36px 40px;
+        color: #ffffff;
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 16px 36px rgba(13, 39, 87, 0.15);
+      }
+
+      .faq-hero-box::after {
+        content: "";
+        position: absolute;
+        right: -30px;
+        bottom: -40px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(0, 210, 255, 0.25) 0%, rgba(0, 210, 255, 0) 70%);
+        pointer-events: none;
+      }
+
+      .faq-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #e0f2fe;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+      }
+
+      .faq-hero-box h1 {
+        font-size: 28px;
+        margin: 0 0 12px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+      }
+
+      .faq-hero-box p {
+        color: #cbd5e1;
+        font-size: 15px;
+        margin: 0 0 20px;
+        line-height: 1.6;
+        max-width: 780px;
+      }
+
+      .faq-quick-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .faq-stat-pill {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #f8fafc;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Section Article Cards */
+      .faq-section {
+        background: #ffffff;
+        border: 1px solid var(--faq-border);
+        border-radius: 14px;
+        padding: 36px 36px 40px;
+        margin-bottom: 36px;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+        scroll-margin-top: 90px;
+      }
+
+      .faq-section h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0 0 20px;
+        padding-bottom: 14px;
+        border-bottom: 2px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .faq-section h2 .sec-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: var(--faq-primary-soft);
+        color: var(--faq-primary);
+        font-size: 15px;
+        border-radius: 8px;
+        font-weight: 800;
+      }
+
+      .faq-section h3 {
+        font-size: 17px;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 28px 0 14px;
+        scroll-margin-top: 100px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .faq-section h4 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #334155;
+        margin: 20px 0 10px;
+      }
+
+      .faq-section p, .faq-section li {
+        font-size: 14.5px;
+        line-height: 1.7;
+        color: #475569;
+      }
+
+      .faq-section ul, .faq-section ol {
+        padding-left: 22px;
+        margin: 10px 0 18px;
+      }
+
+      .faq-section li {
+        margin-bottom: 6px;
+      }
+
+      /* Callout Boxes */
+      .callout {
+        padding: 16px 20px;
+        border-radius: 10px;
+        margin: 18px 0;
+        font-size: 14px;
+        line-height: 1.6;
+        border-left: 4px solid;
+      }
+
+      .callout-info {
+        background: #f0f7ff;
+        border-left-color: #1060eb;
+        color: #1e40af;
+      }
+
+      .callout-warning {
+        background: #fffbeb;
+        border-left-color: #f59e0b;
+        color: #92400e;
+      }
+
+      .callout-success {
+        background: #f0fdf4;
+        border-left-color: #16a34a;
+        color: #166534;
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 14.5px;
+      }
+
+      /* Q&A Accordion Cards */
+      .qa-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        margin: 14px 0;
+        overflow: hidden;
+        transition: all 0.2s ease;
+      }
+
+      .qa-card:hover {
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+      }
+
+      .qa-question {
+        padding: 14px 18px;
+        font-weight: 700;
+        font-size: 14.5px;
+        color: #0f172a;
+        background: #ffffff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid transparent;
+        user-select: none;
+      }
+
+      .qa-question .q-tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e0e7ff;
+        color: #3730a3;
+        font-size: 12px;
+        font-weight: 800;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        flex-shrink: 0;
+      }
+
+      .qa-card.open .qa-question {
+        border-bottom-color: #e2e8f0;
+        color: var(--faq-primary);
+      }
+
+      .qa-answer {
+        padding: 16px 18px;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #334155;
+        background: #f8fafc;
+      }
+
+      /* Code Block Styles */
+      .code-container {
+        position: relative;
+        margin: 16px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--faq-code-bg);
+      }
+
+      .code-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #1e293b;
+        padding: 8px 14px;
+        color: #94a3b8;
+        font-size: 12px;
+        font-family: monospace;
+      }
+
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: #e2e8f0;
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+      }
+
+      .code-container pre {
+        margin: 0;
+        padding: 16px;
+        overflow-x: auto;
+        color: #e2e8f0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      code:not(pre code) {
+        background: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-family: monospace;
+        border: 1px solid #e2e8f0;
+      }
+
+      /* Tables */
+      .table-wrapper {
+        overflow-x: auto;
+        margin: 18px 0;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .faq-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+        text-align: left;
+        background: #ffffff;
+      }
+
+      .faq-table th {
+        background: #f8fafc;
+        color: #334155;
+        font-weight: 700;
+        padding: 12px 14px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .faq-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #475569;
+        line-height: 1.5;
+      }
+
+      .faq-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .faq-table tr:hover td {
+        background: #fbfdff;
+      }
+
+      /* Mermaid Diagram container */
+      .mermaid-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 18px 0;
+        display: flex;
+        justify-content: center;
+        overflow-x: auto;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      }
+
+      /* Floating Mobile Drawer Button */
+      .mobile-toc-fab {
+        display: none;
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--faq-primary);
+        color: #ffffff;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 700;
+        box-shadow: 0 10px 25px rgba(16, 96, 235, 0.35);
+        cursor: pointer;
+        z-index: 99;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 80px;
+        right: 24px;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #475569;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.25s ease;
+        z-index: 98;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .back-to-top:hover {
+        background: var(--faq-primary);
+        color: #ffffff;
+        border-color: var(--faq-primary);
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 992px) {
+        .faq-sidebar {
+          position: fixed;
+          left: -320px;
+          top: 0;
+          height: 100vh;
+          width: 300px;
+          z-index: 1001;
+          box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
+          transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-sidebar.open {
+          left: 0;
+        }
+
+        .faq-sidebar-backdrop {
+          display: none;
+          position: fixed;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.4);
+          z-index: 1000;
+          backdrop-filter: blur(2px);
+        }
+
+        .faq-sidebar-backdrop.open {
+          display: block;
+        }
+
+        .faq-content {
+          padding: 24px 20px 60px;
+        }
+
+        .faq-hero-box {
+          padding: 24px;
+        }
+
+        .faq-section {
+          padding: 24px 20px;
+        }
+
+        .mobile-toc-fab {
+          display: inline-flex;
+        }
+      }
+    </style>
+  </head>
+  <body class="faq-page-body">
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress"></div>
+
+    <!-- Header Navigation -->
+    <header class="site-header product-header faq-header" data-header>
+      <a class="brand" href="ai-agent-platform.html" aria-label="回到NanZi智能体平台">
+        <span class="brand-mark">N</span>
+        <span>
+          <strong>NanZi · 智能体平台</strong>
+          <small>疑难解答与常见问题手册 (FAQ)</small>
+        </span>
+      </a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="ai-agent-platform.html">返回产品页</a>
+        <a href="../index.html">矩阵首页</a>
+        <a href="#sec-overview">概览环境</a>
+        <a href="#sec-assistant">智能助手</a>
+        <a href="#sec-agent">智能体平台</a>
+        <a href="#sec-chatbi">ChatBI</a>
+        <a href="#sec-knowledge">知识库</a>
+        <a href="#sec-system">系统配置</a>
+      </nav>
+      <a class="header-action" href="https://github.com/RandyChen1985/nanzi-ai-agent-platform" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <button class="menu-button" type="button" data-menu-button aria-label="打开菜单">
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <nav class="mobile-nav" data-mobile-nav aria-label="移动导航">
+      <a href="ai-agent-platform.html">返回智能体平台</a>
+      <a href="../index.html">返回产品矩阵</a>
+      <a href="#sec-overview">一、概览与基础环境</a>
+      <a href="#sec-assistant">二、智能助手与画布</a>
+      <a href="#sec-agent">三、智能体开发平台</a>
+      <a href="#sec-chatbi">四、ChatBI开发平台</a>
+      <a href="#sec-knowledge">五、知识库开发平台</a>
+      <a href="#sec-logs">六、日志与Token分析</a>
+      <a href="#sec-system">七、系统管理与配置</a>
+    </nav>
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="faq-sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Main Layout Container -->
+    <div class="faq-layout">
+      <!-- Left Sidebar TOC -->
+      <aside class="faq-sidebar" id="faq-sidebar">
+        <div class="sidebar-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="faq-search-input" placeholder="搜索 FAQ 问题或关键词..." autocomplete="off" />
+        </div>
+
+        <p class="sidebar-nav-title">手册目录导航</p>
+
+        <!-- Chapter 1 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-overview">一、概览与基础环境</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#overview-reqs">1.1 推荐运行依赖与系统要求</a></li>
+            <li><a href="#overview-devsh">1.2 快速启动指南 (dev.sh)</a></li>
+            <li><a href="#overview-arch">1.3 核心架构：前后端协作机制</a></li>
+            <li><a href="#overview-qa">1.4 小白高频排查 Q&A</a></li>
+          </ul>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-assistant">二、智能助手与交互画布</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#assistant-canvas">2.1 智能助手与画布协同机制</a></li>
+            <li><a href="#assistant-toolbox">2.2 输入框工具箱 (@ / 技能 / MCP)</a></li>
+            <li><a href="#assistant-status">2.3 Token水位线与沙箱状态浮标</a></li>
+            <li><a href="#assistant-console">2.4 控制台主题与调用调试</a></li>
+            <li><a href="#assistant-browser">2.5 浏览器自动化与实时投屏</a></li>
+            <li><a href="#assistant-qa">2.6 常见交互排查 Q&A</a></li>
+          </ul>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-agent">三、智能体开发平台</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#agent-concepts">3.1 智能体/技能/MCP区别</a></li>
+            <li><a href="#agent-management">3.2 智能体五大要素与子代理</a></li>
+            <li><a href="#agent-embed">3.2.3 Embed Chat 嵌入式发布</a></li>
+            <li><a href="#agent-skills">3.3 技能工作台与平台审核</a></li>
+            <li><a href="#agent-mcp">3.4 MCP工具规范与FastMCP网关</a></li>
+            <li><a href="#agent-matrix">3.5 平台全量工具清单与矩阵</a></li>
+            <li><a href="#agent-tasks">3.7 任务调度台与Cron定时任务</a></li>
+            <li><a href="#agent-qa">3.9 智能体排查 Q&A</a></li>
+          </ul>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-chatbi">四、ChatBI 开发平台</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#chatbi-arch">4.1 核心逻辑：安全查数机制</a></li>
+            <li><a href="#chatbi-metadata">4.2 元数据同步与字典治理</a></li>
+            <li><a href="#chatbi-examples">4.3 案例集与Few-Shot向量匹配</a></li>
+            <li><a href="#chatbi-qa">4.4 ChatBI执行排查 Q&A</a></li>
+          </ul>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-knowledge">五、知识库开发平台</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#rag-arch">5.1 RAG检索与文档切片原理</a></li>
+            <li><a href="#rag-engine">5.2 RAGFlow对接与多模态解析</a></li>
+            <li><a href="#rag-rerank">5.3 混合检索与重排序调优</a></li>
+            <li><a href="#rag-qa">5.5 知识库排查 Q&A</a></li>
+          </ul>
+        </div>
+
+        <!-- Chapter 6 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-logs">六、日志与 Token 分析</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#logs-token">6.1 什么是 Token 与计费原理</a></li>
+            <li><a href="#logs-audit">6.2 审计日志与操作追溯</a></li>
+            <li><a href="#logs-chat">6.3 聊天日志与复盘诊断</a></li>
+            <li><a href="#logs-qa">6.5 日志分析排查 Q&A</a></li>
+          </ul>
+        </div>
+
+        <!-- Chapter 7 -->
+        <div class="sidebar-group">
+          <a class="sidebar-group-title" href="#sec-system">七、系统管理与配置</a>
+          <ul class="sidebar-sublinks">
+            <li><a href="#sys-auth">7.1 用户与双层权限架构</a></li>
+            <li><a href="#sys-models">7.2 模型注册与厂商端点规范</a></li>
+            <li><a href="#sys-sandbox">7.3 多策略安全沙箱与Docker预构建</a></li>
+            <li><a href="#sys-notif">7.4 通知通道与Webhook集成</a></li>
+            <li><a href="#sys-db">7.5 MySQL/PG与Redis Stack维护</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Right Main Content -->
+      <main class="faq-content">
+        <!-- Hero Box -->
+        <div class="faq-hero-box">
+          <span class="faq-badge">📖 官方完整手册 · v1.0.12+ 兼容</span>
+          <h1>NanZi AI 开源智能体平台 · FAQ 疑难解答手册</h1>
+          <p>
+            本手册按照平台左侧功能菜单结构系统编排，涵盖通俗易懂的原理机制解析、小白用户常见概念答疑、企业级安全沙箱配置与各类异常排查指南。
+          </p>
+          <div class="faq-quick-stats">
+            <div class="faq-stat-pill">⚡ 7 大系统模块</div>
+            <div class="faq-stat-pill">🛠️ 8 大内置工具矩阵</div>
+            <div class="faq-stat-pill">🐳 Docker 沙箱安全架构</div>
+            <div class="faq-stat-pill">📊 Text-to-SQL ChatBI 闭环</div>
+            <div class="faq-stat-pill">🧩 FastMCP / Embed SDK</div>
+          </div>
+        </div>
+
+        <!-- Section 1 -->
+        <section class="faq-section" id="sec-overview">
+          <h2><span class="sec-num">1</span> 一、平台概览与基础环境 (Overview &amp; Environment)</h2>
+          
+          <h3 id="overview-reqs">1.1 推荐运行依赖与系统要求</h3>
+          <p>平台经过严密工程设计，建议在以下标准技术栈环境下部署运行：</p>
+          <ul>
+            <li><strong>操作系统</strong>：Linux (Ubuntu 20.04+ / Debian 11+ / CentOS 7+)、macOS (Apple Silicon / Intel)、Windows (WSL2)。</li>
+            <li><strong>Python 运行时</strong>：<strong>Python 3.11</strong>（推荐使用 <code>uv</code> 极速虚拟环境管理器，严禁使用 3.10 或 3.12+ 专有语法）。</li>
+            <li><strong>Node.js 运行时</strong>：<strong>Node.js 18.18+ / 20.x</strong>（用于前端 Vite 7 + Vue 3 编译与构建）。</li>
+            <li><strong>缓存与向量搜索引擎</strong>：<strong>Redis Stack Server 7.x+</strong>（必须包含 RediSearch 模块，不能使用裸 Redis 6.x）。</li>
+            <li><strong>主数据库</strong>：<strong>MySQL 8.0+</strong> 或 <strong>PostgreSQL 14+</strong>（双库均提供增量迁移支持）。</li>
+            <li><strong>安全沙箱环境 (Docker)</strong>：推荐主机安装 <strong>Docker 20.10+</strong>。</li>
+          </ul>
+
+          <div class="callout callout-warning">
+            <strong>⚠️ 核心部署安全原则（平台容器化部署场景）：</strong>
+            当 NanZi 平台自身部署在 Docker 容器内运行时，<strong>强烈建议安全沙箱配置走 <code>docker</code> 策略</strong>（启动主容器时挂载宿主机套接字 <code>-v /var/run/docker.sock:/var/run/docker.sock</code>）。若使用 <code>local</code> 策略，所有 Agent 执行的 Shell 脚本和命令都会在平台后端主服务容器内裸奔执行；而配置为 <code>docker</code> 沙箱策略后，平台会为每位用户在宿主机 Docker 引擎上独立启动纯净隔离的沙箱子容器，实现操作系统级安全防护！
+          </div>
+
+          <h3 id="overview-devsh">1.2 本地与服务器快速启动指南 (<code>dev.sh</code>)</h3>
+          <p>平台根目录下提供了全自动化前台与后台管理脚本 <code>./dev.sh</code>：</p>
+          
+          <div class="code-container">
+            <div class="code-header"><span>Bash (dev.sh 启动命令)</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+            <pre><code># 1. 前台调试启动 (实时查看 Vite 前端编译与 FastAPI 访问日志，Ctrl+C 退出)
+./dev.sh
+
+# 2. 后台常驻启动 (Daemon 守护模式，关闭 SSH 终端依然稳健运行)
+./dev.sh -d
+# 或
+./dev.sh --daemon</code></pre>
+          </div>
+
+          <p><strong><code>dev.sh</code> 核心特性</strong>：自动释放被占用的旧端口、自动校验 <code>package.json</code> 校验和并在依赖变更时自动执行 <code>npm install</code>、动态读取 <code>.env</code> 端口配置（默认 8001）、自动触发 Vite 编译并将产物交由 FastAPI 静态托管。</p>
+
+          <h3 id="overview-arch">1.3 核心逻辑：平台前后端是如何协作运行的？</h3>
+          <div class="mermaid-card">
+            <pre class="mermaid">
+flowchart LR
+    Browser["用户浏览器 (Vue3 SPA)"] -- "① REST API / SSE 流式" --> FastAPI["FastAPI 后端 (Port 8001)"]
+    FastAPI -- "② 静态资源托管" --> Static["Vite 产物 (frontend/dist)"]
+    FastAPI -- "③ 会话与向量检索" --> Redis["Redis Stack (RediSearch)"]
+    FastAPI -- "④ 业务数据持久化" --> DB[("MySQL / PostgreSQL")]
+    FastAPI -- "⑤ 隔离执行 Shell/代码" --> Sandbox["Docker / E2B / Local 沙箱"]
+            </pre>
+          </div>
+
+          <h3 id="overview-qa">1.4 小白高频问题与排查 Q&A</h3>
+          
+          <div class="qa-card open">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 为什么强烈要求使用 Python 3.11？系统自带的 Python 3.8 或 3.12 可以吗？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              <strong>不可以。</strong>
+              <ul>
+                <li>Python 3.8/3.9 缺少平台所需的现代异步特性与类型系统（如 <code>asyncio.TaskGroup</code>、Pydantic 2 新语法）；</li>
+                <li>Python 3.12+ 移除或改变了部分底层标准库 API，且部分 AI/数据分析第三方 C 扩展依赖（如部分旧版本轮子包）在 3.12+ 上可能缺少 pre-built wheels 导致本地编译报错。</li>
+              </ul>
+              推荐做法：使用 <code>uv</code> 极速安装隔离的 3.11 环境：
+              <code>uv python install 3.11 && uv venv --python 3.11 .venv && source .venv/bin/activate</code>
+            </div>
+          </div>
+
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> <code>./dev.sh</code> 和 <code>./dev.sh -d</code> 有什么区别？关掉终端窗口后服务会停止吗？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              <ul>
+                <li><strong><code>./dev.sh</code> (前台模式)</strong>：所有编译日志、FastAPI 访问日志都会实时打印在当前终端窗口中。一旦关闭终端窗口或按 Ctrl+C，服务会随之终止。适合本地开发与排查问题。</li>
+                <li><strong><code>./dev.sh -d</code> (后台常驻模式)</strong>：服务会通过 <code>nohup</code> 在后台静默运行。即使关闭 SSH 终端窗口或断开网络，服务依然会在后台持续运行。适合长期测试或部署在云服务器上。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> <code>.env</code> 配置文件在哪里？我修改了配置为什么不生效？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              项目根目录下有模板文件 <code>.env.example</code>，首次使用需复制一份命名为 <code>.env</code>：<code>cp .env.example .env</code>。<br/>
+              <strong>重要逻辑</strong>：<code>.env</code> 中的环境变量仅在<strong>服务启动初始化阶段</strong>由 Python 读取。修改 <code>.env</code> 后必须重启服务（重新执行 <code>./dev.sh</code>）才能生效。
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="faq-section" id="sec-assistant">
+          <h2><span class="sec-num">2</span> 二、智能助手与交互画布 (Smart Assistant &amp; Canvas)</h2>
+          
+          <h3 id="assistant-canvas">2.1 核心逻辑：智能助手与交互画布的协同机制</h3>
+          <p>智能助手采用<strong>左右分栏、双向协同</strong>的工作流：</p>
+          <ul>
+            <li><strong>左侧（对话与控制区）</strong>：负责智能体的自然语言交流、思考过程（Thinking CoT）展开折叠、工具调用状态跟踪、AI 提问交互卡片确认及 TODO 任务清单分步跟踪；</li>
+            <li><strong>右侧（交互画布 Canvas）</strong>：当智能体生成前端代码（HTML/JS/Vue）、数据图表、Markdown 技术方案、或通过工具产出交付物文件时，右侧画布会自动呼出并实时渲染工件（Artifact）。用户可以在画布中直接编辑代码、切换设备预览尺寸，并一键保存写回沙箱工作区。</li>
+          </ul>
+
+          <h3 id="assistant-toolbox">2.2 聊天输入框全能工具箱</h3>
+          <div class="table-wrapper">
+            <table class="faq-table">
+              <thead>
+                <tr>
+                  <th style="width: 22%;">特性功能</th>
+                  <th style="width: 28%;">触发与操作方式</th>
+                  <th>核心价值与应用场景</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>多模态附件与截图</strong></td>
+                  <td>点击附件图标 / 剪贴板按 <code>Ctrl+V</code> (Mac <code>Cmd+V</code>)</td>
+                  <td>直接贴入图片/文档，智能体自动调用多模态 Vision 模型进行图像理解与 OCR 识别。</td>
+                </tr>
+                <tr>
+                  <td><strong><code>@</code> 专家智能体直选</strong></td>
+                  <td>输入框输入 <code>@</code> 呼出下拉列表</td>
+                  <td>指定本轮对话由专属专家（如 <code>@ChatBI分析师</code>、<code>@代码审计员</code>）接管，享受专属 System Prompt。</td>
+                </tr>
+                <tr>
+                  <td><strong><code>/</code> 快捷指令库</strong></td>
+                  <td>输入框输入 <code>/</code> 呼出面板</td>
+                  <td>快速调用预设 Prompt 模板（如数据集快捷分析、代码评审模板），一键填充发送。</td>
+                </tr>
+                <tr>
+                  <td><strong>技能与 MCP 挂载</strong></td>
+                  <td>点击输入框底部的 <code>Skill</code> / <code>MCP</code> 按钮</td>
+                  <td>动态为当前会话勾选挂载领域专精技能包与外部工具服务，无需全局更改 Prompt。</td>
+                </tr>
+                <tr>
+                  <td><strong>权限审批模式切换</strong></td>
+                  <td>输入框底部切换 <code>ask</code> / <code>allow</code> / <code>deny</code></td>
+                  <td><code>ask</code>（默认需确认）、<code>allow</code>（自动放行）、<code>deny</code>（只读拦截），精确控制写入与 Bash 执行权限。</td>
+                </tr>
+                <tr>
+                  <td><strong>思考强度调节</strong></td>
+                  <td>选择推理模型（如 DeepSeek-R1 / QwQ）</td>
+                  <td>精细化调节思考预算强度（极简 / 低 / 中 / 高 / 极高），控制思维链深度。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="assistant-status">2.3 输入框浮标：Token 水位线、压缩日志与沙箱卡片</h3>
+          <p>聊天输入框右上角集成了<strong>多功能自适应状态浮标</strong>：</p>
+          <ul>
+            <li><strong>Token 水位线与健康度</strong>：动态环形进度条展示当前会话已占用的 Token 数与上限占比，自适应显示 🟢使用正常 / 🟡接近上限 / 🔴已达上限。</li>
+            <li><strong>上下文压缩时间线 (Compaction Timeline)</strong>：当多轮长会话触发平台两阶段压缩时，浮标提供时间线弹窗入口，可查看各轮次提炼的高浓度摘要与 Token 节省比例。</li>
+            <li><strong>沙箱运行环境卡片</strong>：直观显示当前生效策略（Local/Docker/E2B/SSH）；在 <code>docker</code> 策略下展示容器实时运行状态、Container ID、秒级递增运行时长及【启动容器 / 重新连接】按钮。</li>
+          </ul>
+
+          <h3 id="assistant-console">2.4 控制台：排版主题、单/多轮记忆与四维性能分析</h3>
+          <ul>
+            <li><strong>5+ 套精美排版主题</strong>：极简白、优雅蓝、护眼绿、暗黑极客等，支持一键切换适合阅读或截图的渲染风格；</li>
+            <li><strong>单轮 / 多轮记忆模式</strong>：支持切换单轮独立测试或多轮连续上下文对话；</li>
+            <li><strong>模型调用四维 Token 拆解</strong>：精确拆解 <strong>System Prompt、Tools Schema、Memory/History 与 Current Turn</strong> 的 Token 分项占比图，并提供首字响应延迟 (TTFT) 与总耗时指标。</li>
+          </ul>
+
+          <h3 id="assistant-browser">2.5 浏览器自动化会话与实时投屏接管</h3>
+          <p>智能体调用 <code>browser_*</code> 工具系列（打开网页、滚动、点击、表单输入、截图）时，在后台保持无头浏览器会话。右侧画布支持展开【浏览器面板】，实时查看 Agent 操作的页面截图，支持人工直接点击、输入网址实现人机协同接管。</p>
+
+          <h3 id="assistant-qa">2.6 常见交互排查 Q&A</h3>
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 聊天记录中出现的“自动整理线”是什么意思？我的聊天记录被删除了吗？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              <strong>没有被删除。</strong> 大模型单次会话所能接收的上下文长度是有上限的（默认 64k Tokens）。如果多轮长对话的历史记录太长，会导致模型报错或费用暴增。<br/>
+              当逼近预算上限时，系统会自动启动<strong>两阶段智能溢出压缩</strong>：将较早轮次的历史对话提炼为结构化关键摘录，并在界面插入一条「自动整理线」。新一轮对话将基于这个高浓度摘要继续进行，既保留了前文核心信息，又大幅降低了 Token 消耗。
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="faq-section" id="sec-agent">
+          <h2><span class="sec-num">3</span> 三、智能体开发平台 (Agent Development Platform)</h2>
+          
+          <h3 id="agent-concepts">3.1 核心逻辑：智能体、技能 (Skill) 与 MCP 工具的区别与联系</h3>
+          <div class="mermaid-card">
+            <pre class="mermaid">
+graph TD
+    Agent["🤖 智能体 (Agent)<br>大脑与核心角色，定义 Prompt 与人格"] --> Skill["📚 技能 (Skill)<br>专业知识与工作流指导手册 (Markdown)"]
+    Agent --> MCP["🛠️ MCP 工具 (Tool)<br>具体执行代码/查数据/调 API 的手脚程序"]
+    Agent --> Memory["🧠 记忆 (Memory)<br>长短期记忆与用户偏好库"]
+            </pre>
+          </div>
+          <ul>
+            <li><strong>智能体 (Agent)</strong>：拥有独立人设、目标和决策逻辑的 AI 角色实体；</li>
+            <li><strong>技能 (Skill)</strong>：传授给智能体的<strong>领域专业工作流知识</strong>（以标准 <code>SKILL.md</code> 形式存储），告诉智能体“遇到这类任务应该分几步做、遵循什么规范”；</li>
+            <li><strong>MCP 工具 (Model Context Protocol)</strong>：智能体用来与外界交互的<strong>可执行代码接口</strong>（如查询天气、执行 Python 脚本、操作浏览器等）。</li>
+          </ul>
+
+          <h3 id="agent-management">3.2 智能体构建五大要素与子代理架构 (Subagents Architecture)</h3>
+          <p>平台主编排采用 <strong>Master-Subagent</strong> 架构，解决复杂跨领域任务中的上下文遗忘与单点崩溃问题：</p>
+          <div class="mermaid-card">
+            <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as 用户 (User)
+    participant Master as 👑 主编排智能体 (Master Agent)
+    participant Sub1 as 🔍 检索专家子代理 (Research Subagent)
+    participant Sub2 as 💻 编程专家子代理 (Coding Subagent)
+
+    User->>Master: 提出综合性复杂需求
+    Master->>Master: 任务拆解与执行规划 (Task Decomposition)
+  
+    Master->>Sub1: 派发检索任务 (invoke_subagent)
+    Sub1->>Sub1: 深度搜索与数据清洗 (独立上下文)
+    Sub1-->>Master: 仅返回结构化调研摘要结论
+
+    Master->>Sub2: 派发代码编写与沙箱验证任务
+    Sub2->>Sub2: 编写并执行测试 (独立沙箱)
+    Sub2-->>Master: 仅返回最终代码工件与验证状态
+
+    Master-->>User: 汇总交付高水准最终方案
+            </pre>
+          </div>
+
+          <h3 id="agent-embed">3.2.3 嵌入式发布与一键共享 (Embed Chat)</h3>
+          <p>面向企业内部 OA、CRM、ERP、Wiki 等系统提供零侵入、自适应嵌入方案。生产环境强烈推荐使用 <strong>Embed Ticket 三步安全时序</strong>：</p>
+          <div class="mermaid-card">
+            <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as 业务系统员工 (User)
+    participant HostBack as 宿主系统后端 (Server)
+    participant NanziAPI as 平台接口 (NanZi Backend)
+    participant EmbedFrame as EmbedChat IFrame
+
+    HostBack->>NanziAPI: POST /api/v1/embed/tickets (携带系统 Master Key & username)
+    NanziAPI-->>HostBack: 返回 5 分钟一次性 Ticket (emt_xxx)
+    HostBack->>EmbedFrame: 下发 ticket 挂载 IFrame
+    EmbedFrame->>NanziAPI: 自动核销 Ticket 并兑换 24 小时短期 Session Token (阅后即焚)
+    NanziAPI-->>EmbedFrame: 鉴权通过，建立 SSE 流式连接并就绪
+            </pre>
+          </div>
+
+          <div class="code-container">
+            <div class="code-header"><span>HTML 嵌入示例 (Embed Chat)</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+            <pre><code>&lt;!-- 宿主前端：直接传入 ticket 渲染 IFrame --&gt;
+&lt;iframe
+  src="https://your-nanzi-platform.com/embed/chat?ticket=emt_a8f9c2d1e0b3456789abcdef&theme=light"
+  width="100%"
+  height="680"
+  frameborder="0"
+  allow="clipboard-read; clipboard-write"
+  style="border: 0; border-radius: 12px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);"
+&gt;&lt;/iframe&gt;</code></pre>
+          </div>
+
+          <h3 id="agent-skills">3.3 技能工作台与平台审核机制</h3>
+          <p>技能包采用标准的 <strong>YAML Frontmatter + Markdown 指令正文</strong> 规范。智能体在每轮对话开始时，根据用户输入的语义意图与技能描述进行<strong>语义相似度快速匹配并按需加载</strong>，节约 90% 以上上下文消耗。</p>
+
+          <h3 id="agent-mcp">3.4 MCP 工具集规范与 FastMCP 网关</h3>
+          <ul>
+            <li><strong>STDIO MCP (标准输入输出)</strong>：适合本地命令或脚手架（如 Postgres/Puppeteer MCP）；</li>
+            <li><strong>SSE MCP (HTTP 长连接)</strong>：适合跨主机、跨网络的分布式微服务；</li>
+            <li><strong>In-Container FastMCP 网关</strong>：Docker 沙箱容器内自动拉起专有 FastMCP 网关，Bash/Read/Write 均以标准 MCP Tool 方式暴露，容器异常完全不影响主服务。</li>
+          </ul>
+
+          <h3 id="agent-matrix">3.5 平台全量工具矩阵与功能清单 (Platform Tool Matrix)</h3>
+          <div class="table-wrapper">
+            <table class="faq-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">工具标识 (Tool Name)</th>
+                  <th style="width: 15%;">分类</th>
+                  <th style="width: 15%;">默认权限</th>
+                  <th>功能说明与典型应用场景</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>exec_command</code> / <code>bash</code></td>
+                  <td>沙箱系统</td>
+                  <td><code>ask</code> (需批准)</td>
+                  <td>在沙箱中执行系统命令、运行 Python/Node/Shell 脚本，支持实时日志与超时控制。</td>
+                </tr>
+                <tr>
+                  <td><code>read_file</code> / <code>write_file</code></td>
+                  <td>文件系统</td>
+                  <td><code>read</code> / <code>ask</code></td>
+                  <td>读取/写入沙箱工作区文件，自动联动右侧画布实时渲染工件（Artifact）。</td>
+                </tr>
+                <tr>
+                  <td><code>search_text</code> (Grep)</td>
+                  <td>代码检索</td>
+                  <td><code>read</code> (只读)</td>
+                  <td>在工作区目录树中进行极速代码/文本全文正则搜索，快速定位关键词。</td>
+                </tr>
+                <tr>
+                  <td><code>get_dataset_schema</code></td>
+                  <td>ChatBI 数据</td>
+                  <td><code>read</code> (只读)</td>
+                  <td>获取平台已挂载数据集的数据字典、表结构、字段别名与枚举值注释。</td>
+                </tr>
+                <tr>
+                  <td><code>execute_sql_query</code></td>
+                  <td>ChatBI 数据</td>
+                  <td><code>read</code> (只读)</td>
+                  <td>执行 Text-to-SQL 生成的只读 SQL 查询，支持多数据源并返回结构化数据与图表。</td>
+                </tr>
+                <tr>
+                  <td><code>browser_*</code> 系列</td>
+                  <td>浏览器自动化</td>
+                  <td><code>allow</code> (自动)</td>
+                  <td>打开网页、点击元素、表单填写、截屏及实时投屏接管。</td>
+                </tr>
+                <tr>
+                  <td><code>rag_search_knowledge</code></td>
+                  <td>知识库检索</td>
+                  <td><code>read</code> (只读)</td>
+                  <td>在挂载的知识库中进行多模态向量与全文混合检索，召回相似切片与引用卡片。</td>
+                </tr>
+                <tr>
+                  <td><code>invoke_subagent</code></td>
+                  <td>多智能体</td>
+                  <td><code>allow</code> (自动)</td>
+                  <td>孵化独立的子代理会话与沙箱，分发子任务并隔离过程日志。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="agent-tasks">3.7 任务调度台 (Task Center) 与 Cron 定时任务</h3>
+          <p>支持创建按 Cron 表达式周期性自动运行的智能体任务（如每日早上 9:00 自动生成业务报表并推送到企微群）。通俗 Cron 表达式速查：</p>
+          <ul>
+            <li><code>*/10 * * * *</code>：每 10 分钟执行一次；</li>
+            <li><code>0 * * * *</code>：每小时整点执行一次；</li>
+            <li><code>0 9 * * *</code>：每天早上 9:00 执行一次；</li>
+            <li><code>0 9 * * 1-5</code>：每周一至周五早上 9:00 执行一次（工作日报）。</li>
+          </ul>
+
+          <h3 id="agent-qa">3.9 智能体排查 Q&A</h3>
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 我在技能工作台写了一个新技能，为什么智能体对话时好像没有使用？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              <strong>排查步骤：</strong>
+              <ol>
+                <li>检查技能是否已通过管理员审核并处于启用状态；</li>
+                <li>检查技能的 YAML Frontmatter 描述（<code>description</code>）是否准确清晰。大模型是根据你的 <code>description</code> 语义判断何时调起该技能的，若描述过于模糊，大模型可能无法命中。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="faq-section" id="sec-chatbi">
+          <h2><span class="sec-num">4</span> 四、ChatBI 开发平台 (ChatBI Platform)</h2>
+          
+          <h3 id="chatbi-arch">4.1 核心逻辑：ChatBI 是如何安全查询企业数据的？</h3>
+          <p>很多企业用户担心“用大模型查数据库会不会泄露机密业务数据”。<strong>平台的实现逻辑绝对安全，严守数据不出域原则</strong>：</p>
+          <div class="mermaid-card">
+            <pre class="mermaid">
+flowchart TD
+    UserQuery["用户自然语言提问<br>（例如：上月华东区销售额是多少？）"] --> Step1["① 提取元数据字典与字段别名<br>（仅包含表结构，绝无真实业务数据！）"]
+    Step1 --> Step2["② 发送给 LLM 生成只读 SQL"]
+    Step2 --> Step3["③ 平台本地只读连接池执行 SQL"]
+    Step3 --> Step4["④ 在本地将统计结果绘制为图表返回给前端"]
+            </pre>
+          </div>
+          <ul>
+            <li><strong>只传 Schema，不传数据</strong>：发送给大模型的只有数据表结构、字段说明和几条案例，<strong>真实数据记录绝不会发送给大模型</strong>；</li>
+            <li><strong>纯只读安全执行</strong>：生成的 SQL 仅在平台本地数据库连接池中执行，并强制拦截一切写操作（<code>INSERT/UPDATE/DELETE/DROP</code> 均直接拦截）。</li>
+          </ul>
+
+          <h3 id="chatbi-metadata">4.2 元数据同步与业务语义字典标注 (Metadata Management)</h3>
+          <p>元数据管理是大模型理解企业底层数仓的“业务翻译官”：</p>
+          <ul>
+            <li><strong>数据集 (Dataset) 划分</strong>：按业务域划分（如电商交易、财务账单），隔离无关表，防止大模型混淆并节省 80% Token；</li>
+            <li><strong>字段属性治理</strong>：明确标注字段类型、维度（Dimension，用于分组过滤）与度量（Metric，用于求和/均值），明确主外键关联关系确保 JOIN 100% 准确；</li>
+            <li><strong>业务枚举字典映射</strong>：针对 <code>pay_status</code> 等字段配置枚举（<code>0=未支付, 1=已支付, 2=已退款</code>），大模型查退单时精准命中 <code>pay_status = 2</code>；</li>
+            <li><strong>AI 辅助一键智能标注</strong>：自动根据字段英文单词推荐地道中文名，支持一键保存。</li>
+          </ul>
+
+          <h3 id="chatbi-examples">4.3 案例集管理与 Few-Shot 向量匹配 (Examples Management)</h3>
+          <div class="mermaid-card">
+            <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as 用户 (User)
+    participant ChatBI as 🧠 ChatBI 引擎
+    participant VectorDB as 📚 案例集向量库 (RediSearch)
+    participant LLM as 🤖 大语言模型
+
+    User->>ChatBI: 提问：“统计华东区各门店上月的复购率”
+    ChatBI->>VectorDB: 计算提问向量，检索语义最相似的 Top-N 案例
+    VectorDB-->>ChatBI: 召回 2 条高度相似的真实历史黄金 SQL 范例
+    ChatBI->>LLM: 组装 Prompt：[表结构元数据] + [召回的 2 条黄金 SQL 案例] + [用户提问]
+    LLM-->>ChatBI: 输出 100% 符合特定业务口径的正确 SQL
+    ChatBI-->>User: 执行 SQL 并自动绘制柱状图/折线图呈现
+            </pre>
+          </div>
+
+          <h3 id="chatbi-qa">4.4 ChatBI 常见排查 Q&A</h3>
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 用户提问“上周五的 GMV 是多少”，大模型怎么知道“上周五”是哪一天？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              平台通过 <code>agentscope_inject_runtime_state</code> 机制，在每次生成 SQL 前向大模型注入了<strong>当前精确北京时间、当前日期与星期几</strong>；大模型会自动推算出“上周五”的具体日期（如 <code>2026-08-14</code>），并生成对应的日期过滤条件。
+            </div>
+          </div>
+
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 数据库里有敏感表（如员工薪资表），如何防止被 ChatBI 查到？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              在【元数据管理】中，找到对应的敏感表，将其状态切换为 <strong><code>禁用 / 隐藏</code></strong>。隐藏后的表结构<strong>绝不会被放入 Prompt 发送给大模型</strong>，大模型完全不知道该表的存在，从而实现物理级权限隔离。
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="faq-section" id="sec-knowledge">
+          <h2><span class="sec-num">5</span> 五、知识库开发平台 (Knowledge Base Platform)</h2>
+          
+          <h3 id="rag-arch">5.1 核心逻辑：RAG 知识库检索与文档切片原理</h3>
+          <ul>
+            <li><strong>构建期（文档切片与向量化）</strong>：上传 PDF/Word 等文档 -> 智能切片为段落 (Chunk) -> 调用 Embedding 模型转换为多维向量 -> 存入 RediSearch 向量库；</li>
+            <li><strong>检索期（语义匹配与回答生成）</strong>：提问转向量 -> 检索最相似的 Top-K 文档片段 -> 作为参考依据注入 Prompt -> 大模型生成有据可依的回答。</li>
+          </ul>
+
+          <h3 id="rag-engine">5.2 知识库创建与 RAGFlow 引擎对接</h3>
+          <p>支持解析 PDF、Word (.docx)、Excel、Markdown、TXT 等格式；集成 RAGFlow 深度文档理解引擎，支持智能表格抽取与多模态图表解析。</p>
+
+          <h3 id="rag-rerank">5.3 混合检索 (Hybrid Search) 与重排序 (Rerank) 调优</h3>
+          <ul>
+            <li><strong>混合检索</strong>：结合向量语义相似度（Dense Retrieval）与 BM25 关键词全文匹配（Sparse Retrieval）；</li>
+            <li><strong>重排序 (Rerank)</strong>：接入 BGE-Reranker 等重排模型，对初筛结果进行二次精排打分，大幅减少 AI 幻觉。</li>
+          </ul>
+
+          <h3 id="rag-qa">5.5 知识库排查 Q&A</h3>
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 为什么我明明上传了包含答案的文档，提问时 AI 却说“在知识库中未找到相关内容”？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              <strong>排查与解决：</strong>
+              <ol>
+                <li><strong>切片尚未完成</strong>：检查文档状态是否为 <code>解析完成</code>；</li>
+                <li><strong>提问词差异过大</strong>：进入【检索测试】页面输入问题进行召回调试，观察相似度得分是否低于系统设置的阈值；</li>
+                <li><strong>分块被切断</strong>：若关键信息恰好被跨段切分，可适当调大分块大小（Chunk Size）并开启重叠长度（Overlap）。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section class="faq-section" id="sec-logs">
+          <h2><span class="sec-num">6</span> 六、日志与 Token 分析 (Logs &amp; Token Analytics)</h2>
+          
+          <h3 id="logs-token">6.1 什么是 Token 与计费原理？</h3>
+          <p>Token 是大模型处理文本的基本单位。中文通常 1 个汉字 ≈ 1 ~ 2 个 Tokens；英文通常 1 个单词 ≈ 1.3 个 Tokens。平台精准区分 <strong>Prompt Tokens（输入）</strong> 与 <strong>Completion Tokens（输出）</strong>，支持配置模型单价并核算企业成本报表。</p>
+
+          <h3 id="logs-audit">6.2 审计日志 (Audit Logs) 与操作追溯</h3>
+          <p>完整记录平台所有敏感运维动作（用户管理、角色赋权、系统配置修改、数据源变动等），记录操作人、来源 IP、时间戳与前后变更 Diff。</p>
+
+          <h3 id="logs-chat">6.3 聊天日志 (Chat Logs) 与复盘诊断</h3>
+          <p>管理员可多维度检索全平台会话记录，查看完整的上下文压缩日志、模型 Token 消耗及工具调用细节，并可“一键将优质问答采纳为 Few-Shot 案例”。</p>
+
+          <h3 id="logs-qa">6.5 日志分析 Q&A</h3>
+          <div class="qa-card">
+            <div class="qa-question" onclick="toggleQA(this)">
+              <span><span class="q-tag">Q</span> 审计日志和聊天日志有什么区别？</span>
+              <span>▼</span>
+            </div>
+            <div class="qa-answer">
+              <ul>
+                <li><strong>审计日志</strong>：关注<strong>系统安全与权限变更</strong>（如“张三在 10:00 修改了管理员角色权限”）；</li>
+                <li><strong>聊天日志</strong>：关注<strong>AI 对话内容与消耗诊断</strong>（如“李四向智能体提问了一段 Python 代码，耗费了 1200 Tokens”）。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7 -->
+        <section class="faq-section" id="sec-system">
+          <h2><span class="sec-num">7</span> 七、系统管理与配置 (System Management &amp; Configuration)</h2>
+          
+          <h3 id="sys-auth">7.1 用户与双层权限架构 (RBAC)</h3>
+          <ul>
+            <li><strong>菜单权限 (<code>menu:*</code>)</strong>：控制左侧侧边栏页面可见性；</li>
+            <li><strong>元素/功能级权限 (<code>element:*</code>)</strong>：控制页面内创建、编辑、删除、发布、审核等敏感操作权限（如 <code>element:skills:admin</code>）；</li>
+            <li><strong>API Key</strong>：每个用户拥有唯一 <code>api_key</code>，外部系统通过 <code>Authorization: Bearer &lt;KEY&gt;</code> 调用开放 API。</li>
+          </ul>
+
+          <h3 id="sys-models">7.2 模型注册与提供商管理 (Model Registry)</h3>
+          <ul>
+            <li><strong>主流厂商生态</strong>：OpenAI、DeepSeek、Qwen（百炼/通义）、Volcengine Ark（火山引擎/豆包）、SiliconFlow、Moonshot、ZhipuAI 等，及本地 Ollama / vLLM / Xinference；</li>
+            <li><strong>Base URL 智能识别</strong>：自动识别已有版本号的 URL，避免错误拼接 <code>/v1</code> 导致 404；</li>
+            <li><strong>深度思考兼容层</strong>：内建 <code>ThinkingToolChoiceCompatAgent</code>，完美兼容 DeepSeek-R1 / QwQ 等思考模型的 <code>&lt;think&gt;</code> 解析与工具调用。</li>
+          </ul>
+
+          <h3 id="sys-sandbox">7.3 多策略安全沙箱与 Docker 镜像预构建</h3>
+          <div class="table-wrapper">
+            <table class="faq-table">
+              <thead>
+                <tr>
+                  <th style="width: 20%;">沙箱策略</th>
+                  <th style="width: 15%;">隔离级别</th>
+                  <th style="width: 25%;">运行位置</th>
+                  <th>适用场景与核心说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>local</code></strong></td>
+                  <td>进程级</td>
+                  <td>本机 / 宿主机主进程</td>
+                  <td>个人本地开发、单机快速体验。在 Docker 容器化部署时不建议使用。</td>
+                </tr>
+                <tr>
+                  <td><strong><code>docker</code></strong> (推荐)</td>
+                  <td>容器级</td>
+                  <td>本地 Docker 引擎</td>
+                  <td><strong>企业生产推荐</strong>。为每位用户分配独立容器与工作区，隔离 Bash 与文件操作。</td>
+                </tr>
+                <tr>
+                  <td><strong><code>e2b</code></strong></td>
+                  <td>微虚拟机</td>
+                  <td>E2B 云端沙箱</td>
+                  <td>无本地 Docker 资源的云原生架构，需配置 E2B API Key。</td>
+                </tr>
+                <tr>
+                  <td><strong><code>ssh</code></strong></td>
+                  <td>远程主机</td>
+                  <td>独立远程服务器</td>
+                  <td>专用高性能计算节点。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Docker 沙箱预构建运维命令 (推荐排查方案)</h4>
+          <div class="code-container">
+            <div class="code-header"><span>Bash (prebuild-sandbox.sh)</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+            <pre><code># 1. 带 HTTP/HTTPS 代理执行预构建（实时流式查看 Docker build 进度）
+./prebuild-sandbox.sh --proxy http://10.0.0.1:7890
+
+# 2. 检查当前预构建状态与确定性 Tag
+./prebuild-sandbox.sh --status
+
+# 3. 指定特定基础镜像或强制重建
+./prebuild-sandbox.sh --base-image python:3.11-slim --force</code></pre>
+          </div>
+
+          <h3 id="sys-notif">7.4 通知通道与外部集成</h3>
+          <p>支持 <strong>企业微信群机器人、钉钉机器人（支持加签）、飞书机器人、SMTP 邮件与通用 Webhook</strong>，可与【任务调度台】深度绑定，实现定时任务执行成功/失败告警实时推送。</p>
+
+          <h3 id="sys-db">7.5 数据库与 Redis 缓存维护</h3>
+          <ul>
+            <li><strong>MySQL / PG 双库支持</strong>：表结构变更必须在 <code>db-prod/</code> 与 <code>db-prod-pg/</code> 同步维护增量 SQL；</li>
+            <li><strong>Redis Stack (RediSearch)</strong>：会话记忆、上下文压缩快照统一设置 <strong>30 天 (2592000秒) TTL</strong>，保证长周期跨天会话不丢记忆。</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- Back to Top Floating Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <!-- Mobile Drawer Trigger Button -->
+    <button class="mobile-toc-fab" id="mobile-toc-btn">
+      📑 目录导航
+    </button>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>NanZi · 智能体平台</strong>
+          <p>Connect Data. Orchestrate Intelligence.</p>
+        </div>
+        <a href="ai-agent-platform.html">返回智能体平台</a>
+      </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+      // Initialize Mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        securityLevel: 'loose',
+        themeVariables: {
+          fontFamily: 'inherit',
+          primaryColor: '#e0e7ff',
+          primaryTextColor: '#1e293b',
+          primaryBorderColor: '#6366f1',
+          lineColor: '#64748b'
+        }
+      });
+
+      // Reading Progress Bar
+      window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        document.getElementById('reading-progress').style.width = progress + '%';
+
+        // Back to top button visibility
+        const backToTop = document.getElementById('back-to-top');
+        if (window.scrollY > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      });
+
+      document.getElementById('back-to-top').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Accordion Toggle
+      function toggleQA(element) {
+        const card = element.closest('.qa-card');
+        card.classList.toggle('open');
+      }
+
+      // Copy Code Functionality
+      function copyCode(button) {
+        const pre = button.parentElement.nextElementSibling;
+        const code = pre.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const originalText = button.innerText;
+          button.innerText = '已复制 ✓';
+          button.style.color = '#4ade80';
+          setTimeout(() => {
+            button.innerText = originalText;
+            button.style.color = '';
+          }, 2000);
+        });
+      }
+
+      // Mobile Drawer Toggle
+      const mobileTocBtn = document.getElementById('mobile-toc-btn');
+      const sidebar = document.getElementById('faq-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        backdrop.classList.toggle('open');
+      }
+
+      mobileTocBtn?.addEventListener('click', toggleSidebar);
+      backdrop?.addEventListener('click', toggleSidebar);
+
+      sidebar?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 992) {
+            toggleSidebar();
+          }
+        });
+      });
+
+      // ScrollSpy: Highlight active section in sidebar
+      const sections = document.querySelectorAll('.faq-section, .faq-section h3');
+      const navLinks = document.querySelectorAll('.faq-sidebar a');
+
+      window.addEventListener('scroll', () => {
+        let currentId = '';
+        sections.forEach(sec => {
+          const sectionTop = sec.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            currentId = sec.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === '#' + currentId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }, { passive: true });
+
+      // FAQ Keyword Search Filter
+      const searchInput = document.getElementById('faq-search-input');
+      searchInput?.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const qaCards = document.querySelectorAll('.qa-card');
+        const sections = document.querySelectorAll('.faq-section');
+
+        if (!query) {
+          qaCards.forEach(card => card.style.display = '');
+          sections.forEach(sec => sec.style.display = '');
+          return;
+        }
+
+        qaCards.forEach(card => {
+          const text = card.innerText.toLowerCase();
+          if (text.includes(query)) {
+            card.style.display = '';
+            card.classList.add('open'); // auto open matching QA
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    </script>
+    <script src="../script.js"></script>
+  </body>
+</html>
